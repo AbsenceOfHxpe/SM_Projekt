@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+    <shape android:shape="rectangle">
+        <solid android:color="#AEFFFFFF"/>
+        <corners android:radius="40dp"/>
+        <stroke
+            android:width="2dp"
+            android:color="#7A000000"/> <!-- Kolor obramowania -->
+        <item>
+            <shape>
+                <solid android:color="#00BCD4"/> <!-- Kolor przezroczysty dla cienia -->
+                <corners android:radius="12dp"/> <!-- Zaokrąglone rogi cienia, taki sam jak dla tła -->
+            </shape>
+        </item>
+    </shape>
+    </item>
+</selector>
+
