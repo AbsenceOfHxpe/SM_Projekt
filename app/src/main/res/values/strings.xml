@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">sm_project</string>
+    <string name="search_hint">Wyszukaj restauracje...</string>
 </resources>
