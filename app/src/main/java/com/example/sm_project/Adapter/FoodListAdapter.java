@@ -1,6 +1,7 @@
 package com.example.sm_project.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.example.sm_project.Activity.DetailActivity;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.R;
 
@@ -38,13 +40,19 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.viewho
     public void onBindViewHolder(@NonNull FoodListAdapter.viewholder holder, int position) {
         holder.titleTxt.setText(items.get(position).getTitle());
         holder.timeTxt.setText(items.get(position).getTimeValue() + "min");
-        holder.rateTxt.setText(items.get(position).getRate());
+        holder.rateTxt.setText("" +items.get(position).getStar());
         holder.priceTxt.setText(items.get(position).getPrice()+ "zł");
 
         Glide.with(context)
                 .load(items.get(position).getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
                 .into(holder.img);
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, DetailActivity.class);
+            intent.putExtra("object", items.get(position));
+            context.startActivity(intent);
+        });
 
     }
 

@@ -9,3 +9,15 @@ w
 Gapp/src/main/java/com/example/sm_project/Activity/RegisterActivity.java,6/3/639c9b931dd775bfe5815cfdd53a4e302dc021a7
 @
 build.gradle.kts,d/b/dbcff70658daf80b53ce624f6adcaa529df5ed8d
+s
+Capp/src/main/java/com/example/sm_project/Activity/BaseActivity.java,f/b/fb24aa263ba2b2f67faa3bb939b39f7ead7c2cf7
+w
+Gapp/src/main/java/com/example/sm_project/Activity/ListFoodActivity.java,f/f/ffae42124e34a391157b9a8b0ae9e2b7ef5e9e78
+j
+:app/src/main/java/com/example/sm_project/Domain/Foods.java,a/a/aab082e9acd92777d4d90ec19c2c740675342785
+P
+ app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
+u
+Eapp/src/main/java/com/example/sm_project/Adapter/FoodListAdapter.java,5/d/5dfd2e90aa8286a73b33c47688843bd8743742a6
+u
+Eapp/src/main/java/com/example/sm_project/Activity/DetailActivity.java,b/0/b072583afeef4d516562b9826eca98cdcbceecdb
