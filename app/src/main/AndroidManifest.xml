@@ -33,6 +33,10 @@
         <activity
             android:name=".Activity.ListFoodActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".Activity.GeolocationActivity"
+            android:exported="false" />
         <activity
             android:name=".Activity.StartActivity"
             android:exported="true">
