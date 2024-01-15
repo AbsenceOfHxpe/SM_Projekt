@@ -7,7 +7,7 @@
 
     <style name="Theme.Sm_project" parent="Base.Theme.Sm_project" />
     <style name="textStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">@color/grey</item>
+        <item name="android:textColor">@color/blue_grey</item>
         <item name="android:textSize">16sp</item>
     </style>
 

@@ -46,7 +46,6 @@
                     android:id="@+id/logoutBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@tools:sample/avatars"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:srcCompat="@drawable/logout"
                     tools:layout_editor_absoluteY="3dp" />
@@ -67,7 +66,6 @@
                     android:layout_height="50dp"
                     android:background="@drawable/grey_background"
                     android:padding="12dp"
-                    android:src="@tools:sample/avatars"
                     app:srcCompat="@drawable/settings"
                     tools:layout_marginEnd="6dp" />
 
@@ -100,7 +98,6 @@
                         android:layout_height="wrap_content"
                         android:padding="4dp"
                         android:layout_gravity="center"
-                        android:src="@tools:sample/avatars"
                         app:srcCompat="@drawable/search_icon" />
                 </LinearLayout>
 
@@ -110,7 +107,6 @@
                     android:layout_height="50dp"
                     android:background="@drawable/grey_background"
                     android:padding="12dp"
-                    android:src="@tools:sample/avatars"
                     app:srcCompat="@drawable/basket"
                     tools:layout_marginStart="6dp" />
             </LinearLayout>

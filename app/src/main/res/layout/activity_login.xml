@@ -17,10 +17,11 @@
         app:srcCompat="@drawable/tlo" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
 
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -119,10 +120,10 @@
                 android:background="@color/blue_grey" />
 
             <TextView
-                android:layout_marginTop="15dp"
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:text="lub użyj"
                 android:textSize="18sp" />
 
@@ -131,38 +132,38 @@
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
                 android:layout_marginTop="15dp"
-                android:background="@color/blue_grey"
-                android:layout_weight="1"/>
+                android:layout_weight="1"
+                android:background="@color/blue_grey" />
 
         </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:layout_marginTop="10dp"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:id="@+id/imageView4"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/facebook" />
-
-        <ImageView
-            android:id="@+id/imageView7"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/google" />
-    </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView4"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/facebook" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="30dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                app:srcCompat="@drawable/google" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
 
             android:orientation="horizontal">
 
@@ -183,7 +184,6 @@
                 android:textStyle="bold" />
 
         </LinearLayout>
-
 
 
     </LinearLayout>
