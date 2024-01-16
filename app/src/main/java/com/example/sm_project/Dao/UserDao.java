@@ -1,6 +1,6 @@
 package com.example.sm_project.Dao;
 
-/*import androidx.room.Dao;
+import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -18,4 +18,6 @@ public interface UserDao {
     boolean login(String username, String password);
 
 
-}*/
+
+
+}

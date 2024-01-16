@@ -6,9 +6,13 @@ import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
+import com.example.sm_project.Dao.UserDao;
+import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityLoginBinding;
 import com.example.sm_project.databinding.ActivityRegisterBinding;
@@ -16,6 +20,8 @@ import com.example.sm_project.databinding.ActivityRegisterBinding;
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;
+    MyDataBase myDB;
+    UserDao userDao;
 
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -24,9 +30,25 @@ public class LoginActivity extends AppCompatActivity {
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "usertable")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        userDao = myDB.getDao();
 
 
         setVariable();
+        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userName = binding.loginText.getText().toString();
+                String password = binding.passwordText.getText().toString();
+
+                if(userDao.login(userName,password)){
+                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                }else{
+                    Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT);
+                }
+            }
+        });
 
     }
 

@@ -1,9 +1,9 @@
 package com.example.sm_project.Helper;
 
-/*import androidx.room.Entity;
+import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity
+@Entity(tableName = "usertable")
 public class UserTable {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -47,4 +47,4 @@ public class UserTable {
     public void setPassword(String password) {
         this.password = password;
     }
-}*/
+}
