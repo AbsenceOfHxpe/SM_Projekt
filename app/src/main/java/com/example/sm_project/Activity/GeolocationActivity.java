@@ -1,6 +1,7 @@
 package com.example.sm_project.Activity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -57,10 +58,23 @@ public class GeolocationActivity extends AppCompatActivity {
                                 List<Address> addresses = null;
                                 try {
                                     addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                                    address.setText("" + addresses.get(0).getThoroughfare() + " "
-                                    + addresses.get(0).getSubThoroughfare());
-                                    city.setText("" + addresses.get(0).getLocality());
-                                    country.setText("" + addresses.get(0).getCountryName());
+                                    String userAddress = addresses.get(0).getThoroughfare() + " " + addresses.get(0).getSubThoroughfare();
+                                    String userCity = addresses.get(0).getLocality();
+                                    String userCountry = addresses.get(0).getCountryName();
+
+                                    // Ustaw tekst w odpowiednich TextView
+                                    address.setText(userAddress);
+                                    city.setText(userCity);
+                                    country.setText(userCountry);
+
+                                    // Przekazanie danych do innego widoku
+                                    Intent intent = new Intent(GeolocationActivity.this, MainActivity.class);
+                                    intent.putExtra("userAddress", userAddress);
+                                    intent.putExtra("userCity", userCity);
+                                    intent.putExtra("userCountry", userCountry);
+                                    startActivity(intent);
+
+
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }

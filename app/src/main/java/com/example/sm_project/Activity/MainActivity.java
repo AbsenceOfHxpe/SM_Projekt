@@ -1,13 +1,18 @@
 package com.example.sm_project.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.app.DownloadManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 
 import androidx.annotation.NonNull;
@@ -19,7 +24,6 @@ import com.example.sm_project.Adapter.BestFoodAdapter;
 import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.Domain.Restaurants;
-import com.example.sm_project.Helper.DataBaseHelper;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityMainBinding;
 
@@ -29,135 +33,77 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private DataBaseHelper dbHelper;
+    private Spinner combinedInfoTextView;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityMainBinding.inflate(getLayoutInflater());
+
+
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        dbHelper = new DataBaseHelper(this);
+        combinedInfoTextView = findViewById(R.id.locationSp);
 
-        initLocation();
-        initTime();
-        initPrice();
-        initBestRestaurant();
+        Intent intent = getIntent();
+        String userAddress = intent.getStringExtra("userAddress");
+        String userCity = intent.getStringExtra("userCity");
+        String userCountry = intent.getStringExtra("userCountry");
+
+        String combinedInfo =  userAddress + "\n" + userCity + "\n" + userCountry;
+
+        ArrayList<String> list = new ArrayList<>();
+        list.add(combinedInfo);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, list);
+
+        combinedInfoTextView.setAdapter(adapter);
+
+        if (intent.hasExtra("userLogin")) {
+            String userLogin = intent.getStringExtra("userLogin");
+
+            TextView loginTextView = findViewById(R.id.usernameTxt);
+            loginTextView.setText(userLogin);
+        }
+
+        binding.geoIcon.setOnClickListener(v -> {
+            Intent intent2 = new Intent(MainActivity.this, GeolocationActivity.class);
+            startActivity(intent2);
+        });
+
+        binding.logoutBtn.setOnClickListener(v -> {
+            showCustomDialog("Are you sure you want to log out?");
+
+        });
     }
 
-    private void initBestRestaurant() {
-        SQLiteDatabase db = dbHelper.getReadableDatabase();
-        binding.progressBarBestRest.setVisibility(View.VISIBLE);
-        ArrayList<Restaurants> list = new ArrayList<>();
+    private void showCustomDialog(String message) {
+        final Dialog dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.custom_dialog);
 
-        Cursor cursor = db.rawQuery("SELECT * FROM YourTableName WHERE BestRestaurant = 1", null);
+        TextView dialogMessage = dialog.findViewById(R.id.dialogMessage);
+        dialogMessage.setText(message);
 
-        int nameIndex = cursor.getColumnIndex("name");
+        Button dialogButton = dialog.findViewById(R.id.dialogButton);
+        Button cancelButton = dialog.findViewById(R.id.cancel_button);
 
-        if (nameIndex != -1){
-        if (cursor.moveToFirst()) {
-            do {
-                String name = cursor.getString(nameIndex);
+        dialogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
 
-                Restaurants restaurants = new Restaurants(name);
-                list.add(restaurants);
-            } while (cursor.moveToNext());
-        }
-        }
-
-        cursor.close();
-        db.close();
-
-        if (list.size() > 0) {
-            binding.bestRestView.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, false));
-            RecyclerView.Adapter adapter = new BestRestAdapter(list);
-            binding.bestRestView.setAdapter(adapter);
-        }
-
-        binding.progressBarBestRest.setVisibility(View.GONE);
-    }
-
-
-
-    private void initLocation() {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ArrayList<Location> list = new ArrayList<>();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM Location", null);
-
-        int latitudeIndex = cursor.getColumnIndex("latitude");
-        int longitudeIndex = cursor.getColumnIndex("longitude");
-
-        if (latitudeIndex != -1 && longitudeIndex != -1) {
-            while (cursor.moveToNext()) {
-                double latitude = cursor.getDouble(latitudeIndex);
-                double longitude = cursor.getDouble(longitudeIndex);
-
-                Location location = new Location("");
-                location.setLatitude(latitude);
-                location.setLongitude(longitude);
-
-                list.add(location);
+                if (v.getId() == R.id.dialogButton) {
+                    Intent intent3 = new Intent(MainActivity.this, StartActivity.class);
+                    startActivity(intent3);
+                }
             }
-        }
+        });
 
-        cursor.close();
-        db.close();
-
-        ArrayAdapter<Location> adapter = new ArrayAdapter<>(MainActivity.this, R.layout.sp_item, list);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.locationSp.setAdapter(adapter);
+        dialog.show();
     }
 
-    private void initTime() {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ArrayList<Time> timeList = new ArrayList<>();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM Time", null);
-
-        int timeIndex = cursor.getColumnIndex("time_column"); // Zmień na nazwę rzeczywistej kolumny w bazie danych
-
-        if (timeIndex != -1) {
-            while (cursor.moveToNext()) {
-                long timeMillis = cursor.getLong(timeIndex);
-
-                Time time = new Time(timeMillis);
-
-                timeList.add(time);
-            }
-        }
-
-        cursor.close();
-        db.close();
-
-        ArrayAdapter<Time> adapter = new ArrayAdapter<>(MainActivity.this, R.layout.sp_item, timeList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.timeSp.setAdapter(adapter);
-    }
-
-    private void initPrice() {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ArrayList<BigDecimal> priceList = new ArrayList<>();
-
-        Cursor cursor = db.rawQuery("SELECT * FROM Price", null);
-
-        int priceIndex = cursor.getColumnIndex("price_column");
-
-        if (priceIndex != -1) {
-            while (cursor.moveToNext()) {
-                double priceValue = cursor.getDouble(priceIndex);
 
 
-                BigDecimal price = BigDecimal.valueOf(priceValue);
-
-                priceList.add(price);
-            }
-        }
-
-        cursor.close();
-        db.close();
-
-        ArrayAdapter<BigDecimal> adapter = new ArrayAdapter<>(MainActivity.this, R.layout.sp_item, priceList);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.timeSp.setAdapter(adapter);
-    }
 }
