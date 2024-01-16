@@ -37,8 +37,6 @@ s
 Capp/src/main/java/com/example/sm_project/Activity/MainActivity.java,4\2\424084f872ca007eee99605972f662bdfd41805d
 P
  app/src/main/AndroidManifest.xml,8\c\8c55c3ccc257e5907959013f99656e4c8ec3903e
-s
-Capp/src/main/java/com/example/sm_project/Helper/DataBaseHelper.java,8\5\85f92ba8a9b99268414bc0d8f6ad2095c7e8388d
 p
 @app/src/main/java/com/example/sm_project/Domain/Restaurants.java,0\5\054d61f4a0e63e3defccea5cdcc69ea5c717c723
 u
@@ -49,3 +47,13 @@ u
 Eapp/src/main/java/com/example/sm_project/Adapter/FoodListAdapter.java,5\d\5dfd2e90aa8286a73b33c47688843bd8743742a6
 u
 Eapp/src/main/java/com/example/sm_project/Adapter/BestRestAdapter.java,1\8\1838e6f05ac1cbf6ea9d797c5ebc8604243b8ddf
+w
+Gapp/src/main/java/com/example/sm_project/Activity/ListFoodActivity.java,f\f\ffae42124e34a391157b9a8b0ae9e2b7ef5e9e78
+u
+Eapp/src/main/java/com/example/sm_project/Adapter/CategoryAdapter.java,5\9\59e1d1123b95f59fe9bebac1bb94fd96253892f8
+o
+?app/src/main/java/com/example/sm_project/Helper/MyDataBase.java,d\2\d205e303f8d0e9df06acaece68823d758c43b5b9
+n
+>app/src/main/java/com/example/sm_project/Helper/UserTable.java,a\3\a378d14ca7b4f2b3d6ec4a0c407416b3892f12f1
+i
+9app/src/main/java/com/example/sm_project/Dao/UserDao.java,5\5\5577f5768264bd5fba5f973fe08cdde70df2dbc3
