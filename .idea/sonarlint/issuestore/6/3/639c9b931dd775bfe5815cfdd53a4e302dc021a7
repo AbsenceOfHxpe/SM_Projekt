@@ -1,15 +1,16 @@
 
 J
-java:S1604"(Make this anonymous inner class a lambda(œşÚçúÿÿÿÿ8ã•ôÏ1
+java:S1604"(Make this anonymous inner class a lambda(œşÚçúÿÿÿÿ8ã•ôÏ1
+J
+java:S1604>"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8–¾ßƒÑ1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ä•ôÏ1
 [
-java:S1854"9Remove this useless assignment to local variable "login".(¿Ÿá®ÿÿÿÿÿ8ô•ôÏ1
-V
-java:S1854"9Remove this useless assignment to local variable "email".(ó®é8ô•ôÏ1
+java:S1854!"9Remove this useless assignment to local variable "login".(¿Ÿá®ÿÿÿÿÿ8ô•ôÏ1
 8
-java:S3626&"Remove this redundant jump.(ûÁİ…8»½–ôÏ1
-G
-java:S1481"*Remove this unused "email" local variable.(ó®é8õ•ôÏ1
+java:S3626%"Remove this redundant jump.(ûÁİ…8»½–ôÏ1
+8
+java:S3626*"Remove this redundant jump.(ûÁİ…8¿ßƒÑ1
+8
+java:S3626/"Remove this redundant jump.(ûÁİ…8¿ßƒÑ1
 L
-java:S1481"*Remove this unused "login" local variable.(¿Ÿá®ÿÿÿÿÿ8ö•ôÏ1
-E	java:S108!")Either remove or fill this block of code.(ƒ¥š¡8÷•ôÏ1
+java:S1481!"*Remove this unused "login" local variable.(¿Ÿá®ÿÿÿÿÿ8ö•ôÏ1
