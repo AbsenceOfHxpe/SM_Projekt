@@ -1,21 +1,26 @@
 
 k
-java:S1192D"NDefine a constant instead of duplicating this literal "MyPreferences" 3 times.(šÁĞ†8¾ÀÆÑ1
+java:S1192b"NDefine a constant instead of duplicating this literal "MyPreferences" 3 times.(šÁĞ†8¥ŸîÆÑ1
 e
-java:S1192E"IDefine a constant instead of duplicating this literal "username" 3 times.(“¼×L8¿ÀÆÑ1
+java:S1192c"IDefine a constant instead of duplicating this literal "username" 3 times.(“¼×L8¦ŸîÆÑ1
 K
-java:S1604ˆ"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8ÉŒÄÑ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8¡ÉŒÄÑ1
+java:S1604¦"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8§ŸîÆÑ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8à¥”ÅÑ1
+s	java:S1166"XRename this field "RestaurantDao" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï«çB8éŸîÆÑ1
 s
-java:S1450,"VRemove the "binding" field and declare it as a local variable in the relevant methods.(¶ÃÊ8ÕÀÆÑ1
+java:S14507"VRemove the "binding" field and declare it as a local variable in the relevant methods.(¶ÃÊ8öŸîÆÑ1
 €
-java:S1450-"cRemove the "combinedInfoTextView" field and declare it as a local variable in the relevant methods.(÷ºö‘8ÕÀÆÑ1
+java:S14508"cRemove the "combinedInfoTextView" field and declare it as a local variable in the relevant methods.(÷ºö‘8øŸîÆÑ1
+]
+java:S1854B"@Remove this useless assignment to local variable "bestRestView".(ŠÈ Ò8‰ îÆÑ1
+N
+java:S1481B"1Remove this unused "bestRestView" local variable.(ŠÈ Ò8‘ îÆÑ1
 I
-java:S1602W",Remove useless curly braces around statement(¶¡­á8àÀÆÑ1
+java:S1602u",Remove useless curly braces around statement(¶¡­á8£ îÆÑ1
 c
-java:S1854†"@Remove this useless assignment to local variable "cancelButton".(Şìèşÿÿÿÿ8³ÊŒÄÑ1
+java:S1854¤"@Remove this useless assignment to local variable "cancelButton".(Şìèşÿÿÿÿ8¹ îÆÑ1
 T
-java:S1481†"1Remove this unused "cancelButton" local variable.(Şìèşÿÿÿÿ8µÊŒÄÑ1
+java:S1481¤"1Remove this unused "cancelButton" local variable.(Şìèşÿÿÿÿ8¿ îÆÑ1
 ;
-java:S1128""Remove this duplicated import.(€¶£î8êÀÆÑ1
-tsecrets:S6334`"OMake sure this Google API Key gets revoked, changed, and removed from the code.(ß…ù®ùÿÿÿÿ8óÀÆÑ1
+java:S1128)"Remove this duplicated import.(€¶£î8Ì îÆÑ1
+„secrets:S6334~"_Make sure this Google API Key is either secured or revoked, changed, and removed from the code.(ß…ù®ùÿÿÿÿ8û îÆÑ1
