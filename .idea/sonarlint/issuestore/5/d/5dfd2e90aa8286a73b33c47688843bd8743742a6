@@ -1,0 +1,7 @@
+
+‚
+java:S1319"eThe type of "items" should be an interface such as "List" rather than the implementation "ArrayList".(µíğƒ8İ¡÷äĞ1
+i	java:S101@"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(°öºù8Ş¡÷äĞ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8ß¡÷äĞ1
+g
+java:S1659A"EDeclare "priceTxt" and all following declarations on a separate line.(¦Õ´èıÿÿÿÿ8ñ¡÷äĞ1

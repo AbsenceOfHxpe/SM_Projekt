@@ -1,0 +1,15 @@
+
+{	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜¼øıÿÿÿÿ8ãïÅÆĞ1
+q	java:S116"URename this field "CategoryId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï8äïÅÆĞ1
+w	java:S116"VRename this field "Description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º¼Â­ùÿÿÿÿ8äïÅÆĞ1
+n	java:S116"SRename this field "BestFood" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™Ë‹48äïÅÆĞ1
+n	java:S116	"MRename this field "Id" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¬µä›şÿÿÿÿ8äïÅÆĞ1
+v	java:S116
+"URename this field "LocationId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¦ô¬–üÿÿÿÿ8äïÅÆĞ1
+l	java:S116"PRename this field "Price" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î” ½8ÍÚÆÆĞ1
+p	java:S116"TRename this field "ImagePath" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(®©Ì¬8á­ÊÆĞ1
+s	java:S116"RRename this field "PriceId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ä °Íøÿÿÿÿ8á­ÊÆĞ1
+p	java:S116"ORename this field "Star" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ëò˜‡úÿÿÿÿ8á­ÊÆĞ1
+m	java:S116"QRename this field "TimeId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Şïéó8â­ÊÆĞ1
+p	java:S116"TRename this field "TimeValue" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Ù’€8â­ÊÆĞ1
+l	java:S116"PRename this field "Title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¨„æ8â­ÊÆĞ1

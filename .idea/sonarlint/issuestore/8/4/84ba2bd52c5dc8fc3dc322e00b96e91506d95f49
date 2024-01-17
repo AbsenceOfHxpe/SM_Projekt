@@ -1,0 +1,10 @@
+
+Q
+java:S3740"/Provide the parametrized type for this generic.(ÒõÆÛıÿÿÿÿ8šÀçĞ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8œÀçĞ1
+s
+java:S1450"VRemove the "binding" field and declare it as a local variable in the relevant methods.(îßóŒ8ªÀçĞ1
+M
+java:S1068"+Remove this unused "adapter" private field.(ÒõÆÛıÿÿÿÿ8±ÀçĞ1
+H
+java:S1068"+Remove this unused "service" private field.(ìïÈÁ8±ÀçĞ1
