@@ -16,7 +16,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
+import com.example.sm_project.Adapter.BestRestAdapter;
+import com.example.sm_project.Dao.RestaurantDao;
+import com.example.sm_project.Dao.UserDao;
+import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityMainBinding;
 import com.google.android.gms.maps.model.LatLng;
@@ -41,6 +48,10 @@ import com.google.android.libraries.places.widget.model.AutocompleteActivityMode
 
 
 public class MainActivity extends AppCompatActivity {
+
+
+    MyDataBase myDB;
+    RestaurantDao RestaurantDao;
     private ActivityMainBinding binding;
     private Spinner combinedInfoTextView;
 
@@ -50,6 +61,25 @@ public class MainActivity extends AppCompatActivity {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+
+        RecyclerView bestRestView = findViewById(R.id.bestRestView);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         combinedInfoTextView = findViewById(R.id.locationSp);
 
         Intent intent = getIntent();

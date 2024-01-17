@@ -1,9 +1,8 @@
 
-`	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
 C
 java:S16045"(Make this anonymous inner class a lambda(ôšÞÞüÿÿÿÿ
 f
-java:S1301a"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ
+java:S1301^"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß
 \
 java:S1659"ADeclare "city" and all following declarations on a separate line.(ðÚ§¬üÿÿÿÿ
@@ -12,5 +11,5 @@ java:S1450 "ZRemove the "locationBtn" field and declare it as a local variable 
 M
 java:S1874<"7Remove this use of "getFromLocation"; it is deprecated.(”…ŽÒ
 e
-java:S1874_"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ
-<	java:S131a""Add a default case to this switch.(×ö³–úÿÿÿÿ
+java:S1874\"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ
+<	java:S131^""Add a default case to this switch.(×ö³–úÿÿÿÿ
