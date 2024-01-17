@@ -150,7 +150,7 @@
                 app:srcCompat="@drawable/facebook" />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/googleIcon"
                 android:layout_width="30dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"

@@ -27,6 +27,12 @@ public class LoginActivity extends AppCompatActivity {
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        Intent intent = getIntent();
+        if (intent.hasExtra("userLogin")) {
+            String userLogin = intent.getStringExtra("userLogin");
+        }
+
+
 
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
@@ -35,6 +41,18 @@ public class LoginActivity extends AppCompatActivity {
         userDao = myDB.getDao();
 
         setVariable();
+
+        binding.googleIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.google.android.gm");
+                if (intent != null) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Gmail is not installed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
