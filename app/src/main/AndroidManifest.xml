@@ -39,6 +39,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".Activity.OrdersActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".Activity.GeolocationActivity"
             android:exported="false" />
         <activity

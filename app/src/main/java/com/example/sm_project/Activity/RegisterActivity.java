@@ -94,8 +94,13 @@ public class RegisterActivity extends AppCompatActivity {
             userDao.insertUser(userTable);
 
             showToast("Registration Successful");
-            Intent intent = new Intent(RegisterActivity.this, MainActivity.class);
+
+            Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+            intent.putExtra("userLogin", userName);
             startActivity(intent);
+            finish();
+
+
         } else {
             if (!isUsernameAllowed) {
                 showToast("Username Already Taken");

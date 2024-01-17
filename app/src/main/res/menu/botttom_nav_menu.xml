@@ -15,9 +15,9 @@
         android:icon="@drawable/search_icon"
         android:id="@+id/search"/>
     <item
-        android:title="Feedback"
-        android:icon="@drawable/baseline_feed_24"
-        android:id="@+id/feedback"/>
+        android:id="@+id/youtube"
+        android:icon="@drawable/baseline_movie_24"
+        android:title="O nas" />
     <item
         android:title="Ustawienia"
         android:icon="@drawable/settings"

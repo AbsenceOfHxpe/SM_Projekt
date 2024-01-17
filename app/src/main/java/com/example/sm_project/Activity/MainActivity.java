@@ -2,7 +2,6 @@ package com.example.sm_project.Activity;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.sm_project.R;
@@ -85,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
 
                 if (v.getId() == R.id.dialogButton) {
+                    clearUsername();
                     Intent intent3 = new Intent(MainActivity.this, StartActivity.class);
                     startActivity(intent3);
                 }
@@ -98,6 +97,13 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("username", username);
+        editor.apply();
+    }
+
+    private void clearUsername() {
+        SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("username");
         editor.apply();
     }
 }
