@@ -15,7 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 
+import com.example.sm_project.Fragments.Map_Fragment;
 import com.example.sm_project.R;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -36,6 +38,8 @@ public class GeolocationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geolocation);
+        Fragment fragment = new Map_Fragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragment).commit();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
