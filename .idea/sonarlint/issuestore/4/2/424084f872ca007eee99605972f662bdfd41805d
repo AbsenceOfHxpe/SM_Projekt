@@ -1,0 +1,14 @@
+
+J
+java:S1604Z"(Make this anonymous inner class a lambda(ΠίΉΟϊÿÿÿÿ8‘σφΡ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒµί8υΓΊ†Ρ1
+s
+java:S1450#"VRemove the "binding" field and declare it as a local variable in the relevant methods.(¶ΓΚ8·σφΡ1
+€
+java:S1450$"cRemove the "combinedInfoTextView" field and declare it as a local variable in the relevant methods.(χΊφ‘8ΉσφΡ1
+I
+java:S1602J",Remove useless curly braces around statement(¶΅­α8ΝσφΡ1
+b
+java:S1854X"@Remove this useless assignment to local variable "cancelButton".(ήμθώÿÿÿÿ8ΟσφΡ1
+S
+java:S1481X"1Remove this unused "cancelButton" local variable.(ήμθώÿÿÿÿ8ΤσφΡ1

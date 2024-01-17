@@ -1,0 +1,25 @@
+
+E
+java:S3740"/Provide the parametrized type for this generic.(ý»ÑÃ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß
+o
+java:S1450"YRemove the "categoryId" field and declare it as a local variable in the relevant methods.(®ÙøŠ
+q
+java:S1450"[Remove the "categoryName" field and declare it as a local variable in the relevant methods.(É õ§
+m
+java:S1450"WRemove the "isSearch" field and declare it as a local variable in the relevant methods.(áœ¼º
+o
+java:S1450"YRemove the "searchText" field and declare it as a local variable in the relevant methods.(§È©°
+S
+java:S1854&"8Remove this useless assignment to local variable "list".(ôú´êúÿÿÿÿ
+D
+java:S1481&")Remove this unused "list" local variable.(ôú´êúÿÿÿÿ
+Q	java:S125("<This block of commented-out lines of code should be removed.(Ä¿‰Ô
+I
+java:S1068"3Remove this unused "adapterListFood" private field.(ý»ÑÃ
+D
+java:S1068".Remove this unused "categoryId" private field.(®ÙøŠ
+D
+java:S1068".Remove this unused "searchText" private field.(§È©°
+B
+java:S1068",Remove this unused "isSearch" private field.(áœ¼º
