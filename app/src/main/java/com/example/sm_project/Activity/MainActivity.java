@@ -4,9 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.DownloadManager;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.location.Location;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -14,28 +12,17 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sm_project.Adapter.BestFoodAdapter;
-import com.example.sm_project.Adapter.BestRestAdapter;
-import com.example.sm_project.Domain.Foods;
-import com.example.sm_project.Domain.Restaurants;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityMainBinding;
 
-import java.math.BigDecimal;
-import java.sql.Time;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Spinner combinedInfoTextView;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,24 +43,29 @@ public class MainActivity extends AppCompatActivity {
         list.add(combinedInfo);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, list);
-
         combinedInfoTextView.setAdapter(adapter);
 
-        if (intent.hasExtra("userLogin")) {
+        SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        String savedUsername = preferences.getString("username", null);
+
+        if (intent.hasExtra("userLogin") && savedUsername == null) {
             String userLogin = intent.getStringExtra("userLogin");
+            saveUsername(userLogin);
 
             TextView loginTextView = findViewById(R.id.usernameTxt);
             loginTextView.setText(userLogin);
+        } else if (savedUsername != null) {
+            TextView loginTextView = findViewById(R.id.usernameTxt);
+            loginTextView.setText(savedUsername);
         }
 
         binding.geoIcon.setOnClickListener(v -> {
-            Intent intent2 = new Intent(MainActivity.this, GeolocationActivity.class);
-            startActivity(intent2);
+            Intent intentGeo = new Intent(MainActivity.this, GeolocationActivity.class);
+            startActivity(intentGeo);
         });
 
         binding.logoutBtn.setOnClickListener(v -> {
-            showCustomDialog("Are you sure you want to log out?");
-
+            showCustomDialog("Czy na pewno chcesz się wylogować?");
         });
     }
 
@@ -102,6 +94,10 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
-
+    private void saveUsername(String username) {
+        SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("username", username);
+        editor.apply();
+    }
 }

@@ -1,10 +1,16 @@
 
-J
-java:S1604"(Make this anonymous inner class a lambda(œşÚçúÿÿÿÿ8Ğğ‘Ñ1
-J
-java:S1604C"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8Ğğ‘Ñ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8¶•èÑ1
-[
-java:S1854#"9Remove this useless assignment to local variable "login".(¿Ÿá®ÿÿÿÿÿ8Œñ‘Ñ1
-L
-java:S1481#"*Remove this unused "login" local variable.(¿Ÿá®ÿÿÿÿÿ8ñ‘Ñ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8Ïğù›Ñ1
+p
+java:S1450"SRemove the "myDB" field and declare it as a local variable in the relevant methods.(¸©ßŒ8şğù›Ñ1
+I
+java:S16020",Remove useless curly braces around statement(ÊŠÉé8ñù›Ñ1
+N
+java:S16024",Remove useless curly braces around statement(ö½§ìúÿÿÿÿ8‚ñù›Ñ1
+N
+java:S16028",Remove useless curly braces around statement(ö½§ìúÿÿÿÿ8‚ñù›Ñ1
+H
+java:S1602<",Remove useless curly braces around statement(›Û8ö›ªœÑ1
+
+java:S1186I"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«û³±8„ñù›Ñ1
+£
+java:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ê¥¾àûÿÿÿÿ8„ñù›Ñ1

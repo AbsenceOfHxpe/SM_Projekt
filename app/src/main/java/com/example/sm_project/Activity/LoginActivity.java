@@ -34,8 +34,8 @@ public class LoginActivity extends AppCompatActivity {
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         userDao = myDB.getDao();
 
-
         setVariable();
+
         binding.loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,13 +43,14 @@ public class LoginActivity extends AppCompatActivity {
                 String password = binding.passwordText.getText().toString();
 
                 if(userDao.login(userName,password)){
-                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                }else{
-                    Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT);
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("userLogin", userName); // Pass the login information
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
     }
 
 

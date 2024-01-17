@@ -62,21 +62,18 @@ public class GeolocationActivity extends AppCompatActivity {
                                     String userCity = addresses.get(0).getLocality();
                                     String userCountry = addresses.get(0).getCountryName();
 
-                                    // Ustaw tekst w odpowiednich TextView
                                     address.setText(userAddress);
                                     city.setText(userCity);
                                     country.setText(userCountry);
 
-                                    // Przekazanie danych do innego widoku
                                     Intent intent = new Intent(GeolocationActivity.this, MainActivity.class);
                                     intent.putExtra("userAddress", userAddress);
                                     intent.putExtra("userCity", userCity);
                                     intent.putExtra("userCountry", userCountry);
                                     startActivity(intent);
-
-
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
+
                                 }
 
                             }

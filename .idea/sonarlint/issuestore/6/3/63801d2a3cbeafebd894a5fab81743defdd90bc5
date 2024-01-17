@@ -1,2 +1,6 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8§ô’ïĞ1
+J
+java:S1604'"(Make this anonymous inner class a lambda(“ŒõÓüÿÿÿÿ8­··šÑ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ëˆ ’Ñ1
+O
+java:S1481;"-Remove this unused "password" local variable.(ï¼²ûÿÿÿÿ8ÇÒ¦’Ñ1
