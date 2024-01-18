@@ -18,5 +18,5 @@ public interface RestaurantDao {
     LiveData<List<RestaurantTable>> getAllRestaurants();
 
     @Insert
-    void insert(RestaurantTable restaurant);
+    long insert(RestaurantTable restaurant);
 }

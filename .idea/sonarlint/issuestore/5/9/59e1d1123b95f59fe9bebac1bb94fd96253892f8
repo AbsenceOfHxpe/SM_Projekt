@@ -1,4 +1,5 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8šãÔ Ñ1
-d
-java:S2094"BRemove this empty class, write its code or make it an "interface".(Á°­Ñıÿÿÿÿ8¿ğ«½Ñ1
+‚
+java:S1319"eThe type of "items" should be an interface such as "List" rather than the implementation "ArrayList".(Ğ–®±8“°¢äÑ1
+i	java:S1012"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(°öºù8ëü äÑ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8ìü äÑ1

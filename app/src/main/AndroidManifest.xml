@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+
+
 
     <application
         android:allowBackup="true"
@@ -34,7 +41,7 @@
             android:name=".Activity.ListFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.StartActivity"
             android:exported="false" />
 
         <activity
@@ -44,8 +51,10 @@
         <activity
             android:name=".Activity.GeolocationActivity"
             android:exported="false" />
+
+
         <activity
-            android:name=".Activity.StartActivity"
+            android:name=".Activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,6 +63,13 @@
             </intent-filter>
 
         </activity>
+
+        <service
+            android:name=".Extra.FloatingViewService"
+            android:enabled="true"
+            android:exported="false"
+            android:foregroundServiceType="mediaProjection"
+            tools:targetApi="q" />
 
         <meta-data
             android:name="preloaded_fonts"

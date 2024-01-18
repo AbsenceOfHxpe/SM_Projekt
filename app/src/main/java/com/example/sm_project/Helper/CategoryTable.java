@@ -8,12 +8,10 @@ public class CategoryTable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    String name, imagePath;
+    String name;
 
-    public CategoryTable(int id, String name, String imagePath) {
-        this.id = id;
+    public CategoryTable(String name) {
         this.name = name;
-        this.imagePath = imagePath;
     }
 
     public int getId() {
@@ -32,11 +30,5 @@ public class CategoryTable {
         this.name = name;
     }
 
-    public String getImagePath() {
-        return imagePath;
-    }
 
-    public void setImagePath(String imagePath) {
-        this.imagePath = imagePath;
-    }
 }

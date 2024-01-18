@@ -1,4 +1,8 @@
 
 o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ
 d
-java:S2094"BRemove this empty class, write its code or make it an "interface".(¥ç’õûÿÿÿÿ8ÓúäĞ1
+java:S2094"BRemove this empty class, write its code or make it an "interface".(¥ç’õûÿÿÿÿ8ÓúäĞ1
+Q
+java:S1128"4Remove this unused import 'android.content.Context'.(©Ê‰è8¸‰ÇÑ1
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¸‰ÇÑ1

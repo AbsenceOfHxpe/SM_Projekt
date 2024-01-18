@@ -1,76 +1,49 @@
 package com.example.sm_project.Activity;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.TextView;
 
+import com.example.sm_project.Adapter.FoodListAdapter;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.R;
-import com.example.sm_project.databinding.ActivityListFoodBinding;
 
 import java.util.ArrayList;
 
-public class ListFoodActivity extends AppCompatActivity {
-
-    ActivityListFoodBinding binding;
-    private RecyclerView.Adapter adapterListFood;
-    private int categoryId;
-    private String categoryName;
-    private String searchText;
-    private boolean isSearch;
+public class ListFoodActivity extends AppCompatActivity implements FoodListAdapter.OnFoodClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding=ActivityListFoodBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+        setContentView(R.layout.activity_list_food);
 
-        getIntentExtra();
-        initList();
+        TextView restaurantNameTextView = findViewById(R.id.titleTxt);
+
+        String restaurantName = getIntent().getStringExtra("nazwaRestauracji");
+
+        restaurantNameTextView.setText(restaurantName);
+
+        ArrayList<Foods> foodsList = new ArrayList<>();
+        foodsList.add(new Foods(4.9, R.drawable.food, 50, "Pizza margherita", 20.0));
+        foodsList.add(new Foods(4.8, R.drawable.food, 20, "Cheeseburger", 5.7));
+
+        RecyclerView recyclerView = findViewById(R.id.FoodListView);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        FoodListAdapter foodListAdapter = new FoodListAdapter(foodsList, this);
+        recyclerView.setAdapter(foodListAdapter);
     }
 
-    private void initList() {
-        //DatabaseReference myRef = database.getReference("Foods"); do skipniecia narazie
-        binding.progressBar.setVisibility(View.VISIBLE);
-        ArrayList<Foods> list = new ArrayList<>();
-
-       /* Query query;
-        if(isSearch){
-            query = myRef.orderByChild("Title").startAt(searchText).endAt(searchText+'\uf8ff');
-        }else{
-            query = myRef.orderByChild("Category").equalTo(categoryId);
-        }
-       query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    for(DataSnapshot issue: snapshot.getChildren()){
-                        list.add(issue.getValue(Foods.class));
-                    }
-
-                    if(list.size()>0){
-                        binding.foodListView
-                    }
-                }
-            }
-
-            @Override
-            public void onCanceller(@NonNull DatabaseError error) {
-            }
-        });*/
-    }
-
-    private void getIntentExtra(){
-        categoryId=getIntent().getIntExtra("CategoryId", 0);
-        categoryName=getIntent().getStringExtra("Category");
-        searchText=getIntent().getStringExtra("text");
-        isSearch = getIntent().getBooleanExtra("isSearch", false);
-
-        binding.titleTxt.setText(categoryName);
-        binding.backBtn.setOnClickListener(v -> finish());
-
+    @Override
+    public void onFoodClick(String foodName, float price, int img) {
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("foodname", foodName);
+        intent.putExtra("price", price);
+        intent.putExtra("img", img);
+        startActivity(intent);
     }
 }

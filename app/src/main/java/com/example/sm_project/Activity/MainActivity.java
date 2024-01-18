@@ -21,8 +21,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.sm_project.Adapter.BestRestAdapter;
+import com.example.sm_project.Adapter.CategoryAdapter;
 import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Dao.UserDao;
+import com.example.sm_project.Domain.Category;
+import com.example.sm_project.Domain.Foods;
+import com.example.sm_project.Domain.Restaurants;
 import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityMainBinding;
@@ -35,6 +39,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,7 +52,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BestRestAdapter.OnRestaurantClickListener{
 
 
     MyDataBase myDB;
@@ -63,21 +68,64 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        RecyclerView bestRestView = findViewById(R.id.bestRestView);
+        ArrayList<Restaurants> restaurantsList = new ArrayList<>();
+        Restaurants johnWick = new Restaurants("John Wick", R.drawable.google);
+       // johnWick.addFood(new Foods(4.9, R.drawable.food, 50, "Pizza margherita"));
+        restaurantsList.add(johnWick);
+
+        Restaurants mcdonalds = new Restaurants("McDonalds", R.drawable.food);
+       // mcdonalds.addFood(new Foods(4.5, R.drawable.food, 30, "Cheeseburger"));
+        restaurantsList.add(mcdonalds);
+
+
+
+        // Inicjalizuj RecyclerView
+        RecyclerView recyclerView = findViewById(R.id.bestRestView); // Zastąp yourRecyclerViewId identyfikatorem swojego RecyclerView
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        // Utwórz adapter
+        BestRestAdapter adapterr = new BestRestAdapter(restaurantsList, this);
+
+        // Ustaw adapter na RecyclerView
+        recyclerView.setAdapter(adapterr);
+
+        ArrayList<Category> categories = new ArrayList<>();
+        categories.add(new Category( R.drawable.btn_1, "Pizza"));
+        categories.add(new Category( R.drawable.btn_2, "Burger"));
+        categories.add(new Category( R.drawable.btn_3, "Burger"));
+        categories.add(new Category( R.drawable.btn_4, "Burger"));
 
 
 
 
 
+        RecyclerView recyclerViewCat = findViewById(R.id.categoryView); // RecyclerView
+        recyclerViewCat.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
+        CategoryAdapter adapterrr = new CategoryAdapter(categories);
+
+        recyclerViewCat.setAdapter(adapterrr);
 
 
+        // Utwórz adapter i przypisz go do RecyclerView
+       /* BestRestAdapter restaurantAdapter = new BestRestAdapter(new ArrayList<>());
+        bestRestView.setAdapter(restaurantAdapter);
 
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "restauranttable")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        myDB.getDatabase(getApplicationContext());  // Inicjalizacja myDB przed użyciem
 
+        RestaurantDao restaurantDao = myDB.getRestaurantDao();
+        restaurantDao.getAllRestaurants().observe(this, restaurantList -> {
+            // Aktualizuj dane w adapterze
+            restaurantAdapter.setRestaurantList(restaurantList);
+            restaurantAdapter.notifyDataSetChanged();
 
-
-
-
-
+            if (!restaurantList.isEmpty()) {
+                bestRestView.setAdapter(restaurantAdapter);
+            }
+        });
+*/
 
 
         combinedInfoTextView = findViewById(R.id.locationSp);
@@ -136,7 +184,6 @@ public class MainActivity extends AppCompatActivity {
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
-                // Tutaj możesz obsłużyć wybrany obiekt Place.
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
             }
 
@@ -146,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        LatLng bialystokLatLng = new LatLng(53.1325, 23.1688);
+        LatLng bialystokLatLng = new LatLng(123.222, 23.1688);
         autocompleteFragment.setLocationBias(RectangularBounds.newInstance(
                 new LatLng(bialystokLatLng.latitude - 0.1, bialystokLatLng.longitude - 0.1),
                 new LatLng(bialystokLatLng.latitude + 0.1, bialystokLatLng.longitude + 0.1)));
@@ -191,5 +238,18 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = preferences.edit();
         editor.remove("username");
         editor.apply();
+    }
+
+    @Override
+    public void onRestaurantClick(String restaurantName) {
+        Intent intent = new Intent(this, ListFoodActivity.class);
+        intent.putExtra("nazwaRestauracji", restaurantName);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+        super.onPointerCaptureChanged(hasCapture);
     }
 }

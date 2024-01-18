@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.sm_project.Extra.FloatingViewService;
 import com.example.sm_project.R;
 
 public class StartActivity extends AppCompatActivity {
@@ -22,10 +23,13 @@ public class StartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
+        //startService(new Intent(StartActivity.this, FloatingViewService.class));
+
         pic = findViewById(R.id.pic);
         loginBtn = findViewById(R.id.loginBtn);
         registerBtn = findViewById(R.id.registerBtn);
         animateImage();
+
 
 
         loginBtn.setOnClickListener(v -> {

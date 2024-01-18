@@ -10,13 +10,23 @@ public class Foods implements Serializable {
     private int LocationId;
 
     private double Price;
-    private String ImagePath;
+    private int ImagePath;
     private  int PriceId;
     private double Star;
     private int TimeId;
     private int TimeValue;
     private String Title;
     private int numberInCard;
+
+    public Foods(double Star, int ImagePath, int TimeValue, String Title, double Price) {
+        this.Star = Star;
+        this.ImagePath=ImagePath;
+        this.TimeValue = TimeValue;
+        this.Title = Title;
+        this.Price = Price;
+    }
+
+
 
     public String toString() {
         return Title;
@@ -70,11 +80,11 @@ public class Foods implements Serializable {
         Price = price;
     }
 
-    public String getImagePath() {
+    public int getImagePath() {
         return ImagePath;
     }
 
-    public void setImagePath(String imagePath) {
+    public void setImagePath(int imagePath) {
         ImagePath = imagePath;
     }
 

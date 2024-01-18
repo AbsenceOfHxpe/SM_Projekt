@@ -1,5 +1,6 @@
 package com.example.sm_project.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,57 +10,65 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sm_project.Helper.RestaurantTable;
+import com.example.sm_project.Domain.Restaurants;
 import com.example.sm_project.R;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class BestRestAdapter extends RecyclerView.Adapter<BestRestAdapter.viewholder> {
 
-    private List<RestaurantTable> restaurantList;
+    private ArrayList<Restaurants> items;
+    private Context context;
+    private OnRestaurantClickListener clickListener;
 
-    public BestRestAdapter(List<RestaurantTable> restaurantList) {
-        this.restaurantList = restaurantList;
-    }
-    public void setRestaurantList(List<RestaurantTable> restaurantList) {
-        this.restaurantList = restaurantList;
-        notifyDataSetChanged();
-    }
-
-
-
-    public class viewholder extends RecyclerView.ViewHolder{
-        TextView restTitleTxt;
-        ImageView restImg;
-        public viewholder(@NonNull View itemView) {
-            super(itemView);
-
-            restImg = itemView.findViewById(R.id.restImg);
-            restTitleTxt = itemView.findViewById(R.id.restTitleTxt);
-        }
+    public BestRestAdapter(ArrayList<Restaurants> items, OnRestaurantClickListener clickListener) {
+        this.items = items;
+        this.clickListener = clickListener;
     }
 
     @NonNull
     @Override
     public BestRestAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_list_rest, parent, false);
-        return new viewholder(view);
+        context = parent.getContext();
+        View inflate = LayoutInflater.from(context).inflate(R.layout.viewholder_list_rest, parent, false);
+        return new viewholder(inflate, clickListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull BestRestAdapter.viewholder holder, int position) {
-        RestaurantTable restaurant = restaurantList.get(position);
-
-        // Ustawienie danych dla poszczególnego elementu
-        holder.restTitleTxt.setText(restaurant.getName());
+        Restaurants restaurant = items.get(position);
+        holder.titleTxt.setText(restaurant.getName());
+        holder.img.setImageResource(restaurant.getImg());
     }
 
     @Override
     public int getItemCount() {
-        return restaurantList.size();
+        return items.size();
     }
 
+    public class viewholder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
+        TextView titleTxt;
+        ImageView img;
+        OnRestaurantClickListener clickListener;
 
+        public viewholder(@NonNull View itemView, OnRestaurantClickListener clickListener) {
+            super(itemView);
 
+            titleTxt = itemView.findViewById(R.id.restTitleTxt);
+            img = itemView.findViewById(R.id.restImg);
+            this.clickListener = clickListener;
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            clickListener.onRestaurantClick(items.get(getAdapterPosition()).getName());
+        }
+    }
+
+    public interface OnRestaurantClickListener {
+        void onRestaurantClick(String restaurantName);
+    }
 }
