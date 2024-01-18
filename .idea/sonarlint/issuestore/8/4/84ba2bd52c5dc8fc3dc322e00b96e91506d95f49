@@ -1,10 +1,6 @@
 
-J
-java:S3740"/Provide the parametrized type for this generic.(ÒõÆÛıÿÿÿÿ
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß
-l
-java:S1450"VRemove the "binding" field and declare it as a local variable in the relevant methods.(îßóŒ
-F
-java:S1068"+Remove this unused "adapter" private field.(ÒõÆÛıÿÿÿÿ
-A
-java:S1068"+Remove this unused "service" private field.(ìïÈÁ
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8êÇèÑ1
+|
+java:S1450"ZRemove the "cartAdapter" field and declare it as a local variable in the relevant methods.(¢ñÕÌıÿÿÿÿ8œêÇèÑ1
+}
+java:S1450"[Remove the "recyclerView" field and declare it as a local variable in the relevant methods.(¿á© ıÿÿÿÿ8œêÇèÑ1

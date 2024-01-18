@@ -1,6 +1,12 @@
 
-i	java:S101@"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(°öºù8’øÔéĞ1
+…
+java:S1319"hThe type of "listItem" should be an interface such as "List" rather than the implementation "ArrayList".(Š™¬•8¯”ğçÑ1
+Š
+java:S1319"hThe type of "listItem" should be an interface such as "List" rather than the implementation "ArrayList".(üùÎŞøÿÿÿÿ8Â……èÑ1
+q
+java:S1104"TMake listItem a static final constant or non-public and provide accessors if needed.(Š™¬•8°”ğçÑ1
+i	java:S101E"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(°öºù8’øÔéĞ1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8’øÔéĞ1
-X	java:S125+"<This block of commented-out lines of code should be removed.(¢Û®Ö8åÆÖéĞ1
+X	java:S1250"<This block of commented-out lines of code should be removed.(¢Û®Ö8åÆÖéĞ1
 e
-java:S1659A"HDeclare "feeEachItem" and all following declarations on a separate line.(ı™œˆ8øÔéĞ1
+java:S1659F"HDeclare "feeEachItem" and all following declarations on a separate line.(ı™œˆ8øÔéĞ1

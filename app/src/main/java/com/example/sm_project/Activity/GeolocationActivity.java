@@ -7,6 +7,7 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,13 +34,16 @@ public class GeolocationActivity extends AppCompatActivity {
     private TextView country, city, address;
     private Button locationBtn;
     private static final int REQUEST_CODE = 100;
+    private static final String USER_ADDRESS_KEY = "user_address";
+    private static final String USER_CITY_KEY = "user_city";
+    private static final String USER_COUNTRY_KEY = "user_country";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_geolocation);
         Fragment fragment = new Map_Fragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout,fragment).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -49,6 +53,22 @@ public class GeolocationActivity extends AppCompatActivity {
 
         locationBtn = findViewById(R.id.getLocationBtn);
         locationBtn.setOnClickListener(v -> getLastLocation());
+
+        // Przywróć dane, jeśli zostały zapisane
+        if (savedInstanceState != null) {
+            address.setText(savedInstanceState.getString(USER_ADDRESS_KEY));
+            city.setText(savedInstanceState.getString(USER_CITY_KEY));
+            country.setText(savedInstanceState.getString(USER_COUNTRY_KEY));
+        }
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Zapisz dane, aby móc je przywrócić przy zmianie orientacji ekranu
+        outState.putString(USER_ADDRESS_KEY, address.getText().toString());
+        outState.putString(USER_CITY_KEY, city.getText().toString());
+        outState.putString(USER_COUNTRY_KEY, country.getText().toString());
     }
 
     private void getLastLocation() {
@@ -70,16 +90,20 @@ public class GeolocationActivity extends AppCompatActivity {
                                     city.setText(userCity);
                                     country.setText(userCountry);
 
+                                    // Aktualizuj mapę w fragmencie
+                                    Map_Fragment mapFragment = (Map_Fragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+                                    if (mapFragment != null) {
+                                        mapFragment.setMarker(location.getLatitude(), location.getLongitude());
+                                    }
+
                                     Intent intent = new Intent(GeolocationActivity.this, MainActivity.class);
                                     intent.putExtra("userAddress", userAddress);
                                     intent.putExtra("userCity", userCity);
                                     intent.putExtra("userCountry", userCountry);
-                                    startActivity(intent);
+                                    //startActivity(intent);
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
-
                                 }
-
                             }
                         }
                     });

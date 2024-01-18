@@ -1,16 +1,17 @@
 
-g	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8û°®ßÑ1
-C
-java:S16049"(Make this anonymous inner class a lambda(ôšÞÞüÿÿÿÿ
-f
-java:S1301b"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ
-o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß
-\
-java:S1659!"ADeclare "city" and all following declarations on a separate line.(ðÚ§¬üÿÿÿÿ
-p
-java:S1450""ZRemove the "locationBtn" field and declare it as a local variable in the relevant methods.(»Û®ó
-M
-java:S1874@"7Remove this use of "getFromLocation"; it is deprecated.(”…ŽÒ
-e
-java:S1874`"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ
-<	java:S131b""Add a default case to this switch.(×ö³–úÿÿÿÿ
+g	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8¨¨ÀòÑ1
+J
+java:S1604M"(Make this anonymous inner class a lambda(ôšÞÞüÿÿÿÿ8©¨ÀòÑ1
+m
+java:S1301z"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8©¨ÀòÑ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ª¨ÀòÑ1
+c
+java:S1659""ADeclare "city" and all following declarations on a separate line.(ðÚ§¬üÿÿÿÿ8æ¨ÀòÑ1
+w
+java:S1450#"ZRemove the "locationBtn" field and declare it as a local variable in the relevant methods.(»Û®ó8ç¨ÀòÑ1
+T
+java:S1874T"7Remove this use of "getFromLocation"; it is deprecated.(”…ŽÒ8Ú©ÀòÑ1
+]	java:S125g"<This block of commented-out lines of code should be removed.(Úö”èüÿÿÿÿ8â©ÀòÑ1
+l
+java:S1874x"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ8æ©ÀòÑ1
+C	java:S131z""Add a default case to this switch.(×ö³–úÿÿÿÿ8ë©ÀòÑ1

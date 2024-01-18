@@ -41,7 +41,7 @@
             android:name=".Activity.ListFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.StartActivity"
+            android:name=".Activity.LoadingActivity"
             android:exported="false" />
 
         <activity
@@ -51,6 +51,11 @@
         <activity
             android:name=".Activity.GeolocationActivity"
             android:exported="false" />
+
+        <activity
+            android:name=".Activity.StartActivity"
+            android:exported="false" />
+
 
 
         <activity
