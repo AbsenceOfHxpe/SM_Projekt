@@ -18,7 +18,12 @@ import com.example.sm_project.R;
 import java.util.ArrayList;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
-    ArrayList<Foods> listItem;
+    public ArrayList<Foods> listItem;
+
+    public CartAdapter(ArrayList<Foods> listItem) {
+        this.listItem = listItem;
+    }
+
 
     @NonNull
     @Override

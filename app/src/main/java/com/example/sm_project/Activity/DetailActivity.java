@@ -1,7 +1,9 @@
 package com.example.sm_project.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,9 +16,9 @@ import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityDetailBinding;
 
 public class DetailActivity extends AppCompatActivity {
-ActivityDetailBinding binding;
+    ActivityDetailBinding binding;
     private TextView totalTextView;
-    private int counter=1;
+    private int counter = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +29,10 @@ ActivityDetailBinding binding;
         TextView titleTextView = findViewById(R.id.titleTxt);
         TextView priceTextView = findViewById(R.id.priceTxt);
         ImageView imgView = findViewById(R.id.img);
+        AppCompatButton addBtn = findViewById(R.id.addBtn);
 
         String foodName = getIntent().getStringExtra("foodname");
-        float price = getIntent().getFloatExtra("price", 0.0f);
+        float price = getIntent().getFloatExtra("price", 0.1f);
         int imagePath = getIntent().getIntExtra("img", 2);
 
         titleTextView.setText(foodName);
@@ -39,6 +42,20 @@ ActivityDetailBinding binding;
                 .load(imagePath)
                 .into(imgView);
 
+        addBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Przygotuj dane do przekazania
+                Intent intent = new Intent(DetailActivity.this, CartActivity.class);
+                intent.putExtra("foodname", foodName);
+                intent.putExtra("price", price*counter);
+
+                intent.putExtra("img", imagePath);
+
+                // Uruchom nową aktywność
+                startActivity(intent);
+            }
+        });
 
         TextView plusButton = findViewById(R.id.plusBtn);
         TextView minusButton = findViewById(R.id.minusBtn);
@@ -59,7 +76,6 @@ ActivityDetailBinding binding;
         });
     }
 
-
     private void updateCounter() {
         TextView textView = findViewById(R.id.textView13);
         textView.setText(String.valueOf(counter));
@@ -67,13 +83,7 @@ ActivityDetailBinding binding;
         totalTextView.setText(String.valueOf(total) + " zł");
     }
 
-
-
     private void setVariable() {
         binding.backBtn.setOnClickListener(v -> finish());
-
-
     }
-
-
 }

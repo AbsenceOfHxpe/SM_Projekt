@@ -1,13 +1,16 @@
 package com.example.sm_project.Adapter;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.Domain.Orders;
 import com.example.sm_project.Domain.Restaurants;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder> {
 
     ArrayList<Orders> listItem;
+    private Context context;
 
 
     @NonNull
@@ -47,6 +51,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
     public class viewholder extends RecyclerView.ViewHolder {
 
         TextView title, restaurant, date, price;
+
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
@@ -54,6 +59,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
             restaurant = itemView.findViewById(R.id.restaurantTxt);
             date = itemView.findViewById(R.id.dateTxt);
             price = itemView.findViewById(R.id.priceTxt);
+
         }
     }
 }
