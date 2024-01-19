@@ -40,6 +40,18 @@ public class LoginActivity extends AppCompatActivity {
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         userDao = myDB.getDao();
 
+        binding.googleIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.google.android.gm");
+                if (intent != null) {
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(LoginActivity.this, "Gmail is not installed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         setVariable();
 
         binding.googleIcon.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("userLogin", userName); // Pass the login information
                     startActivity(intent);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Invalid Username or Password", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, R.string.invalid_login, Toast.LENGTH_SHORT).show();
                 }
             }
         });

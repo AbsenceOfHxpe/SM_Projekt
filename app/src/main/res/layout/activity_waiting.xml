@@ -19,7 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Dziękujemy za skorzystanie z naszych usług!"
+        android:text="@string/order_thanks"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -29,7 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Twoje zamówienie jest właśnie przyrządzane."
+        android:text="@string/order_prepare"
         android:textAlignment="center"
         android:textSize="22sp"
         tools:layout_marginBottom="18dp" />
@@ -47,7 +47,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/blue_button"
         android:letterSpacing="0.2"
-        android:text="Zamówienie otrzymane"
+        android:text="@string/order_received"
 
         android:textColor="@color/white"
         android:textSize="18sp"

@@ -28,7 +28,7 @@
                     android:id="@+id/textView13"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Witaj"
+                    android:text="@string/welcome_text"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -213,7 +213,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_weight="1"
-                android:text="Wybierz kategorie"
+                android:text="@string/category"
                 android:textColor="@color/blue_grey"
                 android:textSize="22dp"
                 android:textStyle="bold" />
@@ -261,7 +261,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Twoje restauracje"
+                    android:text="@string/choose_restaurant"
                     android:textColor="@color/blue_grey"
                     android:textSize="22dp"
                     android:textStyle="bold" />
@@ -270,7 +270,7 @@
                     android:id="@+id/textView16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Rozwiń"
+                    android:text="@string/expand_click"
                     android:textColor="@color/red" />
             </LinearLayout>
 

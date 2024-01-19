@@ -21,7 +21,7 @@
         android:id="@+id/textView25"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Twój koszyk jest pusty"
+        android:text="@string/cart_info"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/scrollViewCart"
         app:layout_constraintEnd_toEndOf="@+id/scrollViewCart"
@@ -45,7 +45,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Podsumowanie"
+                android:text="@string/summary_info"
                 android:textAlignment="center"
                 android:textColor="@color/blue_grey"
                 android:textSize="24sp"
@@ -71,7 +71,7 @@
                     android:layout_weight="1"
                     android:background="@drawable/edittext_background"
                     android:ems="10"
-                    android:hint="Wpisz kod"
+                    android:hint="@string/code_hint"
                     android:inputType="text"
                     android:textAlignment="center"
                     android:textColor="@color/blue_grey"
@@ -83,7 +83,7 @@
                     android:layout_width="145dp"
                     android:layout_height="40dp"
                     android:background="@drawable/blue_button"
-                    android:text="Zastosuj kupon"
+                    android:text="@string/coupon_button"
                     android:textColor="@color/white" />
             </LinearLayout>
 
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Podsumowanie zamówienia"
+                android:text="@string/order_summary"
                 android:textColor="@color/blue_grey"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:text="Suma"
+                    android:text="@string/amount_info"
                     android:textColor="@color/blue_grey"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -120,7 +120,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Koszt dostawy"
+                    android:text="@string/costs_info"
                     app:layout_constraintStart_toStartOf="@+id/textView15"
                     app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
@@ -130,7 +130,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Opłata serwisowa"
+                    android:text="@string/payment_info"
                     app:layout_constraintStart_toStartOf="@+id/textView17"
                     app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
@@ -183,7 +183,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="16dp"
-                    android:text="Łącznie"
+                    android:text="@string/total_costs"
                     android:textSize="20sp"
 
                     android:textStyle="bold"
@@ -213,7 +213,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/blue_button"
                 android:letterSpacing="0.2"
-                android:text="Potwierdź zamówienie"
+                android:text="@string/confirm_order"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
         </LinearLayout>

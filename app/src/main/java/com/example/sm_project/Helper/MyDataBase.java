@@ -16,25 +16,20 @@ import com.example.sm_project.Dao.UserDao;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 8)
+@Database(entities = {UserTable.class, RestaurantTable.class, DishTable.class, OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 8)
 public abstract class MyDataBase extends RoomDatabase {
 
     private static MyDataBase databaseInstance;
-
     static final ExecutorService databaseWriteExecutor = Executors.newSingleThreadExecutor();
 
-
     public abstract UserDao getDao();
+
     public abstract RestaurantDao getRestaurantDao();
 
     public abstract CategoryDao getCategoryDao();
 
-
-
     public static MyDataBase getDatabase(final Context context) {
-
-
-        if(databaseInstance == null) {
+        if (databaseInstance == null) {
             databaseInstance = Room.databaseBuilder(context.getApplicationContext(),
                             MyDataBase.class, "my_database")
                     .addCallback(roomDatabaseCallback)
@@ -48,7 +43,6 @@ public abstract class MyDataBase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             databaseWriteExecutor.execute(() -> {
-
                 CategoryDao categoryDao = databaseInstance.getCategoryDao();
                 CategoryTable category1 = new CategoryTable("Kategoria 1");
                 long categoryId1 = categoryDao.insert(category1);
@@ -59,15 +53,13 @@ public abstract class MyDataBase extends RoomDatabase {
                 Log.d("Database", "Inserted category 2 with ID: " + categoryId2);
 
                 RestaurantDao dao = databaseInstance.getRestaurantDao();
-                RestaurantTable restaurant = new RestaurantTable( "Restauracja 1", "444", (int) categoryId1);
+                RestaurantTable restaurant = new RestaurantTable("Restauracja 1", "444", (int) categoryId1);
                 dao.insert(restaurant);
-                Log.d("Database", "Inserted category 2 with ID: " + restaurant);
-                RestaurantTable restaurant2= new RestaurantTable( "Restauracja 2","43ed", (int) categoryId2);
+                Log.d("Database", "Inserted restaurant 1 with ID: " + restaurant);
+
+                RestaurantTable restaurant2 = new RestaurantTable("Restauracja 2", "43ed", (int) categoryId2);
                 dao.insert(restaurant2);
-                Log.d("Database", "Inserted category 2 with ID: " + restaurant2);
-
-
-
+                Log.d("Database", "Inserted restaurant 2 with ID: " + restaurant2);
             });
         }
     };
@@ -79,4 +71,5 @@ public abstract class MyDataBase extends RoomDatabase {
     public static void setDatabaseInstance(MyDataBase databaseInstance) {
         MyDataBase.databaseInstance = databaseInstance;
     }
+
 }

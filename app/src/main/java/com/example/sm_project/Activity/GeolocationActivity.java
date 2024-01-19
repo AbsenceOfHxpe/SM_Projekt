@@ -193,7 +193,7 @@ public class GeolocationActivity extends AppCompatActivity {
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     getLastLocation();
                 } else {
-                    Toast.makeText(this, "Odmowa dostępu do lokalizacji", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, R.string.invalid_location, Toast.LENGTH_SHORT).show();
                 }
                 break;
         }

@@ -142,10 +142,10 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         if (enteredCoupon.equals("12345")) {
             discount = 0.15;
             updateCartSummary(calculateTotal(), discount);
-            Toast.makeText(this, "Wykorzystano kupon rabatowy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.coupon_used, Toast.LENGTH_SHORT).show();
 
         } else {
-            Toast.makeText(this, "Nieprawidłowy kupon rabatowy", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.invalid_coupon, Toast.LENGTH_SHORT).show();
 
         }
 
