@@ -55,8 +55,8 @@ public class WaitingActivity extends AppCompatActivity {
 
 
         btn.setOnClickListener(v -> {
-            //Intent intent = new Intent(StartActivity.this, LoginActivity.class);
-            //startActivity(intent);
+            Intent intent = new Intent(WaitingActivity.this, MainActivity.class);
+            startActivity(intent);
 
         });
 

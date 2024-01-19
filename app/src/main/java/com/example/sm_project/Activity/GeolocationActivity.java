@@ -1,7 +1,7 @@
 package com.example.sm_project.Activity;
 
-import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,7 +9,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.PersistableBundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,9 +39,12 @@ public class GeolocationActivity extends AppCompatActivity {
     private static final String USER_ADDRESS_KEY = "user_address";
     private static final String USER_CITY_KEY = "user_city";
     private static final String USER_COUNTRY_KEY = "user_country";
+    private static final String LATITUDE_KEY = "latitude";
+    private static final String LONGITUDE_KEY = "longitude";
+    private static final String MARKER_LATITUDE_KEY = "marker_latitude";
+    private static final String MARKER_LONGITUDE_KEY = "marker_longitude";
     private static final int DELAY_MILLISECONDS = 5000;
-
-
+    private static final String SHARED_PREFERENCES_NAME = "user_location";
     private double currentLatitude = 0.0;
     private double currentLongitude = 0.0;
 
@@ -62,24 +65,67 @@ public class GeolocationActivity extends AppCompatActivity {
         locationBtn.setOnClickListener(v -> getLastLocation());
 
         // Przywróć dane, jeśli zostały zapisane
-        if (savedInstanceState != null) {
-            address.setText(savedInstanceState.getString(USER_ADDRESS_KEY));
-            city.setText(savedInstanceState.getString(USER_CITY_KEY));
-            country.setText(savedInstanceState.getString(USER_COUNTRY_KEY));
+        restoreSavedLocation();
+        // Przywróć lokalizację markera
+        restoreMarkerLocation();
+    }
+
+    private void restoreSavedLocation() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        String savedAddress = sharedPreferences.getString(USER_ADDRESS_KEY, "");
+        String savedCity = sharedPreferences.getString(USER_CITY_KEY, "");
+        String savedCountry = sharedPreferences.getString(USER_COUNTRY_KEY, "");
+        double savedLatitude = Double.longBitsToDouble(sharedPreferences.getLong(LATITUDE_KEY, Double.doubleToLongBits(0.0)));
+        double savedLongitude = Double.longBitsToDouble(sharedPreferences.getLong(LONGITUDE_KEY, Double.doubleToLongBits(0.0)));
+
+        address.setText(savedAddress);
+        city.setText(savedCity);
+        country.setText(savedCountry);
+        currentLatitude = savedLatitude;
+        currentLongitude = savedLongitude;
+
+        // Aktualizuj mapę w fragmencie
+        Map_Fragment mapFragment = (Map_Fragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+        if (mapFragment != null) {
+            mapFragment.setMarker(savedLatitude, savedLongitude);
         }
     }
 
-    @Override
-    public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        // Zapisz dane, aby móc je przywrócić przy zmianie orientacji ekranu
-        outState.putString(USER_ADDRESS_KEY, address.getText().toString());
-        outState.putString(USER_CITY_KEY, city.getText().toString());
-        outState.putString(USER_COUNTRY_KEY, country.getText().toString());
+    private void saveLocationToSharedPreferences(String userAddress, String userCity, String userCountry, double latitude, double longitude) {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(USER_ADDRESS_KEY, userAddress);
+        editor.putString(USER_CITY_KEY, userCity);
+        editor.putString(USER_COUNTRY_KEY, userCountry);
+        editor.putLong(LATITUDE_KEY, Double.doubleToRawLongBits(latitude));
+        editor.putLong(LONGITUDE_KEY, Double.doubleToRawLongBits(longitude));
+        editor.apply();
+    }
+
+    private void saveMarkerLocationToSharedPreferences(double latitude, double longitude) {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong(MARKER_LATITUDE_KEY, Double.doubleToRawLongBits(latitude));
+        editor.putLong(MARKER_LONGITUDE_KEY, Double.doubleToRawLongBits(longitude));
+        editor.apply();
+    }
+
+    private void restoreMarkerLocation() {
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        double savedMarkerLatitude = Double.longBitsToDouble(sharedPreferences.getLong(MARKER_LATITUDE_KEY, Double.doubleToLongBits(0.0)));
+        double savedMarkerLongitude = Double.longBitsToDouble(sharedPreferences.getLong(MARKER_LONGITUDE_KEY, Double.doubleToLongBits(0.0)));
+
+        Log.d("GeolocationActivity", "Restoring marker location: Latitude = " + savedMarkerLatitude + ", Longitude = " + savedMarkerLongitude);
+
+        // Aktualizuj mapę w fragmencie
+        Map_Fragment mapFragment = (Map_Fragment) getSupportFragmentManager().findFragmentById(R.id.frame_layout);
+        if (mapFragment != null) {
+            mapFragment.setMarker(savedMarkerLatitude, savedMarkerLongitude);
+        }
     }
 
     private void getLastLocation() {
-        if (ContextCompat.checkSelfPermission(GeolocationActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(GeolocationActivity.this, android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
             fusedLocationProviderClient.getLastLocation()
                     .addOnSuccessListener(new OnSuccessListener<Location>() {
                         @Override
@@ -105,6 +151,13 @@ public class GeolocationActivity extends AppCompatActivity {
                                         mapFragment.setMarker(location.getLatitude(), location.getLongitude());
                                     }
 
+                                    // Zapisz lokalizację w SharedPreferences
+                                    saveLocationToSharedPreferences(userAddress, userCity, userCountry, currentLatitude, currentLongitude);
+
+                                    // Zapisz lokalizację markera w SharedPreferences
+                                    saveMarkerLocationToSharedPreferences(currentLatitude, currentLongitude);
+
+                                    // Przejdź do innego widoku
                                     new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
                                         @Override
                                         public void run() {
@@ -129,7 +182,7 @@ public class GeolocationActivity extends AppCompatActivity {
     }
 
     private void askPermission() {
-        ActivityCompat.requestPermissions(GeolocationActivity.this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+        ActivityCompat.requestPermissions(GeolocationActivity.this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
     }
 
     @Override

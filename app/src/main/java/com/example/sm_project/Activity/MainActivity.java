@@ -98,8 +98,8 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
         ArrayList<Category> categories = new ArrayList<>();
         categories.add(new Category(R.drawable.btn_1, "Pizza"));
         categories.add(new Category(R.drawable.btn_2, "Burger"));
-        categories.add(new Category(R.drawable.btn_3, "Burger"));
-        categories.add(new Category(R.drawable.btn_4, "Burger"));
+        categories.add(new Category(R.drawable.btn_3, "Kurczaki"));
+        categories.add(new Category(R.drawable.btn_4, "Sushi"));
 
 
         RecyclerView recyclerViewCat = findViewById(R.id.categoryView); // RecyclerView
@@ -228,8 +228,6 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
             }
             return false;
         }
-
-
 
 
 
