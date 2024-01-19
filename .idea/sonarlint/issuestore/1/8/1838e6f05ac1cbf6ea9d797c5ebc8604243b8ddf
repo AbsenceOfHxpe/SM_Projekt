@@ -1,9 +1,9 @@
 
 ‚
-java:S1319"eThe type of "items" should be an interface such as "List" rather than the implementation "ArrayList".(ƒ±æ§8Â¡ØåÑ1
-i	java:S1011"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(…‡Âø8¦íÔåÑ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8§íÔåÑ1
+java:S1319"eThe type of "items" should be an interface such as "List" rather than the implementation "ArrayList".(ƒ±æ§8¥£ä‹Ò1
+i	java:S1011"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(…‡Âø8¦£ä‹Ò1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8§£ä‹Ò1
 r
-java:S1450"VRemove the "context" field and declare it as a local variable in the relevant methods.(êİç8Œ¢ØåÑ1
+java:S1450"VRemove the "context" field and declare it as a local variable in the relevant methods.(êİç8å£ä‹Ò1
 W
-java:S1874C":Remove this use of "getAdapterPosition"; it is deprecated.(ŒÂ•¨8ÃíÔåÑ1
+java:S1874C":Remove this use of "getAdapterPosition"; it is deprecated.(ŒÂ•¨8ò£ä‹Ò1

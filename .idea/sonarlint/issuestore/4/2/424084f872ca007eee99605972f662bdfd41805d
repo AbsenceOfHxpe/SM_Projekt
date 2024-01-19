@@ -1,29 +1,35 @@
 
 l
-java:S1192’"NDefine a constant instead of duplicating this literal "MyPreferences" 3 times.(šÁĞ†8ÉğåÑ1
+java:S1192˜"NDefine a constant instead of duplicating this literal "MyPreferences" 3 times.(šÁĞ†8âÅÖŒÒ1
 i
-java:S1192^"GDefine a constant instead of duplicating this literal "Burger" 3 times.(Éñ·ƒûÿÿÿÿ8‚ÉğåÑ1
+java:S1192d"GDefine a constant instead of duplicating this literal "Burger" 3 times.(Éñ·ƒûÿÿÿÿ8ãÅÖŒÒ1
 f
-java:S1192“"IDefine a constant instead of duplicating this literal "username" 3 times.(“¼×L8‚ÉğåÑ1
+java:S1192™"IDefine a constant instead of duplicating this literal "username" 3 times.(“¼×L8ãÅÖŒÒ1
 K
-java:S1604Õ"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8„ÉğåÑ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8‡ÉğåÑ1
-s	java:S116;"XRename this field "RestaurantDao" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï«çB8®ÉğåÑ1
+java:S1604Œ"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8ñâÙŒÒ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8åÅÖŒÒ1
+s	java:S116="XRename this field "RestaurantDao" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï«çB8÷ÅÖŒÒ1
 s
-java:S1450<"VRemove the "binding" field and declare it as a local variable in the relevant methods.(¶ÃÊ8·ÉğåÑ1
+java:S1450>"VRemove the "binding" field and declare it as a local variable in the relevant methods.(¶ÃÊ8üÅÖŒÒ1
 €
-java:S1450="cRemove the "combinedInfoTextView" field and declare it as a local variable in the relevant methods.(÷ºö‘8·ÉğåÑ1
-X	java:S125I"<This block of commented-out lines of code should be removed.(µß´Â8 ùûåÑ1
-]	java:S125M"<This block of commented-out lines of code should be removed.(”êô‘ûÿÿÿÿ8 ùûåÑ1
-]	java:S125o"<This block of commented-out lines of code should be removed.(şÊÇçúÿÿÿÿ8ØÉğåÑ1
+java:S1450?"cRemove the "combinedInfoTextView" field and declare it as a local variable in the relevant methods.(÷ºö‘8üÅÖŒÒ1
+]	java:S125r"<This block of commented-out lines of code should be removed.(şÊÇçúÿÿÿÿ8‡ÆÖŒÒ1
 J
-java:S1602¥",Remove useless curly braces around statement(¶¡­á8ãÉğåÑ1
+java:S1602«",Remove useless curly braces around statement(¶¡­á8ŒÆÖŒÒ1
+X
+java:S1161ì":Add the "@Override" annotation above this method signature(Ôö§ó8ÈãÙŒÒ1
 c
-java:S1854Ó"@Remove this useless assignment to local variable "cancelButton".(Şìèşÿÿÿÿ8ùÉğåÑ1
+java:S1854Š"@Remove this useless assignment to local variable "cancelButton".(Şìèşÿÿÿÿ8ÉãÙŒÒ1
 T
-java:S1481Ó"1Remove this unused "cancelButton" local variable.(Şìèşÿÿÿÿ8úÉğåÑ1
+java:S1481Š"1Remove this unused "cancelButton" local variable.(Şìèşÿÿÿÿ8ÊãÙŒÒ1
 F
-java:S1185ü"(Remove this method to simply inherit it.(¨‰ïÃ8†ÊğåÑ1
+java:S1185³"(Remove this method to simply inherit it.(¨‰ïÃ8ÍãÙŒÒ1
 ;
-java:S1128."Remove this duplicated import.(€¶£î8‡ÊğåÑ1
-usecrets:S6334®"OMake sure this Google API Key gets revoked, changed, and removed from the code.(ß…ù®ùÿÿÿÿ8¨ÚÁÇÑ1
+java:S11280"Remove this duplicated import.(€¶£î8ÆÖŒÒ1
+U
+java:S1068A"8Remove this unused "SEARCH_RADIUS_METERS" private field.(ªõ„µ8´ËşŒÒ1
+U
+java:S1068B"3Remove this unused "currentLatitude" private field.(ƒÓÚıÿÿÿÿ8ÆÖŒÒ1
+Q
+java:S1068C"4Remove this unused "currentLongitude" private field.(Õò÷8ÆÖŒÒ1
+usecrets:S6334´"OMake sure this Google API Key gets revoked, changed, and removed from the code.(ß…ù®ùÿÿÿÿ8½¦ŒÒ1

@@ -51,7 +51,6 @@ public class DetailActivity extends AppCompatActivity {
                 intent.putExtra("price", price);
                 intent.putExtra("total", price*counter);
                 intent.putExtra("counter", counter);
-
                 intent.putExtra("img", imagePath);
 
                 startActivity(intent);

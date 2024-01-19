@@ -60,6 +60,10 @@
             android:name=".Activity.StartActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".Activity.WaitingActivity"
+            android:exported="false" />
+
 
 
         <activity

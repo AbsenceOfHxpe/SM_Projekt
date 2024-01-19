@@ -151,3 +151,7 @@ v
 Fapp/src/main/java/com/example/sm_project/Activity/LoadingActivity.java,9/8/989c67be52ebca1feef105e652212b7739ef581a
 t
 Dapp/src/main/java/com/example/sm_project/Fragments/Map_Fragment.java,b/c/bc0966e51cddcd1b10da5e1ad075e9df25d55ee7
+s
+Capp/src/main/java/com/example/sm_project/Extra/ExitAppReceiver.java,5/e/5e41d26f838d751afdc19100a5770c56d1a37db6
+r
+Bapp/src/main/java/com/example/sm_project/Extra/ExitAppService.java,d/e/defd76f948b5aa3212e8d69ae8d51654bcf91732

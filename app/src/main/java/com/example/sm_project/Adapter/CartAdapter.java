@@ -17,61 +17,59 @@ import com.example.sm_project.R;
 
 import java.util.ArrayList;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
-    public ArrayList<Foods> listItem;
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+    private ArrayList<Foods> cartItems;
+    private CartListener cartListener;
 
-    public CartAdapter(ArrayList<Foods> listItem) {
-        this.listItem = listItem;
+    public CartAdapter(ArrayList<Foods> cartItems, CartListener cartListener) {
+        this.cartItems = cartItems;
+        this.cartListener = cartListener;
     }
-
 
     @NonNull
     @Override
-    public CartAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View inflate= LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_cart, parent, false);
-        return new viewholder(inflate);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_cart, parent, false);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CartAdapter.viewholder holder, int position) {
-        holder.title.setText(listItem.get(position).getTitle());
-        holder.feeEachItem.setText(listItem.get(position).getPrice() + "zł");
-        holder.totalEachItem.setText(listItem.get(position).getNumberInCard()+"zł" +
-                (listItem.get(position).getNumberInCard()*listItem.get(position).getPrice()
-                ));
-        holder.num.setText(listItem.get(position).getNumberInCard()+"");
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Foods food = cartItems.get(position);
+
+        holder.title.setText(food.getTitle());
+        String formattedFeeEachItem = String.format("%.2f zł", (food.getNumberInCard() * food.getPrice()));
+        holder.feeEachItem.setText(formattedFeeEachItem);
+        String formattedTotalEachItem = String.format("%.2f zł", food.getPrice());
+        holder.totalEachItem.setText(formattedTotalEachItem);
+
+        holder.num.setText(String.valueOf(food.getNumberInCard()));
+
         Glide.with(holder.itemView.getContext())
-                .load(listItem.get(position).getImagePath())
+                .load(food.getImagePath())
                 .transform(new CenterCrop(), new RoundedCorners(30))
                 .into(holder.pic);
-        holder.plusItem.setOnClickListener(v -> {
-          /*  managmentCart.plusNumberItem(listItem, position, new ChangeNumberItemsListener(){
-                public void change() {
 
-                }
-            });   BAZA DANYCH   */
+        holder.plusItem.setOnClickListener(v -> {
+            cartListener.onItemQuantityChanged(food, true);
         });
 
         holder.minusItem.setOnClickListener(v -> {
-
+            cartListener.onItemQuantityChanged(food, false);
         });
-
-
-
-
     }
 
     @Override
     public int getItemCount() {
-        return listItem.size();
+        return cartItems.size();
     }
 
-    public class viewholder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
         TextView title, feeEachItem, plusItem, minusItem, totalEachItem, num;
         ImageView pic;
-        public viewholder(@NonNull View itemView) {
-            super(itemView);
 
+        public ViewHolder(@NonNull View itemView) {
+            super(itemView);
             title = itemView.findViewById(R.id.titleTxt);
             feeEachItem = itemView.findViewById(R.id.feeEachItem);
             plusItem = itemView.findViewById(R.id.plusCartBtn);
@@ -79,10 +77,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.viewholder> {
             totalEachItem = itemView.findViewById(R.id.totalEachItem);
             num = itemView.findViewById(R.id.numberItemTxt);
             pic = itemView.findViewById(R.id.img);
-
-
-
-
         }
+    }
+
+    public interface CartListener {
+        void onItemQuantityChanged(Foods food, boolean increase);
+    }
+
+    public ArrayList<Foods> getCartItems() {
+        return cartItems;
     }
 }

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:gravity="top"
+    android:orientation="vertical">
+
+
+    <include
+        android:id="@+id/includedLoginLayout"
+        layout="@layout/activity_loading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Dziękujemy za skorzystanie z naszych usług!"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_marginBottom="18dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Twoje zamówienie jest właśnie przyrządzane."
+        android:textAlignment="center"
+        android:textSize="22sp"
+        tools:layout_marginBottom="18dp" />
+
+    <ImageView
+        android:id="@+id/carPic"
+        android:layout_width="wrap_content"
+        android:layout_height="64dp"
+        app:srcCompat="@drawable/car" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/blue_button"
+        android:letterSpacing="0.2"
+        android:text="Zamówienie otrzymane"
+
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:layout_marginTop="20dp" />
+
+
+</LinearLayout>

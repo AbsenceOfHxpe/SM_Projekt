@@ -1,16 +1,17 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8Ïðù›Ñ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8Û¡¥ŠÒ1
 p
-java:S1450"SRemove the "myDB" field and declare it as a local variable in the relevant methods.(¸©ßŒ8þðù›Ñ1
+java:S1450 "SRemove the "myDB" field and declare it as a local variable in the relevant methods.(¸©ßŒ8ó£¥ŠÒ1
 I
-java:S16020",Remove useless curly braces around statement(ÊŠÉé8ñù›Ñ1
+java:S1602:",Remove useless curly braces around statement(ÊŠÉé8‰¤¥ŠÒ1
 N
-java:S16024",Remove useless curly braces around statement(ö½§ìúÿÿÿÿ8‚ñù›Ñ1
+java:S1602>",Remove useless curly braces around statement(ö½§ìúÿÿÿÿ8Š¤¥ŠÒ1
 N
-java:S16028",Remove useless curly braces around statement(ö½§ìúÿÿÿÿ8‚ñù›Ñ1
+java:S1602B",Remove useless curly braces around statement(ö½§ìúÿÿÿÿ8‹¤¥ŠÒ1
 H
-java:S1602<",Remove useless curly braces around statement(›Û8ö›ªœÑ1
+java:S1602F",Remove useless curly braces around statement(›Û8‹¤¥ŠÒ1
 ž
-java:S1186I"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«û³±8„ñù›Ñ1
+java:S1186S"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(«û³±8¤¥ŠÒ1
 £
-java:S1186M"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ê¥¾àûÿÿÿÿ8„ñù›Ñ1
+java:S1186W"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(Ê¥¾àûÿÿÿÿ8¤¥ŠÒ1
+^	java:S125‚"<This block of commented-out lines of code should be removed.(èÍƒ¯ûÿÿÿÿ8ÙÔ¥ŠÒ1
