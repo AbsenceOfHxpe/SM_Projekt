@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -52,7 +54,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 
-public class MainActivity extends AppCompatActivity implements BestRestAdapter.OnRestaurantClickListener{
+public class MainActivity extends AppCompatActivity implements BestRestAdapter.OnRestaurantClickListener {
 
 
     MyDataBase myDB;
@@ -60,23 +62,27 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
     private ActivityMainBinding binding;
     private Spinner combinedInfoTextView;
 
+    private static final int SEARCH_RADIUS_METERS = 5000;
+    private double currentLatitude = 0.0;
+    private double currentLongitude = 0.0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
 
         ArrayList<Restaurants> restaurantsList = new ArrayList<>();
-        Restaurants johnWick = new Restaurants("John Wick", R.drawable.google);
-       // johnWick.addFood(new Foods(4.9, R.drawable.food, 50, "Pizza margherita"));
+        Restaurants johnWick = new Restaurants("Jollibee", R.drawable.google);
+
+
         restaurantsList.add(johnWick);
 
-        Restaurants mcdonalds = new Restaurants("McDonalds", R.drawable.food);
-       // mcdonalds.addFood(new Foods(4.5, R.drawable.food, 30, "Cheeseburger"));
+        Restaurants mcdonalds = new Restaurants("McDonald's", R.drawable.food);
         restaurantsList.add(mcdonalds);
-
 
 
         // Inicjalizuj RecyclerView
@@ -90,13 +96,10 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
         recyclerView.setAdapter(adapterr);
 
         ArrayList<Category> categories = new ArrayList<>();
-        categories.add(new Category( R.drawable.btn_1, "Pizza"));
-        categories.add(new Category( R.drawable.btn_2, "Burger"));
-        categories.add(new Category( R.drawable.btn_3, "Burger"));
-        categories.add(new Category( R.drawable.btn_4, "Burger"));
-
-
-
+        categories.add(new Category(R.drawable.btn_1, "Pizza"));
+        categories.add(new Category(R.drawable.btn_2, "Burger"));
+        categories.add(new Category(R.drawable.btn_3, "Burger"));
+        categories.add(new Category(R.drawable.btn_4, "Burger"));
 
 
         RecyclerView recyclerViewCat = findViewById(R.id.categoryView); // RecyclerView
@@ -134,8 +137,11 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
         String userAddress = intent.getStringExtra("userAddress");
         String userCity = intent.getStringExtra("userCity");
         String userCountry = intent.getStringExtra("userCountry");
+        double latitude = intent.getDoubleExtra("latitude", 0.0);
+        double longitude = intent.getDoubleExtra("longitude", 0.0);
 
-        String combinedInfo =  userAddress + "\n" + userCity + "\n" + userCountry;
+
+        String combinedInfo = userAddress + "\n" + userCity + "\n" + userCountry;
 
         ArrayList<String> list = new ArrayList<>();
         list.add(combinedInfo);
@@ -176,15 +182,33 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
 
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));
 
-        autocompleteFragment.setCountries("PL"); // Ogranicz wyniki do danego kraju (np. Polski)
 
         autocompleteFragment.setTypesFilter(Arrays.asList("restaurant"));
 
+
+        LatLng bialystokLatLng = new LatLng(latitude, longitude);
+        autocompleteFragment.setLocationRestriction(RectangularBounds.newInstance(
+                new LatLng(bialystokLatLng.latitude - 0.1, bialystokLatLng.longitude - 0.1),
+                new LatLng(bialystokLatLng.latitude + 0.1, bialystokLatLng.longitude + 0.1)));
 
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onPlaceSelected(@NonNull Place place) {
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
+
+                // Sprawdzamy, czy wybrane miejsce jest na liście restauracji
+                String selectedRestaurantName = place.getName();
+                boolean isRestaurantOnList = isRestaurantOnList(restaurantsList, selectedRestaurantName);
+
+                if (isRestaurantOnList) {
+                    // Przeniesienie do ListFoodActivity
+                    Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
+                    intent.putExtra("nazwaRestauracji", selectedRestaurantName);
+                    startActivity(intent);
+                } else {
+                    // Komunikat informujący, że restauracja nie jest na liście
+                    Toast.makeText(MainActivity.this, "Restauracja nie jest na Twojej liście", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -192,13 +216,44 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
                 Log.i(TAG, "An error occurred: " + status);
             }
         });
-
-        LatLng bialystokLatLng = new LatLng(123.222, 23.1688);
-        autocompleteFragment.setLocationBias(RectangularBounds.newInstance(
-                new LatLng(bialystokLatLng.latitude - 0.1, bialystokLatLng.longitude - 0.1),
-                new LatLng(bialystokLatLng.latitude + 0.1, bialystokLatLng.longitude + 0.1)));
-
     }
+
+// Metoda sprawdzająca, czy restauracja jest na liście
+        private boolean isRestaurantOnList (List < Restaurants > restaurantsList, String
+        restaurantName){
+            for (Restaurants restaurant : restaurantsList) {
+                if (restaurant.getName().equalsIgnoreCase(restaurantName)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.botttom_nav_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int itemId = item.getItemId();
+
+        if (itemId == R.id.profile) {
+            Log.d("MainActivity", "Clicked on Profile");
+            startActivity(new Intent(this, StartActivity.class));
+            return true;
+        } else if (itemId == R.id.search) {
+            startActivity(new Intent(this, CartActivity.class));
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     private void showCustomDialog(String message) {
         final Dialog dialog = new Dialog(MainActivity.this);

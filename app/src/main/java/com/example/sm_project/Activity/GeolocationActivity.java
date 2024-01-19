@@ -7,6 +7,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.PersistableBundle;
 import android.widget.Button;
 import android.widget.TextView;
@@ -37,6 +39,11 @@ public class GeolocationActivity extends AppCompatActivity {
     private static final String USER_ADDRESS_KEY = "user_address";
     private static final String USER_CITY_KEY = "user_city";
     private static final String USER_COUNTRY_KEY = "user_country";
+    private static final int DELAY_MILLISECONDS = 5000;
+
+
+    private double currentLatitude = 0.0;
+    private double currentLongitude = 0.0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +88,8 @@ public class GeolocationActivity extends AppCompatActivity {
                                 Geocoder geocoder = new Geocoder(GeolocationActivity.this, Locale.getDefault());
                                 List<Address> addresses = null;
                                 try {
+                                    currentLatitude = location.getLatitude();
+                                    currentLongitude = location.getLongitude();
                                     addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                                     String userAddress = addresses.get(0).getThoroughfare() + " " + addresses.get(0).getSubThoroughfare();
                                     String userCity = addresses.get(0).getLocality();
@@ -96,11 +105,18 @@ public class GeolocationActivity extends AppCompatActivity {
                                         mapFragment.setMarker(location.getLatitude(), location.getLongitude());
                                     }
 
-                                    Intent intent = new Intent(GeolocationActivity.this, MainActivity.class);
-                                    intent.putExtra("userAddress", userAddress);
-                                    intent.putExtra("userCity", userCity);
-                                    intent.putExtra("userCountry", userCountry);
-                                    //startActivity(intent);
+                                    new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent intent = new Intent(GeolocationActivity.this, MainActivity.class);
+                                            intent.putExtra("userAddress", userAddress);
+                                            intent.putExtra("userCity", userCity);
+                                            intent.putExtra("userCountry", userCountry);
+                                            intent.putExtra("latitude", currentLatitude);
+                                            intent.putExtra("longitude", currentLongitude);
+                                            startActivity(intent);
+                                        }
+                                    }, DELAY_MILLISECONDS);
                                 } catch (IOException e) {
                                     throw new RuntimeException(e);
                                 }

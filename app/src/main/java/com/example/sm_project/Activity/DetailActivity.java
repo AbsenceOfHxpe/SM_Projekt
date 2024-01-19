@@ -48,11 +48,12 @@ public class DetailActivity extends AppCompatActivity {
                 // Przygotuj dane do przekazania
                 Intent intent = new Intent(DetailActivity.this, CartActivity.class);
                 intent.putExtra("foodname", foodName);
-                intent.putExtra("price", price*counter);
+                intent.putExtra("price", price);
+                intent.putExtra("total", price*counter);
+                intent.putExtra("counter", counter);
 
                 intent.putExtra("img", imagePath);
 
-                // Uruchom nową aktywność
                 startActivity(intent);
             }
         });

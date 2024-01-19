@@ -1,4 +1,3 @@
-<!-- res/layout/logout_dialog.xml -->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
@@ -6,25 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/dialogMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="@android:color/black"
-        android:text="Default Message"/>
-
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/dialogButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/blue_button"
-        android:letterSpacing="0.2"
-        android:text="OK"
-        android:textColor="@color/white"
-        android:textSize="18sp" />
+    <include layout="@layout/custom_dialog"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/cancel_button"

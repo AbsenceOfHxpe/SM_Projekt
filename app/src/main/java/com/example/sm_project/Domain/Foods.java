@@ -18,6 +18,8 @@ public class Foods implements Serializable {
     private String Title;
     private int numberInCard;
 
+    private int restaurantId;
+
     public Foods(double Star, int ImagePath, int TimeValue, String Title, double Price) {
         this.Star = Star;
         this.ImagePath=ImagePath;
@@ -27,6 +29,15 @@ public class Foods implements Serializable {
     }
 
 
+
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
+    }
 
     public String toString() {
         return Title;

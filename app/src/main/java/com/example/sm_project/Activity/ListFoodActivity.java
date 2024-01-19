@@ -28,7 +28,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         restaurantNameTextView.setText(restaurantName);
 
         ArrayList<Foods> foodsList = new ArrayList<>();
-        foodsList.add(new Foods(4.9, R.drawable.food, 50, "Pizza margherita", 20.0));
+       foodsList.add(new Foods(4.9, R.drawable.food, 50, "Pizza margherita", 20.0));
         foodsList.add(new Foods(4.8, R.drawable.food, 20, "Cheeseburger", 5.7));
 
         RecyclerView recyclerView = findViewById(R.id.FoodListView);
