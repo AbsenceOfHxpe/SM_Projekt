@@ -1,24 +1,31 @@
 package com.example.sm_project.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.sm_project.Adapter.FoodListAdapter;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.R;
+import com.example.sm_project.databinding.ActivityOrdersBinding;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 public class ListFoodActivity extends AppCompatActivity implements FoodListAdapter.OnFoodClickListener {
+    ActivityOrdersBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        binding = ActivityOrdersBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setContentView(R.layout.activity_list_food);
 
         TextView restaurantNameTextView = findViewById(R.id.titleTxt);
@@ -36,6 +43,29 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
 
         FoodListAdapter foodListAdapter = new FoodListAdapter(foodsList, this);
         recyclerView.setAdapter(foodListAdapter);
+
+        binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+
+                if(itemId == R.id.home){
+                    Intent ordersIntent = new Intent(ListFoodActivity.this, MainActivity.class);
+                    startActivity(ordersIntent);
+
+                } else if(itemId == R.id.orders){
+                    Intent ordersIntent = new Intent(ListFoodActivity.this, OrdersActivity.class);
+                    startActivity(ordersIntent);
+
+                }else if(itemId == R.id.search){
+                    Intent ordersIntent = new Intent(ListFoodActivity.this, ListFoodActivity.class);
+                    startActivity(ordersIntent);
+
+                }
+                return false;
+            }
+        });
     }
 
     @Override

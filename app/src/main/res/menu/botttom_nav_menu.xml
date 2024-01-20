@@ -2,24 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:title="Home"
-        android:icon="@drawable/baseline_home_24"
         android:id="@+id/home"
+        android:title="@string/home_page"
+        android:icon="@drawable/baseline_home_24"
         />
     <item
-        android:title="Profil"
-        android:icon="@drawable/baseline_face_24"
-        android:id="@+id/profile"/>
+        android:id="@+id/orders"
+    android:title="Zamówienia"
+        android:icon="@drawable/baseline_face_24"/>
     <item
-        android:title="Szukaj"
-        android:icon="@drawable/search_icon"
-        android:id="@+id/search"/>
-    <item
-        android:id="@+id/youtube"
-        android:icon="@drawable/baseline_movie_24"
-        android:title="O nas" />
-    <item
-        android:title="Ustawienia"
-        android:icon="@drawable/settings"
-        android:id="@+id/settings"/>
+        android:id="@+id/search"
+        android:title="@string/search_page"
+        android:icon="@drawable/search_icon"/>
+
 </menu>
