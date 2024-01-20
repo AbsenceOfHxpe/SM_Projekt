@@ -121,12 +121,11 @@ public class MainActivity extends AppCompatActivity  {
             public void onCategoryClick(CategoryTable category) {
                 String categoryName = category.getName();
 
-                Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
+                Intent intent = new Intent(MainActivity.this, CategoryActivity.class);
                 intent.putExtra("categoryName", categoryName);
                 startActivity(intent);
             }
         });
-
 
 
 

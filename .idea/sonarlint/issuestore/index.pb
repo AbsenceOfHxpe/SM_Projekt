@@ -37,8 +37,6 @@ P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 p
 @app/src/main/java/com/example/sm_project/Domain/Restaurants.java,0/5/054d61f4a0e63e3defccea5cdcc69ea5c717c723
-u
-Eapp/src/main/java/com/example/sm_project/Adapter/BestFoodAdapter.java,2/2/227f009c0b413d1e4572443efbd772be70cdaaf9
 q
 Aapp/src/main/java/com/example/sm_project/Adapter/CartAdapter.java,5/6/56cb1778ddea184bf7f3ce803d93d4fa5a6b2b22
 u
@@ -80,8 +78,6 @@ G.idea/sonarlint/issuestore/9/0/909762385fc6eb20f922a91c6865741308b57f2c,c\e\ce
 
 Q.idea/sonarlint/securityhotspotstore/8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e,1/f/1fe398aa86b382486ed27d0a69bf92f68bd5edaa
 
-Q.idea/sonarlint/securityhotspotstore/2/2/227f009c0b413d1e4572443efbd772be70cdaaf9,4/9/49c60a1b0faaa7b40a52e10a0fc0d6ff49b815d0
-
 Q.idea/sonarlint/securityhotspotstore/4/2/424084f872ca007eee99605972f662bdfd41805d,4/6/46371961dce12c65d463724e9459f4228c34f7f4
 
 Q.idea/sonarlint/securityhotspotstore/e/4/e4aecf0f43118af08bc75690548c9b2c5fbbb147,1/9/1926f7552277a714f58ff1a2fcfd6cb24d7bd83b
@@ -110,7 +106,7 @@ o
 t
 Dapp/src/main/java/com/example/sm_project/Helper/RestaurantTable.java,2/f/2f7e63e258d8c1ffe3592015f228d48881712432
 n
->app/src/main/java/com/example/sm_project/Helper/DishTable.java,1\c\1cf1b2a6ffa08a8b20f5734d3447e19870f65b2c
+>app/src/main/java/com/example/sm_project/Helper/DishTable.java,1/c/1cf1b2a6ffa08a8b20f5734d3447e19870f65b2c
 {
 Kapp/src/main/java/com/example/sm_project/Helper/RestaurantDishCrossRef.java,c/f/cf10fe147a382ef0f92bf0312021d205551c0b8d
 v
@@ -151,3 +147,11 @@ r
 Bapp/src/main/java/com/example/sm_project/Extra/ExitAppService.java,d/e/defd76f948b5aa3212e8d69ae8d51654bcf91732
 v
 Fapp/src/main/java/com/example/sm_project/Activity/WaitingActivity.java,9/9/9904425e6a3674f13a85e7095bb4f801ab950df4
+j
+:app/src/main/java/com/example/sm_project/Dao/OrderDao.java,2/6/267ea54d207faca9c5c4b4182e8e594b5fd97b04
+i
+9app/src/main/java/com/example/sm_project/Dao/DishDao.java,2/2/2214e151f78c2e64a30de94f1cb67eb067494206
+y
+Iapp/src/main/java/com/example/sm_project/Adapter/CategoryRestAdapter.java,0/0/008518a6dbf15f7b45f998f1c6174aa683c903e8
+y
+Iapp/src/main/java/com/example/sm_project/Activity/CategoriesActivity.java,7/f/7f3828fe28cb37bbc865a3bf5f04ea1f812df863

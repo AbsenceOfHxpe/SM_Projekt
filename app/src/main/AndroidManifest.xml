@@ -65,6 +65,11 @@
             android:exported="false" />
 
 
+        <activity
+            android:name=".Activity.CategoryActivity"
+            android:exported="false" />
+
+
 
         <activity
             android:name=".Activity.LoadingActivity"

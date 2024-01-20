@@ -30,6 +30,8 @@ public class LoadingActivity  extends AppCompatActivity {
     private RestaurantDao restaurantDao;
     private CategoryDao categoryDao;
 
+    boolean isEmpty = false;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +52,8 @@ public class LoadingActivity  extends AppCompatActivity {
                 categoryDao.insert(new CategoryTable("Burger",R.drawable.btn_2));
                 categoryDao.insert(new CategoryTable("Kurczaki",R.drawable.btn_3));
                 categoryDao.insert(new CategoryTable("Sushi",R.drawable.btn_4));
+                categoryDao.insert(new CategoryTable("Steki",R.drawable.btn_5));
+
             } else {
 
             }

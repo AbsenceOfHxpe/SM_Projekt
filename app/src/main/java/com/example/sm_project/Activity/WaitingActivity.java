@@ -7,11 +7,13 @@ import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LinearInterpolator;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,6 +32,8 @@ public class WaitingActivity extends AppCompatActivity {
 
         pic = findViewById(R.id.carPic);
         btn = findViewById(R.id.btn);
+
+
 
         ObjectAnimator animator = ObjectAnimator.ofFloat(
                 pic,
