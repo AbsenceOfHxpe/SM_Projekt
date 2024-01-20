@@ -13,10 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.example.sm_project.Dao.CategoryDao;
+import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Dao.UserDao;
 import com.example.sm_project.Helper.CategoryTable;
 import com.example.sm_project.Helper.MyDataBase;
+import com.example.sm_project.Helper.OrderTable;
 import com.example.sm_project.Helper.RestaurantTable;
 import com.example.sm_project.Helper.UserTable;
 import com.example.sm_project.R;
@@ -29,6 +31,8 @@ public class LoadingActivity  extends AppCompatActivity {
     private UserDao userDao;
     private RestaurantDao restaurantDao;
     private CategoryDao categoryDao;
+
+    private OrderDao orderDao;
 
     boolean isEmpty = false;
 
@@ -44,7 +48,9 @@ public class LoadingActivity  extends AppCompatActivity {
         userDao = myDB.getDao();
         categoryDao = myDB.getCategoryDao();
         restaurantDao = myDB.getRestaurantDao();
+        orderDao = myDB.getOrderDao();
         userDao.doNothing();
+        orderDao.doNothing();
 
         categoryDao.getAllCategories().observe(this, categories -> {
             if (categories == null || categories.isEmpty()) {
@@ -66,6 +72,12 @@ public class LoadingActivity  extends AppCompatActivity {
 
             } else {
 
+            }
+        });
+
+        orderDao.getAllOrders().observe(this, orderTables -> {
+            if(orderTables == null || orderTables.isEmpty()){
+                //orderDao.insert(new OrderTable("24.10.2024", 26.70, 1, 2));
             }
         });
 

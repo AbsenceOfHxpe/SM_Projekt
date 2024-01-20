@@ -10,13 +10,14 @@
     import androidx.sqlite.db.SupportSQLiteDatabase;
 
     import com.example.sm_project.Dao.CategoryDao;
+    import com.example.sm_project.Dao.OrderDao;
     import com.example.sm_project.Dao.RestaurantDao;
     import com.example.sm_project.Dao.UserDao;
 
     import java.util.concurrent.ExecutorService;
     import java.util.concurrent.Executors;
 
-    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 15)
+    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 16)
     public abstract class MyDataBase extends RoomDatabase {
 
         private static MyDataBase databaseInstance;
@@ -28,6 +29,9 @@
         public abstract RestaurantDao getRestaurantDao();
 
         public abstract CategoryDao getCategoryDao();
+
+        public abstract OrderDao getOrderDao();
+
 
 
 

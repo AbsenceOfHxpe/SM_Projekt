@@ -27,6 +27,8 @@ public interface RestaurantDao {
     @Query("SELECT * FROM restauranttable WHERE categoryId = :categoryId")
     LiveData<List<RestaurantTable>> getRestaurantsByCategory(int categoryId);
 
+    @Query("SELECT name FROM restauranttable WHERE id = :restaurantId")
+    String getRestaurantNameById(int restaurantId);
 
 
 }

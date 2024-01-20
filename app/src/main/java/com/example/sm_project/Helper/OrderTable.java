@@ -6,10 +6,17 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "ordertable", foreignKeys = @ForeignKey(entity = UserTable.class,
-        parentColumns = "id",
-        childColumns = "userId",
-        onDelete = ForeignKey.CASCADE))
+@Entity(tableName = "ordertable",
+        foreignKeys = {
+                @ForeignKey(entity = UserTable.class,
+                        parentColumns = "id",
+                        childColumns = "userId",
+                        onDelete = ForeignKey.CASCADE),
+                @ForeignKey(entity = RestaurantTable.class,
+                        parentColumns = "id",
+                        childColumns = "restaurantId",
+                        onDelete = ForeignKey.CASCADE)
+        })
 public class OrderTable {
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -19,7 +26,14 @@ public class OrderTable {
     private double price;
 
     private int userId;
+    private int restaurantId;
 
+    public OrderTable(String date, double price, int userId, int restaurantId) {
+        this.date = date;
+        this.price = price;
+        this.userId = userId;
+        this.restaurantId = restaurantId;
+    }
 
     public int getId() {
         return id;
@@ -51,5 +65,13 @@ public class OrderTable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
     }
 }
