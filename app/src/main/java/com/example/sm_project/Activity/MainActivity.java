@@ -115,6 +115,15 @@ public class MainActivity extends AppCompatActivity  {
         CategoryAdapter adapterrr = new CategoryAdapter(categoryTables);
         recyclerViewCat.setAdapter(adapterrr);
 
+        adapterrr.setOnDataLoadedListener(new CategoryAdapter.OnDataLoadedListener() {
+        @Override
+        public void onDataLoaded() {
+            ProgressBar progressBarCategory = findViewById(R.id.progressBarCategory);
+            // Gdy dane zostały załadowane, ukryj ProgressBar
+            progressBarCategory.setVisibility(View.GONE);
+        }
+    });
+
 
         adapterrr.setOnCategoryClickListener(new CategoryAdapter.OnCategoryClickListener() {
             @Override
@@ -196,7 +205,7 @@ public class MainActivity extends AppCompatActivity  {
 
                 // Sprawdzamy, czy wybrane miejsce jest na liście restauracji
                 String selectedRestaurantName = place.getName();
-                boolean isRestaurantOnList = isRestaurantOnList(restaurantsList, selectedRestaurantName);
+                boolean isRestaurantOnList = isRestaurantOnList(restaurantTables, selectedRestaurantName);
 
                 if (isRestaurantOnList) {
                     // Przeniesienie do ListFoodActivity
@@ -241,10 +250,10 @@ public class MainActivity extends AppCompatActivity  {
     }
 
 // Metoda sprawdzająca, czy restauracja jest na liście
-        private boolean isRestaurantOnList (List < Restaurants > restaurantsList, String
+        private boolean isRestaurantOnList (List < RestaurantTable > restaurantTables, String
         restaurantName){
-            for (Restaurants restaurant : restaurantsList) {
-                if (restaurant.getName().equalsIgnoreCase(restaurantName)) {
+            for (RestaurantTable restaurantTable : restaurantTables) {
+                if (restaurantTable.getName().equalsIgnoreCase(restaurantName)) {
                     return true;
                 }
             }

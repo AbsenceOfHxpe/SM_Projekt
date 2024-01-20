@@ -77,7 +77,7 @@ public class LoadingActivity  extends AppCompatActivity {
 
         orderDao.getAllOrders().observe(this, orderTables -> {
             if(orderTables == null || orderTables.isEmpty()){
-                //orderDao.insert(new OrderTable("24.10.2024", 26.70, 1, 2));
+                orderDao.insert(new OrderTable("24.10.2024", 26.70, 1, 2));
             }
         });
 
