@@ -20,7 +20,7 @@ public interface UserDao {
     @Query("SELECT EXISTS (SELECT * FROM UserTable where username=:username AND password=:password)")
     boolean login(String username, String password);
 
-
-
+    @Query("SELECT 1 FROM UserTable LIMIT 1")
+    int doNothing();
 
 }

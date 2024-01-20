@@ -13,11 +13,11 @@ public class RestaurantTable {
     private int id;
 
 
-    private String name,imagePath;
+    private String name;
 
-    private int categoryId;
+    private int categoryId,imagePath;
 
-    public RestaurantTable(String name, String imagePath, int categoryId) {
+    public RestaurantTable(String name, int imagePath, int categoryId) {
         this.name=name;
         this.imagePath=imagePath;
         this.categoryId=categoryId;
@@ -40,11 +40,11 @@ public class RestaurantTable {
         this.name = name;
     }
 
-    public String getImagePath() {
+    public int getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
+    public void setImagePath(int imagePath) {
         this.imagePath = imagePath;
     }
 

@@ -45,7 +45,7 @@ public class RegisterActivity extends AppCompatActivity {
         binding = ActivityRegisterBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        myDB = Room.databaseBuilder(this, MyDataBase.class, "usertable")
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         userDao = myDB.getDao();
 

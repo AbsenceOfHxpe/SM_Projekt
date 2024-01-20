@@ -9,9 +9,11 @@ public class CategoryTable {
     private int id;
 
     String name;
+    int imgPath;
 
-    public CategoryTable(String name) {
+    public CategoryTable(String name, int imgPath) {
         this.name = name;
+        this.imgPath = imgPath;
     }
 
     public int getId() {
@@ -30,5 +32,11 @@ public class CategoryTable {
         this.name = name;
     }
 
+    public int getImgPath() {
+        return imgPath;
+    }
 
+    public void setImgPath(int imgPath) {
+        this.imgPath = imgPath;
+    }
 }

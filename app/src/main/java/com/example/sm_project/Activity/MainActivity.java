@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,12 +25,15 @@ import androidx.room.Room;
 
 import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Adapter.CategoryAdapter;
+import com.example.sm_project.Dao.CategoryDao;
 import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Dao.UserDao;
 import com.example.sm_project.Domain.Category;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.Domain.Restaurants;
+import com.example.sm_project.Helper.CategoryTable;
 import com.example.sm_project.Helper.MyDataBase;
+import com.example.sm_project.Helper.RestaurantTable;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityMainBinding;
 import com.google.android.gms.maps.model.LatLng;
@@ -54,7 +58,7 @@ import com.google.android.libraries.places.widget.listener.PlaceSelectionListene
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 
-public class MainActivity extends AppCompatActivity implements BestRestAdapter.OnRestaurantClickListener {
+public class MainActivity extends AppCompatActivity  {
 
 
     MyDataBase myDB;
@@ -65,6 +69,10 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
     private static final int SEARCH_RADIUS_METERS = 5000;
     private double currentLatitude = 0.0;
     private double currentLongitude = 0.0;
+    private CategoryDao categoryDao;
+    private RestaurantDao restaurantDao;
+    private BestRestAdapter restaurantAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +82,13 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        categoryDao = myDB.getCategoryDao();
+        restaurantDao = myDB.getRestaurantDao();
 
+
+// TO JEST SZTYWNE WIDOK
         ArrayList<Restaurants> restaurantsList = new ArrayList<>();
         Restaurants johnWick = new Restaurants("Jollibee", R.drawable.google);
 
@@ -85,50 +99,40 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
         restaurantsList.add(mcdonalds);
 
 
-        // Inicjalizuj RecyclerView
-        RecyclerView recyclerView = findViewById(R.id.bestRestView); // Zastąp yourRecyclerViewId identyfikatorem swojego RecyclerView
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Utwórz adapter
-        BestRestAdapter adapterr = new BestRestAdapter(restaurantsList, this);
+        RecyclerView recyclerViewRest = findViewById(R.id.bestRestView);
+        recyclerViewRest.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        List<RestaurantTable> restaurantTables = restaurantDao.getAllRestaurantsSync();
+        BestRestAdapter RestAdapter = new BestRestAdapter(restaurantTables);
+        recyclerViewRest.setAdapter(RestAdapter);
 
-        // Ustaw adapter na RecyclerView
-        recyclerView.setAdapter(adapterr);
+        RestAdapter.setOnDataLoadedListener(new BestRestAdapter.OnDataLoadedListener() {
+            @Override
+            public void onDataLoaded() {
+                ProgressBar progressBarBestRest = findViewById(R.id.progressBarBestRest);
+                progressBarBestRest.setVisibility(View.GONE);
+            }
+        });
 
-        ArrayList<Category> categories = new ArrayList<>();
-        categories.add(new Category(R.drawable.btn_1, "Pizza"));
-        categories.add(new Category(R.drawable.btn_2, "Burger"));
-        categories.add(new Category(R.drawable.btn_3, "Kurczaki"));
-        categories.add(new Category(R.drawable.btn_4, "Sushi"));
+
 
 
         RecyclerView recyclerViewCat = findViewById(R.id.categoryView); // RecyclerView
         recyclerViewCat.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
-        CategoryAdapter adapterrr = new CategoryAdapter(categories);
-
+        List<CategoryTable> categoryTables = categoryDao.getAllCategoriesSync();
+        CategoryAdapter adapterrr = new CategoryAdapter(categoryTables);
         recyclerViewCat.setAdapter(adapterrr);
 
 
-        // Utwórz adapter i przypisz go do RecyclerView
-       /* BestRestAdapter restaurantAdapter = new BestRestAdapter(new ArrayList<>());
-        bestRestView.setAdapter(restaurantAdapter);
-
-        myDB = Room.databaseBuilder(this, MyDataBase.class, "restauranttable")
-                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        myDB.getDatabase(getApplicationContext());  // Inicjalizacja myDB przed użyciem
-
-        RestaurantDao restaurantDao = myDB.getRestaurantDao();
-        restaurantDao.getAllRestaurants().observe(this, restaurantList -> {
-            // Aktualizuj dane w adapterze
-            restaurantAdapter.setRestaurantList(restaurantList);
-            restaurantAdapter.notifyDataSetChanged();
-
-            if (!restaurantList.isEmpty()) {
-                bestRestView.setAdapter(restaurantAdapter);
+        adapterrr.setOnDataLoadedListener(new CategoryAdapter.OnDataLoadedListener() {
+            @Override
+            public void onDataLoaded() {
+                ProgressBar progressBarCategory = findViewById(R.id.progressBarCategory);
+                // Gdy dane zostały załadowane, ukryj ProgressBar
+                progressBarCategory.setVisibility(View.GONE);
             }
         });
-*/
+
 
 
         combinedInfoTextView = findViewById(R.id.locationSp);
@@ -293,13 +297,7 @@ public class MainActivity extends AppCompatActivity implements BestRestAdapter.O
         editor.apply();
     }
 
-    @Override
-    public void onRestaurantClick(String restaurantName) {
-        Intent intent = new Intent(this, ListFoodActivity.class);
-        intent.putExtra("nazwaRestauracji", restaurantName);
-        startActivity(intent);
 
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

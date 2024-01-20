@@ -16,6 +16,13 @@ public interface CategoryDao {
     @Query("SELECT * FROM categorytable")
     LiveData<List<CategoryTable>> getAllCategories();
 
+    @Query("SELECT * FROM categorytable")
+    List<CategoryTable> getAllCategoriesSync();
+
     @Insert
     long insert(CategoryTable category);
+
+    @Query("SELECT EXISTS(SELECT * FROM categorytable WHERE name=:name)")
+    boolean isNameTaken(String name);
 }
+

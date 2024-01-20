@@ -10,12 +10,25 @@ import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
+import com.example.sm_project.Dao.CategoryDao;
+import com.example.sm_project.Dao.RestaurantDao;
+import com.example.sm_project.Dao.UserDao;
+import com.example.sm_project.Helper.CategoryTable;
+import com.example.sm_project.Helper.MyDataBase;
+import com.example.sm_project.Helper.RestaurantTable;
+import com.example.sm_project.Helper.UserTable;
 import com.example.sm_project.R;
 
 public class LoadingActivity  extends AppCompatActivity {
     private static int SPLASH_TIME_OUT = 2000;
     private ImageView pic;
+
+    private MyDataBase myDB;
+    private UserDao userDao;
+    private RestaurantDao restaurantDao;
+    private CategoryDao categoryDao;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,6 +36,35 @@ public class LoadingActivity  extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
         pic = findViewById(R.id.img);
         animateImage();
+
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        userDao = myDB.getDao();
+        categoryDao = myDB.getCategoryDao();
+        restaurantDao = myDB.getRestaurantDao();
+        userDao.doNothing();
+
+        categoryDao.getAllCategories().observe(this, categories -> {
+            if (categories == null || categories.isEmpty()) {
+                categoryDao.insert(new CategoryTable("Pizza",R.drawable.btn_1));
+                categoryDao.insert(new CategoryTable("Burger",R.drawable.btn_2));
+                categoryDao.insert(new CategoryTable("Kurczaki",R.drawable.btn_3));
+                categoryDao.insert(new CategoryTable("Sushi",R.drawable.btn_4));
+            } else {
+
+            }
+        });
+
+        restaurantDao.getAllRestaurants().observe(this, restaurants -> {
+            if (restaurants == null || restaurants.isEmpty()) {
+                restaurantDao.insert(new RestaurantTable("McDonalds",R.drawable.google,1));
+                restaurantDao.insert(new RestaurantTable("KFC",R.drawable.btn_2,2));
+            } else {
+
+            }
+        });
+
+
 
         new Handler().postDelayed(new Runnable() {
             @Override

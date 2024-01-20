@@ -1,6 +1,7 @@
 package com.example.sm_project.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,12 +12,17 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.example.sm_project.Dao.UserDao;
 import com.example.sm_project.Extra.FloatingViewService;
+import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.R;
 
 public class StartActivity extends AppCompatActivity {
     ImageView pic;
     Button loginBtn, registerBtn;
+
+    private MyDataBase myDB;
+    private UserDao userDao;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -24,6 +30,9 @@ public class StartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         //startService(new Intent(StartActivity.this, FloatingViewService.class));
+
+
+
 
         pic = findViewById(R.id.pic);
         loginBtn = findViewById(R.id.loginBtn);
@@ -44,6 +53,8 @@ public class StartActivity extends AppCompatActivity {
             startActivity(intent);
 
         });
+
+
     }
 
     private void animateImage() {

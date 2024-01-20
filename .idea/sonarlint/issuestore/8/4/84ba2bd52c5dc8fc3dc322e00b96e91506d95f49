@@ -1,13 +1,10 @@
 
+k
+java:S1192|"IDefine a constant instead of duplicating this literal "%.2f zÅ‚" 3 times.(‡Á²Óùÿÿÿÿ8Æ·£™Ò1
 E
-java:S1604I"(Make this anonymous inner class a lambda(´Œ™8Ñ»õŠÒ1
+java:S1604U"(Make this anonymous inner class a lambda(´Œ™8Ñ»õŠÒ1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8Ò»õŠÒ1
-|
-java:S1450"ZRemove the "cartAdapter" field and declare it as a local variable in the relevant methods.(¢ñÕÌıÿÿÿÿ8è»õŠÒ1
-}
-java:S1450"[Remove the "recyclerView" field and declare it as a local variable in the relevant methods.(¿á© ıÿÿÿÿ8è»õŠÒ1
-]
-java:S1854-";Remove this useless assignment to local variable "counter".(‚£ÊŞûÿÿÿÿ8ñ»õŠÒ1
-N
-java:S1481-",Remove this unused "counter" local variable.(‚£ÊŞûÿÿÿÿ8õ»õŠÒ1
-E	java:S108R")Either remove or fill this block of code.(å¥‡8ù»õŠÒ1
+z
+java:S1450"XRemove the "cartItems" field and declare it as a local variable in the relevant methods.(ø äßøÿÿÿÿ8Ú¹£™Ò1
+v
+java:S1450#"YRemove the "confirmBtn" field and declare it as a local variable in the relevant methods.(©Š»¸8İ¹£™Ò1

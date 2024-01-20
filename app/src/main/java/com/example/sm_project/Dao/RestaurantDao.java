@@ -5,6 +5,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 
+import com.example.sm_project.Helper.CategoryTable;
 import com.example.sm_project.Helper.RestaurantTable;
 
 import java.util.List;
@@ -19,4 +20,8 @@ public interface RestaurantDao {
 
     @Insert
     long insert(RestaurantTable restaurant);
+
+    @Query("SELECT * FROM restauranttable")
+    List<RestaurantTable> getAllRestaurantsSync();
 }
+

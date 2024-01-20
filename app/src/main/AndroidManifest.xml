@@ -45,7 +45,7 @@
             android:name=".Activity.ListFoodActivity"
             android:exported="false" />
         <activity
-            android:name=".Activity.LoadingActivity"
+            android:name=".Activity.MainActivity"
             android:exported="false" />
 
         <activity
@@ -67,7 +67,7 @@
 
 
         <activity
-            android:name=".Activity.MainActivity"
+            android:name=".Activity.LoadingActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

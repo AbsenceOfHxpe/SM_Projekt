@@ -28,17 +28,17 @@ public class LoginActivity extends AppCompatActivity {
         super.onPostCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         Intent intent = getIntent();
+
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        userDao = myDB.getDao();
+
         if (intent.hasExtra("userLogin")) {
             String userLogin = intent.getStringExtra("userLogin");
         }
 
-
-
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        myDB = Room.databaseBuilder(this, MyDataBase.class, "usertable")
-                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
-        userDao = myDB.getDao();
 
         setVariable();
 
