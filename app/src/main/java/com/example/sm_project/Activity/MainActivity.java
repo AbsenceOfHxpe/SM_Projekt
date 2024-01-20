@@ -173,7 +173,7 @@ public class MainActivity extends AppCompatActivity  {
         });
 
         binding.logoutBtn.setOnClickListener(v -> {
-            showCustomDialog("Czy na pewno chcesz się wylogować?");
+            showCustomDialog(getString(R.string.logout_confirm));
         });
 
 
@@ -211,7 +211,7 @@ public class MainActivity extends AppCompatActivity  {
                     startActivity(intent);
                 } else {
                     // Komunikat informujący, że restauracja nie jest na liście
-                    Toast.makeText(MainActivity.this, "Restauracja nie jest na Twojej liście", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, R.string.invalid_restaurant, Toast.LENGTH_SHORT).show();
                 }
             }
 

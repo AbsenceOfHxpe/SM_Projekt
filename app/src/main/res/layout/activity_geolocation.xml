@@ -34,7 +34,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Twoja lokalizacja"
+                android:text="@string/location_info"
                 android:textAlignment="center"
                 android:textColor="@color/blue_grey"
                 android:textSize="24sp"
@@ -51,7 +51,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:text="Adres zamieszkania"
+                    android:text="@string/address_heading"
                     android:textAlignment="center"
                     android:textColor="@color/blue"
                     android:textSize="20sp"
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Adres"
+                    android:text="@string/address_info"
                     android:textColor="@color/blue_grey"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -80,7 +80,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Miasto"
+                    android:text="@string/city_info"
                     app:layout_constraintStart_toStartOf="@+id/adressTxt"
                     app:layout_constraintTop_toBottomOf="@+id/adressTxt" />
 
@@ -90,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Kraj"
+                    android:text="@string/country_info"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/cityTxt"
                     app:layout_constraintTop_toBottomOf="@+id/cityTxt" />
@@ -141,7 +141,7 @@
                 android:layout_marginTop="16dp"
                 android:background="@drawable/blue_button"
                 android:letterSpacing="0.2"
-                android:text="Wyszukaj lokalizację"
+                android:text="@string/location_search"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 

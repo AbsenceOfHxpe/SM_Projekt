@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">sm_project</string>
+
+    <string name="welcome_text">Hello</string>
+    <string name="search_hint">Search restaurant...</string>
+    <string name="category">Choose category</string>
+    <string name="choose_restaurant">Choose Restaurant</string>
+    <string name="expand_click">Expand</string>
+
+    <string name="cart_info">Your cart is empty.</string>
+    <string name="summary_info">Summary</string>
+    <string name="code_hint">Enter code</string>
+    <string name="coupon_button">Apply coupon</string>
+    <string name="order_summary">Order Summary</string>
+    <string name="amount_info">Amount</string>
+    <string name="costs_info">cost of delivery</string>
+    <string name="payment_info">Payment for service</string>
+    <string name="total_costs">Total</string>
+    <string name="confirm_order">Confirm your order</string>
+    <string name="coupon_used">Discount coupon used</string>
+    <string name="invalid_coupon">Invalid discount coupon</string>
+
+
+
+    <string name="rating_info">47 ratings</string>
+    <string name="quantity_info">Quantity</string>
+    <string name="details_info">Details</string>
+    <string name="add_button">Add</string>
+
+    <string name="location_info">Your location</string>
+    <string name="address_heading">Residential address</string>
+    <string name="address_info">Address</string>
+    <string name="city_info">City</string>
+    <string name="country_info">Country</string>
+    <string name="location_search">Search location</string>
+    <string name="invalid_location">Location access denied</string>
+
+
+    <string name="password_hint">password</string>
+    <string name="login_button">Log In</string>
+    <string name="choose_login">or use</string>
+    <string name="no_account">You dont have an account yet?</string>
+    <string name="register_info">Sign Up</string>
+    <string name="account_yes">Already have an account?</string>
+    <string name="invalid_login">Invalid Username or Password</string>
+    <string name="logout_confirm">Are you sure you want to log out?</string>
+
+
+    <string name="your_orders">Your orders</string>
+
+    <string name="welcome_string">Welcome to GoodFood!</string>
+    <string name="welcome_description">Order delicious food online from various restaurants!</string>
+
+    <string name="order_thanks">Thank you for using our services!</string>
+    <string name="order_prepare">Your order is being prepared.</string>
+    <string name="order_received">Order received</string>
+
+
+    <string name="cancel_button">Cancel</string>
+    <string name="order_number">Prder no. 1</string>
+    <string name="invalid_restaurant">The restaurant is not on your list</string>
+
+    <string name="welcome_discount">Welcome Discount</string>
+    <string name="discount_description">Thank you for your registration. You get a 15% discount on your first order.
+         Enter the code: 12345 and enjoy delicious food at an attractive price!</string>
+    <string name="register_welcome">Thank you for your registration. You get a 15% discount on your first order. Enter the
+        code: 12345 and enjoy delicious food at an attractive price!</string>
+
+
+
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

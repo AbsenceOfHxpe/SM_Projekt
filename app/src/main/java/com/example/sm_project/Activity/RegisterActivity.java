@@ -109,12 +109,12 @@ public class RegisterActivity extends AppCompatActivity {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID);
         builder.setSmallIcon(R.drawable.baseline_notifications_24)
-                .setContentTitle("Zniżka powitalna")
-                .setContentText("Dziękujemy za rejestrację. Otrzymujesz zniżkę 15% na pierwsze zamówienie." +
-                        "Wpisz kod: 12345 i ciesz się pysznym jedzeniem w atrakcyjnej cenie!")
+                .setContentTitle(getString(R.string.welcome_discount))
+                .setContentText(getString(R.string.discount_description))
                 .setAutoCancel(true)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setStyle(new NotificationCompat.BigTextStyle().bigText("Dziękujemy za rejestrację. Otrzymujesz zniżkę 15% na pierwsze zamówienie. Wpisz kod: ABCDE i ciesz się pysznym jedzeniem w atrakcyjnej cenie!"));
+                .setStyle(new NotificationCompat.BigTextStyle().bigText(getString(R.string.register_welcome)));
+
 
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);

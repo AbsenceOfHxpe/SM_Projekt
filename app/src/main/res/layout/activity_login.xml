@@ -80,7 +80,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/edittext_background"
             android:ems="10"
-            android:hint="hasło"
+            android:hint="@string/password_hint"
             android:inputType="text"
             android:minHeight="48dp"
             android:padding="15dp"
@@ -94,7 +94,7 @@
             android:layout_marginTop="32dp"
             android:backgroundTint="#03A9F4"
             android:letterSpacing="0.2"
-            android:text="Zaloguj się"
+            android:text="@string/login_button"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
-                android:text="lub użyj"
+                android:text="@string/choose_login"
                 android:textSize="18sp" />
 
             <View
@@ -177,7 +177,7 @@
                 android:id="@+id/registerLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Zarejestruj się!"
+                android:text="@string/register_info"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 

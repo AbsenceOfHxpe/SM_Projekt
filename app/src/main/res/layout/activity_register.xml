@@ -95,7 +95,7 @@
             android:layout_marginEnd="32dp"
             android:background="@drawable/edittext_background"
             android:ems="10"
-            android:hint="hasło"
+            android:hint="@string/password_hint"
             android:inputType="text"
             android:minHeight="48dp"
             android:padding="15dp"
@@ -110,7 +110,7 @@
             android:layout_marginTop="32dp"
             android:backgroundTint="#03A9F4"
             android:letterSpacing="0.2"
-            android:text="Zarejestruj się"
+            android:text="@string/register_info"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="24sp"
@@ -130,7 +130,7 @@
                 android:id="@+id/textView10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Masz już konto?"
+                android:text="@string/account_yes"
                 android:textSize="20sp"
                 android:textStyle="normal" />
 
@@ -138,7 +138,7 @@
                 android:id="@+id/loginLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Zaloguj się!"
+                android:text="@string/login_button"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
