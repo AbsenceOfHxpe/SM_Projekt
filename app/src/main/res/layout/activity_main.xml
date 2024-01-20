@@ -12,7 +12,9 @@
         tools:layout_editor_absoluteX="33dp"
         tools:layout_editor_absoluteY="-45dp">
 
+
         <LinearLayout
+            android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -274,6 +276,8 @@
                     android:textColor="@color/red" />
             </LinearLayout>
 
+
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -305,16 +309,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+
             <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/menu"
-                style="@style/BottomNavigationView"
+                android:id="@+id/bottomNavigationView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/grey_background"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:labelVisibilityMode="labeled"
                 app:menu="@menu/botttom_nav_menu" />
 
         </LinearLayout>
+
     </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

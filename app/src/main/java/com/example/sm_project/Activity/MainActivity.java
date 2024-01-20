@@ -2,7 +2,6 @@ package com.example.sm_project.Activity;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,9 +26,6 @@ import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Adapter.CategoryAdapter;
 import com.example.sm_project.Dao.CategoryDao;
 import com.example.sm_project.Dao.RestaurantDao;
-import com.example.sm_project.Dao.UserDao;
-import com.example.sm_project.Domain.Category;
-import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.Domain.Restaurants;
 import com.example.sm_project.Helper.CategoryTable;
 import com.example.sm_project.Helper.MyDataBase;
@@ -40,7 +36,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.RectangularBounds;
-import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 
 import java.util.ArrayList;
@@ -48,14 +43,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentActivity;
 
 import com.google.android.gms.common.api.Status;
 
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
-import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 
 public class MainActivity extends AppCompatActivity  {
@@ -223,6 +215,30 @@ public class MainActivity extends AppCompatActivity  {
                 Log.i(TAG, "An error occurred: " + status);
             }
         });
+
+        binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                int itemId = item.getItemId();
+
+                if(itemId == R.id.home){
+                    Intent ordersIntent = new Intent(MainActivity.this, MainActivity.class);
+                    startActivity(ordersIntent);
+
+                } else if(itemId == R.id.orders){
+                    Intent ordersIntent = new Intent(MainActivity.this, OrdersActivity.class);
+                    startActivity(ordersIntent);
+
+                }else if(itemId == R.id.search){
+                    Intent ordersIntent = new Intent(MainActivity.this, ListFoodActivity.class);
+                    startActivity(ordersIntent);
+
+                }
+                return false;
+            }
+        });
+
     }
 
 // Metoda sprawdzająca, czy restauracja jest na liście
@@ -247,7 +263,7 @@ public class MainActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
 
-        if (itemId == R.id.profile) {
+        if (itemId == R.id.orders) {
             Log.d("MainActivity", "Clicked on Profile");
             startActivity(new Intent(this, StartActivity.class));
             return true;
