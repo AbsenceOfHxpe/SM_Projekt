@@ -59,6 +59,7 @@ public class LoadingActivity  extends AppCompatActivity {
             if (restaurants == null || restaurants.isEmpty()) {
                 restaurantDao.insert(new RestaurantTable("McDonalds",R.drawable.google,1));
                 restaurantDao.insert(new RestaurantTable("KFC",R.drawable.btn_2,2));
+
             } else {
 
             }

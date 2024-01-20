@@ -124,14 +124,17 @@ public class MainActivity extends AppCompatActivity  {
         recyclerViewCat.setAdapter(adapterrr);
 
 
-        adapterrr.setOnDataLoadedListener(new CategoryAdapter.OnDataLoadedListener() {
+        adapterrr.setOnCategoryClickListener(new CategoryAdapter.OnCategoryClickListener() {
             @Override
-            public void onDataLoaded() {
-                ProgressBar progressBarCategory = findViewById(R.id.progressBarCategory);
-                // Gdy dane zostały załadowane, ukryj ProgressBar
-                progressBarCategory.setVisibility(View.GONE);
+            public void onCategoryClick(CategoryTable category) {
+                String categoryName = category.getName();
+
+                Intent intent = new Intent(MainActivity.this, CategoriesActivity.class);
+                intent.putExtra("categoryName", categoryName);
+                startActivity(intent);
             }
         });
+
 
 
 

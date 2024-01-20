@@ -179,7 +179,7 @@ public class RegisterActivity extends AppCompatActivity {
         Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
     }
 
-    private interface SimpleTextChangeListener {
+    interface SimpleTextChangeListener {
         void onTextChanged(String text);
     }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.sm_project.Adapter.FoodListAdapter;
@@ -16,12 +17,15 @@ import java.util.ArrayList;
 
 public class ListFoodActivity extends AppCompatActivity implements FoodListAdapter.OnFoodClickListener {
 
+    private ImageView backBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_food);
 
         TextView restaurantNameTextView = findViewById(R.id.titleTxt);
+        backBtn = findViewById(R.id.backBtn);
 
         String restaurantName = getIntent().getStringExtra("nazwaRestauracji");
 
@@ -36,6 +40,11 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
 
         FoodListAdapter foodListAdapter = new FoodListAdapter(foodsList, this);
         recyclerView.setAdapter(foodListAdapter);
+
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ListFoodActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
     }
 
     @Override

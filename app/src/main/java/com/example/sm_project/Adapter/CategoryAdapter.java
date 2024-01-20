@@ -12,7 +12,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.example.sm_project.Domain.Category;
 import com.example.sm_project.Helper.CategoryTable;
 import com.example.sm_project.R;
 
@@ -21,26 +20,21 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
     private List<CategoryTable> categoryList;
+
     private Context context;
-    private ProgressBar progressBarCategory;
+    private OnCategoryClickListener onCategoryClickListener;
     private OnDataLoadedListener onDataLoadedListener;
 
     public CategoryAdapter(List<CategoryTable> categoryList) {
         this.categoryList = categoryList;
     }
 
-    public interface OnDataLoadedListener {
-        void onDataLoaded();
+    public void setOnCategoryClickListener(OnCategoryClickListener listener) {
+        this.onCategoryClickListener = listener;
     }
 
     public void setOnDataLoadedListener(OnDataLoadedListener listener) {
         this.onDataLoadedListener = listener;
-    }
-
-    private void notifyDataLoaded() {
-        if (onDataLoadedListener != null) {
-            onDataLoadedListener.onDataLoaded();
-        }
     }
 
     @NonNull
@@ -59,8 +53,16 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
                 .load(categoryList.get(position).getImgPath())
                 .into(holder.img);
 
-        // Po załadowaniu danych, wywołaj zdarzenie
-        notifyDataLoaded();
+        holder.itemView.setOnClickListener(v -> {
+            if (onCategoryClickListener != null) {
+                onCategoryClickListener.onCategoryClick(categoryList.get(position));
+            }
+        });
+
+        if (position == categoryList.size() - 1) {
+            // Jeśli jesteśmy na ostatnim elemencie, to oznacza, że wszystkie dane zostały załadowane
+            onDataLoaded();
+        }
     }
 
     @Override
@@ -78,5 +80,19 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
             titleTxt = itemView.findViewById(R.id.catNameTxt);
             img = itemView.findViewById(R.id.imgCat);
         }
+    }
+
+    private void onDataLoaded() {
+        if (onDataLoadedListener != null) {
+            onDataLoadedListener.onDataLoaded();
+        }
+    }
+
+    public interface OnCategoryClickListener {
+        void onCategoryClick(CategoryTable category);
+    }
+
+    public interface OnDataLoadedListener {
+        void onDataLoaded();
     }
 }

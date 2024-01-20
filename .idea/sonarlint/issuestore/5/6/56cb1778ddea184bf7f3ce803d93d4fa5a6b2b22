@@ -1,12 +1,12 @@
 
 †
-java:S1319"iThe type of "cartItems" should be an interface such as "List" rather than the implementation "ArrayList".(‡ñŠ8İÉã Ò1
+java:S1319"iThe type of "cartItems" should be an interface such as "List" rather than the implementation "ArrayList".(‡ñŠ8†£ğÒ1
 ’
-java:S1319W"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(×…‡ëùÿÿÿÿ8ŞÉã Ò1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8’øÔéĞ1
+java:S1319W"pThe return type of this method should be an interface such as "List" rather than the implementation "ArrayList".(×…‡ëùÿÿÿÿ8‡£ğÒ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8ˆ£ğÒ1
 I
-java:S16025",Remove useless curly braces around statement(‡¯ôƒ8—Êã Ò1
+java:S16025",Remove useless curly braces around statement(‡¯ôƒ8¿£ğÒ1
 I
-java:S16029",Remove useless curly braces around statement(Æ×é¯8˜Êã Ò1
+java:S16029",Remove useless curly braces around statement(Æ×é¯8À£ğÒ1
 e
-java:S1659D"HDeclare "feeEachItem" and all following declarations on a separate line.(ı™œˆ8øÔéĞ1
+java:S1659D"HDeclare "feeEachItem" and all following declarations on a separate line.(ı™œˆ8Á£ğÒ1

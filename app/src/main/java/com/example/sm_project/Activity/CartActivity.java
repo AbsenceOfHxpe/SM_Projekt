@@ -2,10 +2,12 @@ package com.example.sm_project.Activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +24,9 @@ import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.CartListener {
 
+    private static final String USER_PREFERENCES_NAME = "user_preferences";
+    private static final String USED_COUPON_KEY = "used_coupon";
+
     private ArrayList<Foods> cartItems;
     private CartAdapter cartAdapter;
 
@@ -34,9 +39,11 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     private EditText couponTxt;
     private AppCompatButton confirmBtn;
 
+    private ImageView backBtn;
+
     private double discount = 0.0;
 
-    @SuppressLint("MissingInflatedId")
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,12 +83,17 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         servicePrice = findViewById(R.id.serviceTxt);
         totalSum = findViewById(R.id.totalSumTxt);
         confirmBtn = findViewById(R.id.confirmBtn);
-
-        // Initialize coupon EditText
+        backBtn = findViewById(R.id.backBtn);
         couponTxt = findViewById(R.id.couponTxt);
-
-        // Initialize coupon button
         Button couponBtn = findViewById(R.id.couponBtn);
+
+
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, DetailActivity.class);
+            startActivity(intent);
+        });
+
+
         couponBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,15 +101,71 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
             }
         });
 
-        confirmBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(CartActivity.this, WaitingActivity.class);
-            startActivity(intent);
-
-        });
+        if (checkIfCouponUsed()) {
+            disableCouponUsage();
+        }
 
 
-        // Początkowe ustawienie sumy koszyka
+
         updateCartSummary(calculateTotal(), discount);
+    }
+
+    private void disableCouponUsage() {
+        couponTxt.setEnabled(true);
+        confirmBtn.setEnabled(true);
+    }
+
+    private boolean checkIfCouponUsed() {
+        SharedPreferences userPreferences = getSharedPreferences(USER_PREFERENCES_NAME, MODE_PRIVATE);
+        return userPreferences.getBoolean(USED_COUPON_KEY, false);
+    }
+
+    private void updateCouponUsageStatus() {
+        SharedPreferences userPreferences = getSharedPreferences(USER_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = userPreferences.edit();
+        editor.putBoolean(USED_COUPON_KEY, true);
+        editor.apply();
+    }
+
+    private void updateCartSummary(float total, double discount) {
+        double serviceFee = 0.1 * total;
+        double discountAmount = discount * total;
+
+        // Ustawienie wartości w TextView
+        deliveryPrice.setText(String.valueOf(delivery) + " zł");
+        totalCartPriceTextView.setText(String.format("%.2f zł", total - discountAmount));
+        servicePrice.setText(String.format("%.2f zł", serviceFee));
+        totalSum.setText(String.format("%.2f zł", total - discountAmount + delivery + serviceFee));
+    }
+
+    private float calculateTotal() {
+        float total = 0;
+        for (Foods food : cartAdapter.getCartItems()) {
+            total += (food.getPrice() * food.getNumberInCard());
+        }
+        return total;
+    }
+
+    private void applyCoupon() {
+        String enteredCoupon = couponTxt.getText().toString();
+
+        if (checkIfCouponUsed()) {
+            disableCouponUsage();
+
+            if (enteredCoupon.equals("12345")) {
+                discount = 0.15;
+                updateCartSummary(calculateTotal(), discount);
+                Toast.makeText(this, "Wykorzystano kupon rabatowy", Toast.LENGTH_SHORT).show();
+
+                // Zaktualizuj status wykorzystania kuponu
+                updateCouponUsageStatus();
+
+            } else {
+                Toast.makeText(this, "Nieprawidłowy kupon rabatowy", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Kupon został już wcześniej wykorzystany", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -113,42 +181,5 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         food.setNumberInCard(currentQuantity);
         cartAdapter.notifyDataSetChanged();
         updateCartSummary(calculateTotal(), discount);
-    }
-
-    private void updateCartSummary(float total, double discount) {
-        double serviceFee = 0.1 * total;
-        double discountAmount = discount * total;
-
-        // Ustawienie wartości w TextView
-        deliveryPrice.setText(String.valueOf(delivery) + " zł");
-        totalCartPriceTextView.setText(String.format("%.2f zł", total - discountAmount));
-        servicePrice.setText(String.format("%.2f zł", serviceFee));
-        totalSum.setText(String.format("%.2f zł", total - discountAmount + delivery + serviceFee));
-
-    }
-
-    private float calculateTotal() {
-        float total = 0;
-        for (Foods food : cartAdapter.getCartItems()) {
-            total += (food.getPrice() * food.getNumberInCard());
-        }
-        return total;
-    }
-
-    private void applyCoupon() {
-        String enteredCoupon = couponTxt.getText().toString();
-
-        // Sprawdź kupon rabatowy
-        if (enteredCoupon.equals("12345")) {
-            discount = 0.15;
-            updateCartSummary(calculateTotal(), discount);
-            Toast.makeText(this, R.string.coupon_used, Toast.LENGTH_SHORT).show();
-
-        } else {
-            Toast.makeText(this, R.string.invalid_coupon, Toast.LENGTH_SHORT).show();
-
-        }
-
-
     }
 }
