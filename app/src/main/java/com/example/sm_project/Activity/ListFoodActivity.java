@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -31,6 +32,11 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         TextView restaurantNameTextView = findViewById(R.id.titleTxt);
 
         String restaurantName = getIntent().getStringExtra("nazwaRestauracji");
+        int restaurantId = getIntent().getIntExtra("restaurantId", -1);
+
+
+        Log.d("ListFoodActivity", "Received restaurantId: " + restaurantId);
+        Log.d("ListFoodActivity", "Received restaurantName: " + restaurantName);
 
         restaurantNameTextView.setText(restaurantName);
 

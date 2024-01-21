@@ -97,8 +97,21 @@ public class MainActivity extends AppCompatActivity  {
         List<RestaurantTable> restaurantTables = restaurantDao.getAllRestaurantsSync();
         BestRestAdapter RestAdapter = new BestRestAdapter(restaurantTables);
         recyclerViewRest.setAdapter(RestAdapter);
+        restaurantAdapter = new BestRestAdapter(restaurantTables);
+        recyclerViewRest.setAdapter(restaurantAdapter);
 
-        RestAdapter.setOnDataLoadedListener(new BestRestAdapter.OnDataLoadedListener() {
+        restaurantAdapter.setOnRestaurantClickListener(new BestRestAdapter.OnRestaurantClickListener() {
+            @Override
+            public void onRestaurantClick(RestaurantTable restaurant) {
+                // Po kliknięciu restauracji, przenieś się do ListFoodActivity
+                Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
+                intent.putExtra("restaurantId", restaurant.getId());
+                intent.putExtra("nazwaRestauracji", restaurant.getName());
+                startActivity(intent);
+            }
+        });
+
+        restaurantAdapter.setOnDataLoadedListener(new BestRestAdapter.OnDataLoadedListener() {
             @Override
             public void onDataLoaded() {
                 ProgressBar progressBarBestRest = findViewById(R.id.progressBarBestRest);

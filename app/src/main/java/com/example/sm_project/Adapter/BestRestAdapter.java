@@ -11,7 +11,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.sm_project.Domain.Restaurants;
 import com.example.sm_project.Helper.RestaurantTable;
 import com.example.sm_project.R;
 
@@ -22,10 +21,19 @@ public class BestRestAdapter extends RecyclerView.Adapter<BestRestAdapter.ViewHo
     private List<RestaurantTable> items;
     private Context context;
     private ProgressBar progressBarCategory;
+    private OnRestaurantClickListener onRestaurantClickListener;
     private OnDataLoadedListener onDataLoadedListener;
 
     public BestRestAdapter(List<RestaurantTable> items) {
         this.items = items;
+    }
+
+    public interface OnRestaurantClickListener {
+        void onRestaurantClick(RestaurantTable restaurant);
+    }
+
+    public void setOnRestaurantClickListener(OnRestaurantClickListener listener) {
+        this.onRestaurantClickListener = listener;
     }
 
     public interface OnDataLoadedListener {
@@ -34,6 +42,12 @@ public class BestRestAdapter extends RecyclerView.Adapter<BestRestAdapter.ViewHo
 
     public void setOnDataLoadedListener(OnDataLoadedListener listener) {
         this.onDataLoadedListener = listener;
+    }
+
+    private void notifyRestaurantClick(RestaurantTable restaurant) {
+        if (onRestaurantClickListener != null) {
+            onRestaurantClickListener.onRestaurantClick(restaurant);
+        }
     }
 
     private void notifyDataLoaded() {
@@ -55,6 +69,14 @@ public class BestRestAdapter extends RecyclerView.Adapter<BestRestAdapter.ViewHo
         RestaurantTable restaurant = items.get(position);
         holder.titleTxt.setText(restaurant.getName());
         holder.img.setImageResource(restaurant.getImagePath());
+
+        // Obsługa kliknięcia na restaurację
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                notifyRestaurantClick(restaurant);
+            }
+        });
 
         // Po załadowaniu danych, wywołaj zdarzenie
         notifyDataLoaded();
