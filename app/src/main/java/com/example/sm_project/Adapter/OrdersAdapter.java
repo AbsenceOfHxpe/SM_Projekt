@@ -9,6 +9,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Helper.OrderTable;
 import com.example.sm_project.R;
 
@@ -18,9 +19,11 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
 
     private List<OrderTable> listItem;
     private Context context;
+    private RestaurantDao restaurantDao;
 
-    public OrdersAdapter(List<OrderTable> listItem) {
+    public OrdersAdapter(List<OrderTable> listItem, RestaurantDao restaurantDao) {
         this.listItem = listItem;
+        this.restaurantDao = restaurantDao;
     }
 
     @NonNull
@@ -34,7 +37,14 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
     public void onBindViewHolder(@NonNull OrdersAdapter.viewholder holder, int position) {
         holder.date.setText(listItem.get(position).getDate() + "");
         holder.price.setText(listItem.get(position).getPrice() + "zł");
+
+        // Pobierz nazwę restauracji na podstawie id
+        int restaurantId = listItem.get(position).getRestaurantId();
+        String restaurantName = restaurantDao.getRestaurantNameById(restaurantId);
+
+        holder.title.setText(restaurantName);
     }
+
 
     @Override
     public int getItemCount() {
@@ -43,13 +53,14 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        TextView date, price;
+        TextView date, price, title;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
 
             date = itemView.findViewById(R.id.dateTxt);
             price = itemView.findViewById(R.id.priceTxt);
+            title = itemView.findViewById(R.id.restaurantTxt);
         }
     }
 }

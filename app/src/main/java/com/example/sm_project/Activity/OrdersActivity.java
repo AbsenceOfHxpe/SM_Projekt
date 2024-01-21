@@ -15,6 +15,7 @@ import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Adapter.OrdersAdapter;
 import com.example.sm_project.Dao.CategoryDao;
 import com.example.sm_project.Dao.OrderDao;
+import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.Helper.OrderTable;
 import com.example.sm_project.Helper.RestaurantTable;
@@ -30,6 +31,8 @@ public class OrdersActivity extends AppCompatActivity {
 
     MyDataBase myDB;
     private OrderDao orderDao;
+    private RestaurantDao restaurantDao;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,13 +43,15 @@ public class OrdersActivity extends AppCompatActivity {
         myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         orderDao = myDB.getOrderDao();
+        restaurantDao = myDB.getRestaurantDao();
 
 
         RecyclerView recyclerViewRest = findViewById(R.id.cardViewOrders);
         recyclerViewRest.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         List<OrderTable> orderTables = orderDao.getAllOrdersSync();
-        OrdersAdapter ordersAdapter = new OrdersAdapter(orderTables);
+        OrdersAdapter ordersAdapter = new OrdersAdapter(orderTables, restaurantDao);
         recyclerViewRest.setAdapter(ordersAdapter);
+
 
         binding.backBtn.setOnClickListener(v -> {
             Intent intent = new Intent(OrdersActivity.this, MainActivity.class);
