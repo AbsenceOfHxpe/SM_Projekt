@@ -9,8 +9,7 @@ public class UserTable {
     private int id;
     private String username, email, password;
 
-    public UserTable(int id, String username, String email, String password) {
-        this.id = id;
+    public UserTable( String username, String email, String password) {
         this.username = username;
         this.email = email;
         this.password = password;

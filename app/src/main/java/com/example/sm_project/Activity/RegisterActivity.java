@@ -137,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
         String password = binding.passwordText.getText().toString();
 
         if (isUsernameAllowed && isEmailValid && isPasswordValid && isEmailTaken) {
-            UserTable userTable = new UserTable(0, userName, email, password);
+            UserTable userTable = new UserTable( userName, email, password);
             userDao.insertUser(userTable);
 
             showToast("Registration Successful");

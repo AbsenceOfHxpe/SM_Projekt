@@ -1,3 +1,5 @@
 
 u	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(„»ª>8œÎêœÒ1
-j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÔŒÎõ8¦ÎêœÒ1
+j	java:S100"NRename this method name to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÔŒÎõ8¦ÎêœÒ1
+f
+java:S1128"DRemove this unused import 'com.example.sm_project.Helper.DishTable'.(¯Äøúÿÿÿÿ8ŒÚæÍÒ1

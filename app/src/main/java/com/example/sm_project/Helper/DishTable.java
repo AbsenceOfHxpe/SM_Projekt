@@ -8,12 +8,13 @@ public class DishTable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String name, imagePath;
+    private String name;
+
+    private int imagePath;
 
     private double rating,price;
 
-    public DishTable(int id, String name, String imagePath, double rating, double price) {
-        this.id = id;
+    public DishTable( String name, int imagePath, double rating, double price) {
         this.name = name;
         this.imagePath = imagePath;
         this.rating = rating;
@@ -36,11 +37,11 @@ public class DishTable {
         this.name = name;
     }
 
-    public String getImagePath() {
+    public int getImagePath() {
         return imagePath;
     }
 
-    public void setImagePath(String imagePath) {
+    public void setImagePath(int imagePath) {
         this.imagePath = imagePath;
     }
 

@@ -25,10 +25,14 @@ import androidx.room.Room;
 import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Adapter.CategoryAdapter;
 import com.example.sm_project.Dao.CategoryDao;
+import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Dao.RestaurantDao;
+import com.example.sm_project.Dao.RestaurantDishCrossRefDao;
 import com.example.sm_project.Domain.Restaurants;
 import com.example.sm_project.Helper.CategoryTable;
 import com.example.sm_project.Helper.MyDataBase;
+import com.example.sm_project.Helper.OrderTable;
+import com.example.sm_project.Helper.RestaurantDishCrossRef;
 import com.example.sm_project.Helper.RestaurantTable;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityMainBinding;
@@ -65,6 +69,9 @@ public class MainActivity extends AppCompatActivity  {
     private RestaurantDao restaurantDao;
     private BestRestAdapter restaurantAdapter;
 
+    private RestaurantDishCrossRefDao restaurantDishCrossRefDao;
+    private OrderDao orderDao;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,17 +85,26 @@ public class MainActivity extends AppCompatActivity  {
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         categoryDao = myDB.getCategoryDao();
         restaurantDao = myDB.getRestaurantDao();
+        orderDao = myDB.getOrderDao();
+        restaurantDishCrossRefDao = myDB.getRDCrossDao();
 
 
-// TO JEST SZTYWNE WIDOK
-        ArrayList<Restaurants> restaurantsList = new ArrayList<>();
-        Restaurants johnWick = new Restaurants("Jollibee", R.drawable.google);
+        orderDao.getAllOrders().observe(this, orderTables -> {
+            if(orderTables == null || orderTables.isEmpty()){
+                orderDao.insert(new OrderTable("24.10.2024", 26.70, 1, 2));
+            }
+        });
+
+//                restaurantDishCrossRefDao.getAllRDCross().observe(this, categories -> {
+//            if (categories == null || categories.isEmpty()) {
+//                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,1));
+//                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,2));
+//            } else {
+//
+//            }
+//        });
 
 
-        restaurantsList.add(johnWick);
-
-        Restaurants mcdonalds = new Restaurants("McDonald's", R.drawable.food);
-        restaurantsList.add(mcdonalds);
 
 
 

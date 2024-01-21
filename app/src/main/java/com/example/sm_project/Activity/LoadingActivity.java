@@ -13,10 +13,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.room.Room;
 
 import com.example.sm_project.Dao.CategoryDao;
+import com.example.sm_project.Dao.DishDao;
 import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Dao.UserDao;
 import com.example.sm_project.Helper.CategoryTable;
+import com.example.sm_project.Helper.DishTable;
 import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.Helper.OrderTable;
 import com.example.sm_project.Helper.RestaurantTable;
@@ -32,7 +34,7 @@ public class LoadingActivity  extends AppCompatActivity {
     private RestaurantDao restaurantDao;
     private CategoryDao categoryDao;
 
-    private OrderDao orderDao;
+    private DishDao dishDao;
 
     boolean isEmpty = false;
 
@@ -48,9 +50,26 @@ public class LoadingActivity  extends AppCompatActivity {
         userDao = myDB.getDao();
         categoryDao = myDB.getCategoryDao();
         restaurantDao = myDB.getRestaurantDao();
-        orderDao = myDB.getOrderDao();
+        dishDao = myDB.getDishDao();
         userDao.doNothing();
-        orderDao.doNothing();
+
+        userDao.getAllUsers().observe(this, users -> {
+            if (users == null || users.isEmpty()) {
+                userDao.insertUser(new UserTable("admin","Admin","admin"));
+            } else {
+
+            }
+        });
+
+        dishDao.getAllDishes().observe(this, dishes -> {
+            if (dishes == null || dishes.isEmpty()) {
+                dishDao.insert(new DishTable("Hamburger",R.drawable.facebook,4,25.10));
+
+            } else {
+
+            }
+        });
+
 
         categoryDao.getAllCategories().observe(this, categories -> {
             if (categories == null || categories.isEmpty()) {
@@ -75,11 +94,6 @@ public class LoadingActivity  extends AppCompatActivity {
             }
         });
 
-        orderDao.getAllOrders().observe(this, orderTables -> {
-            if(orderTables == null || orderTables.isEmpty()){
-                orderDao.insert(new OrderTable("24.10.2024", 26.70, 1, 2));
-            }
-        });
 
 
 
