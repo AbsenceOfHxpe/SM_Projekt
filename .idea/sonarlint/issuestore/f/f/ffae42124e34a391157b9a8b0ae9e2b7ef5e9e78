@@ -1,8 +1,10 @@
 
 n
-java:S11922"QDefine a constant instead of duplicating this literal "ListFoodActivity" 3 times.(ˆÂÿã8úÿ¶Ó1
+java:S11926"QDefine a constant instead of duplicating this literal "ListFoodActivity" 3 times.(ˆÂÿã8®ùÛÓ1
 J
-java:S1604H"(Make this anonymous inner class a lambda(»¼’­ûÿÿÿÿ8¹“†ŒÓ1
+java:S1604P"(Make this anonymous inner class a lambda(»¼’­ûÿÿÿÿ8®ùÛÓ1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8»“†ŒÓ1
+|
+java:S1450""ZRemove the "progressBar" field and declare it as a local variable in the relevant methods.(â˜ˆçøÿÿÿÿ8ÎùÛÓ1
 y
-java:S1450"\Remove the "restaurantDao" field and declare it as a local variable in the relevant methods.(¸£À§8Ü“†ŒÓ1
+java:S1450!"\Remove the "restaurantDao" field and declare it as a local variable in the relevant methods.(¸£À§8ÎùÛÓ1

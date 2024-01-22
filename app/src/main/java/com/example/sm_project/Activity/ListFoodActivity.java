@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.sm_project.Adapter.FoodListAdapter;
@@ -29,6 +31,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
     MyDataBase myDB;
 
     private RestaurantDao restaurantDao;
+    private ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +44,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         restaurantDao = myDB.getRestaurantDao();
+        progressBar = findViewById(R.id.progressBar);
 
         TextView restaurantNameTextView = findViewById(R.id.titleTxt);
 
@@ -61,6 +65,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
             foodsList.add(new Foods(dish.getRating(), dish.getImagePath(), dish.getRating(), dish.getName(), dish.getPrice()));
         }
         Log.d("ListFoodActivity", "Dishes for restaurant: " + dishesForRestaurant.toString());
+        progressBar.setVisibility(View.GONE);
 
 
         RecyclerView recyclerView = findViewById(R.id.FoodListView);
