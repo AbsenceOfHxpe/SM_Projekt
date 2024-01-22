@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,15 +13,22 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.sm_project.Adapter.FoodListAdapter;
+import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Domain.Foods;
+import com.example.sm_project.Helper.DishTable;
+import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityOrdersBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListFoodActivity extends AppCompatActivity implements FoodListAdapter.OnFoodClickListener {
     ActivityOrdersBinding binding;
+    MyDataBase myDB;
+
+    private RestaurantDao restaurantDao;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,20 +37,31 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         setContentView(binding.getRoot());
         setContentView(R.layout.activity_list_food);
 
+        // Inicjalizacja restaurantDao (pamiętaj, że musisz mieć odpowiednią instancję bazy danych)
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        restaurantDao = myDB.getRestaurantDao();
+
         TextView restaurantNameTextView = findViewById(R.id.titleTxt);
 
         String restaurantName = getIntent().getStringExtra("nazwaRestauracji");
         int restaurantId = getIntent().getIntExtra("restaurantId", -1);
-
 
         Log.d("ListFoodActivity", "Received restaurantId: " + restaurantId);
         Log.d("ListFoodActivity", "Received restaurantName: " + restaurantName);
 
         restaurantNameTextView.setText(restaurantName);
 
+        // Pobierz listę dań dla danej restauracji za pomocą DAO
+        List<DishTable> dishesForRestaurant = restaurantDao.getDishesForRestaurant(restaurantId);
+
+        // Przygotuj listę Foods na podstawie pobranych danych z bazy danych
         ArrayList<Foods> foodsList = new ArrayList<>();
-       foodsList.add(new Foods(4.9, R.drawable.food, 50, "Pizza margherita", 20.0));
-        foodsList.add(new Foods(4.8, R.drawable.food, 20, "Cheeseburger", 5.7));
+        for (DishTable dish : dishesForRestaurant) {
+            foodsList.add(new Foods(dish.getRating(), dish.getImagePath(), dish.getRating(), dish.getName(), dish.getPrice()));
+        }
+        Log.d("ListFoodActivity", "Dishes for restaurant: " + dishesForRestaurant.toString());
+
 
         RecyclerView recyclerView = findViewById(R.id.FoodListView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

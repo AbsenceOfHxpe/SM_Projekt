@@ -1,56 +1,56 @@
 
 l
-java:S1192¼"NDefine a constant instead of duplicating this literal "MyPreferences" 3 times.(šÁĞ†8£¾ ÍÒ1
+java:S1192½"NDefine a constant instead of duplicating this literal "MyPreferences" 3 times.(šÁĞ†8ã‹÷ŠÓ1
 f
-java:S1192½"IDefine a constant instead of duplicating this literal "username" 3 times.(“¼×L8£¾ ÍÒ1
-m	java:S117r"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å¹ª8¤¾ ÍÒ1
+java:S1192¾"IDefine a constant instead of duplicating this literal "username" 3 times.(“¼×L8ã‹÷ŠÓ1
+m	java:S117s"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Å¹ª8ä‹÷ŠÓ1
 J
-java:S1604w"(Make this anonymous inner class a lambda(àüöİøÿÿÿÿ8¤¾ ÍÒ1
+java:S1604x"(Make this anonymous inner class a lambda(àüöİøÿÿÿÿ8ˆ¶ş‹Ó1
 K
-java:S1604‚"(Make this anonymous inner class a lambda(ä—¯øúÿÿÿÿ8¤¾ ÍÒ1
+java:S1604ƒ"(Make this anonymous inner class a lambda(ä—¯øúÿÿÿÿ8ˆ¶ş‹Ó1
 K
-java:S1604“"(Make this anonymous inner class a lambda(å‹œÜûÿÿÿÿ8¤¾ ÍÒ1
+java:S1604”"(Make this anonymous inner class a lambda(å‹œÜûÿÿÿÿ8ˆ¶ş‹Ó1
 K
-java:S1604"(Make this anonymous inner class a lambda(œÁ•…şÿÿÿÿ8¤¾ ÍÒ1
+java:S1604"(Make this anonymous inner class a lambda(œÁ•…şÿÿÿÿ8ˆ¶ş‹Ó1
 K
-java:S1604€"(Make this anonymous inner class a lambda(»¼’­ûÿÿÿÿ8¤¾ ÍÒ1
+java:S1604"(Make this anonymous inner class a lambda(»¼’­ûÿÿÿÿ8„ÀŠÓ1
 K
-java:S1604Æ"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8¤¾ ÍÒ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8§¾ ÍÒ1
-s	java:S116="XRename this field "RestaurantDao" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï«çB8À¾ ÍÒ1
+java:S1604Ç"(Make this anonymous inner class a lambda(Ğß¹Ïúÿÿÿÿ8„ÀŠÓ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8’„ÀŠÓ1
+s	java:S116="XRename this field "RestaurantDao" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï«çB8­„ÀŠÓ1
 {
-java:S1845E"^Rename field "restaurantDao" to prevent any misunderstanding/clash with field "RestaurantDao".(¸£À§8Å¾ ÍÒ1
+java:S1845E"^Rename field "restaurantDao" to prevent any misunderstanding/clash with field "RestaurantDao".(¸£À§8µ„ÀŠÓ1
 s
-java:S1450>"VRemove the "binding" field and declare it as a local variable in the relevant methods.(¶ÃÊ8Æ¾ ÍÒ1
+java:S1450>"VRemove the "binding" field and declare it as a local variable in the relevant methods.(¶ÃÊ8¶„ÀŠÓ1
 |
-java:S1450D"ZRemove the "categoryDao" field and declare it as a local variable in the relevant methods.(Â¿—€ûÿÿÿÿ8Ç¾ ÍÒ1
+java:S1450D"ZRemove the "categoryDao" field and declare it as a local variable in the relevant methods.(Â¿—€ûÿÿÿÿ8·„ÀŠÓ1
 €
-java:S1450?"cRemove the "combinedInfoTextView" field and declare it as a local variable in the relevant methods.(÷ºö‘8Ç¾ ÍÒ1
+java:S1450?"cRemove the "combinedInfoTextView" field and declare it as a local variable in the relevant methods.(÷ºö‘8·„ÀŠÓ1
 y
-java:S1450I"WRemove the "orderDao" field and declare it as a local variable in the relevant methods.(•÷µÍÿÿÿÿÿ8È¾ ÍÒ1
+java:S1450I"WRemove the "orderDao" field and declare it as a local variable in the relevant methods.(•÷µÍÿÿÿÿÿ8¸„ÀŠÓ1
 }
-java:S1450F"`Remove the "restaurantAdapter" field and declare it as a local variable in the relevant methods.(ØÂ¨8È¾ ÍÒ1
+java:S1450F"`Remove the "restaurantAdapter" field and declare it as a local variable in the relevant methods.(ØÂ¨8¸„ÀŠÓ1
 y
-java:S1450E"\Remove the "restaurantDao" field and declare it as a local variable in the relevant methods.(¸£À§8È¾ ÍÒ1
+java:S1450E"\Remove the "restaurantDao" field and declare it as a local variable in the relevant methods.(¸£À§8‚Œ÷ŠÓ1
 Š
-java:S1450H"hRemove the "restaurantDishCrossRefDao" field and declare it as a local variable in the relevant methods.(øØ®ÿÿÿÿÿ8É¾ ÍÒ1
-X	java:S125b"<This block of commented-out lines of code should be removed.(ñÄ¡›8õã£ÍÒ1
+java:S1450H"hRemove the "restaurantDishCrossRefDao" field and declare it as a local variable in the relevant methods.(øØ®ÿÿÿÿÿ8¹„ÀŠÓ1
+t
+java:S3776M"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(¨Œşÿÿÿÿ8òá–Ó1
+E	java:S108g")Either remove or fill this block of code.(å¥‡8úá–Ó1
 J
-java:S1602Ï",Remove useless curly braces around statement(¶¡­á8ë¾ ÍÒ1
+java:S1602Ğ",Remove useless curly braces around statement(¶¡­á8¡Œ÷ŠÓ1
 X
-java:S1161¦":Add the "@Override" annotation above this method signature(Ôö§ó8ô¾ ÍÒ1
+java:S1161§":Add the "@Override" annotation above this method signature(Ôö§ó8ê„ÀŠÓ1
 c
-java:S1854Ä"@Remove this useless assignment to local variable "cancelButton".(Şìèşÿÿÿÿ8ö¾ ÍÒ1
+java:S1854Å"@Remove this useless assignment to local variable "cancelButton".(Şìèşÿÿÿÿ8í„ÀŠÓ1
 T
-java:S1481Ä"1Remove this unused "cancelButton" local variable.(Şìèşÿÿÿÿ8÷¾ ÍÒ1
+java:S1481Å"1Remove this unused "cancelButton" local variable.(Şìèşÿÿÿÿ8ï„ÀŠÓ1
 F
-java:S1185ç"(Remove this method to simply inherit it.(¨‰ïÃ8ü¾ ÍÒ1
+java:S1185è"(Remove this method to simply inherit it.(¨‰ïÃ8ô„ÀŠÓ1
 U
-java:S1068A"8Remove this unused "SEARCH_RADIUS_METERS" private field.(ªõ„µ8ü¾ ÍÒ1
+java:S1068A"8Remove this unused "SEARCH_RADIUS_METERS" private field.(ªõ„µ8ô„ÀŠÓ1
 U
-java:S1068B"3Remove this unused "currentLatitude" private field.(ƒÓÚıÿÿÿÿ8ü¾ ÍÒ1
+java:S1068B"3Remove this unused "currentLatitude" private field.(ƒÓÚıÿÿÿÿ8ô„ÀŠÓ1
 Q
-java:S1068C"4Remove this unused "currentLongitude" private field.(Õò÷8ı¾ ÍÒ1
-_
-java:S1068H"=Remove this unused "restaurantDishCrossRefDao" private field.(øØ®ÿÿÿÿÿ8¨ä£ÍÒ1
-…secrets:S6334Ø"_Make sure this Google API Key is either secured or revoked, changed, and removed from the code.(ß…ù®ùÿÿÿÿ8‡‚¹ÆÒ1
+java:S1068C"4Remove this unused "currentLongitude" private field.(Õò÷8ô„ÀŠÓ1
+…secrets:S6334Ù"_Make sure this Google API Key is either secured or revoked, changed, and removed from the code.(ß…ù®ùÿÿÿÿ8ÑŒ÷ŠÓ1

@@ -95,14 +95,15 @@ public class MainActivity extends AppCompatActivity  {
             }
         });
 
-//                restaurantDishCrossRefDao.getAllRDCross().observe(this, categories -> {
-//            if (categories == null || categories.isEmpty()) {
-//                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,1));
-//                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,2));
-//            } else {
-//
-//            }
-//        });
+                restaurantDishCrossRefDao.getAllRDCross().observe(this, categories -> {
+            if (categories == null || categories.isEmpty()) {
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,1));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,2));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(2,2));
+            } else {
+
+            }
+        });
 
 
 

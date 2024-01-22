@@ -4,9 +4,11 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Transaction;
 
-import com.example.sm_project.Helper.CategoryTable;
+import com.example.sm_project.Helper.DishTable;
 import com.example.sm_project.Helper.RestaurantTable;
+//import com.example.sm_project.Helper.RestaurantWithDishes;
 
 import java.util.List;
 
@@ -29,6 +31,13 @@ public interface RestaurantDao {
 
     @Query("SELECT name FROM restauranttable WHERE id = :restaurantId")
     String getRestaurantNameById(int restaurantId);
+
+    @Query("SELECT dishtable.* FROM dishtable " +
+            "INNER JOIN restaurant_dish_cross_ref ON dishtable.id = restaurant_dish_cross_ref.dishId " +
+            "WHERE restaurant_dish_cross_ref.restaurantId = :restaurantId")
+    List<DishTable> getDishesForRestaurant(int restaurantId);
+
+
 
 
 

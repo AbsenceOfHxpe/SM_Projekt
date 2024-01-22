@@ -2,9 +2,9 @@ package com.example.sm_project.Helper;
 
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
+import androidx.room.PrimaryKey;
 
 @Entity(tableName = "restaurant_dish_cross_ref",
-        primaryKeys = {"restaurantId", "dishId"},
         foreignKeys = {
                 @ForeignKey(entity = RestaurantTable.class,
                         parentColumns = "id",
@@ -14,6 +14,9 @@ import androidx.room.ForeignKey;
                         childColumns = "dishId")
         })
 public class RestaurantDishCrossRef {
+
+    @PrimaryKey(autoGenerate = true)
+    private int crossRefId;
     private int restaurantId;
     private int dishId;
 
@@ -32,6 +35,14 @@ public class RestaurantDishCrossRef {
 
     public int getDishId() {
         return dishId;
+    }
+
+    public int getCrossRefId() {
+        return crossRefId;
+    }
+
+    public void setCrossRefId(int crossRefId) {
+        this.crossRefId = crossRefId;
     }
 
     public void setDishId(int dishId) {

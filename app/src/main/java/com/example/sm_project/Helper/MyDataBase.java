@@ -20,7 +20,7 @@
     import java.util.concurrent.ExecutorService;
     import java.util.concurrent.Executors;
 
-    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 18)
+    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 25)
     public abstract class MyDataBase extends RoomDatabase {
 
         private static MyDataBase databaseInstance;

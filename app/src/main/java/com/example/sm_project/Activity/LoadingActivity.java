@@ -61,38 +61,36 @@ public class LoadingActivity  extends AppCompatActivity {
             }
         });
 
-        dishDao.getAllDishes().observe(this, dishes -> {
-            if (dishes == null || dishes.isEmpty()) {
-                dishDao.insert(new DishTable("Hamburger",R.drawable.facebook,4,25.10));
+            dishDao.getAllDishes().observe(this, dishes -> {
+                if (dishes == null || dishes.isEmpty()) {
+                    dishDao.insert(new DishTable("Hamburger",R.drawable.facebook,4,25.10));
+                    dishDao.insert(new DishTable("Sushi",R.drawable.facebook,2,11.10));
 
-            } else {
+                } else {
 
-            }
-        });
+                }
+            });
 
 
-        categoryDao.getAllCategories().observe(this, categories -> {
-            if (categories == null || categories.isEmpty()) {
-                categoryDao.insert(new CategoryTable("Pizza",R.drawable.btn_1));
-                categoryDao.insert(new CategoryTable("Burger",R.drawable.btn_2));
-                categoryDao.insert(new CategoryTable("Kurczaki",R.drawable.btn_3));
-                categoryDao.insert(new CategoryTable("Sushi",R.drawable.btn_4));
-                categoryDao.insert(new CategoryTable("Steki",R.drawable.btn_5));
+            categoryDao.getAllCategories().observe(this, categories -> {
+                if (categories == null || categories.isEmpty()) {
+                    categoryDao.insert(new CategoryTable("Pizza",R.drawable.btn_1));
+                    categoryDao.insert(new CategoryTable("Burger",R.drawable.btn_2));
+                    categoryDao.insert(new CategoryTable("Kurczaki",R.drawable.btn_3));
+                    categoryDao.insert(new CategoryTable("Sushi",R.drawable.btn_4));
+                    categoryDao.insert(new CategoryTable("Steki",R.drawable.btn_5));
 
-            } else {
+                    restaurantDao.getAllRestaurants().observe(this, restaurants -> {
+                        if (restaurants == null || restaurants.isEmpty()) {
+                            restaurantDao.insert(new RestaurantTable("McDonalds",R.drawable.google,1));
+                            restaurantDao.insert(new RestaurantTable("KFC",R.drawable.btn_2,2));
 
-            }
-        });
+                        }
+                    });
+                }
+            });
 
-        restaurantDao.getAllRestaurants().observe(this, restaurants -> {
-            if (restaurants == null || restaurants.isEmpty()) {
-                restaurantDao.insert(new RestaurantTable("McDonalds",R.drawable.google,1));
-                restaurantDao.insert(new RestaurantTable("KFC",R.drawable.btn_2,2));
 
-            } else {
-
-            }
-        });
 
 
 

@@ -10,11 +10,11 @@ public class DishTable {
 
     private String name;
 
-    private int imagePath;
+    private int imagePath,rating;
 
-    private double rating,price;
+    private double price;
 
-    public DishTable( String name, int imagePath, double rating, double price) {
+    public DishTable( String name, int imagePath, int rating, double price) {
         this.name = name;
         this.imagePath = imagePath;
         this.rating = rating;
@@ -45,11 +45,11 @@ public class DishTable {
         this.imagePath = imagePath;
     }
 
-    public double getRating() {
+    public int getRating() {
         return rating;
     }
 
-    public void setRating(double rating) {
+    public void setRating(int rating) {
         this.rating = rating;
     }
 
