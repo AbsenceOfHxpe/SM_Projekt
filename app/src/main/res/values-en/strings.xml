@@ -59,7 +59,7 @@
 
 
     <string name="cancel_button">Cancel</string>
-    <string name="order_number">Prder no. 1</string>
+    <string name="order_number">Order no. 1</string>
     <string name="invalid_restaurant">The restaurant is not on your list</string>
 
     <string name="welcome_discount">Welcome Discount</string>

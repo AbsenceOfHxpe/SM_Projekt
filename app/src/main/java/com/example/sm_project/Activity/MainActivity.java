@@ -24,6 +24,7 @@ import androidx.room.Room;
 
 import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Adapter.CategoryAdapter;
+import com.example.sm_project.Converter.DataConverter;
 import com.example.sm_project.Dao.CategoryDao;
 import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Dao.RestaurantDao;
@@ -42,9 +43,13 @@ import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.model.RectangularBounds;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.annotation.NonNull;
 
@@ -88,12 +93,19 @@ public class MainActivity extends AppCompatActivity  {
         orderDao = myDB.getOrderDao();
         restaurantDishCrossRefDao = myDB.getRDCrossDao();
 
+        Date date = DataConverter.fromString("24.10.2023");
+
+
 
         orderDao.getAllOrders().observe(this, orderTables -> {
             if(orderTables == null || orderTables.isEmpty()){
-                orderDao.insert(new OrderTable("24.10.2024", 26.70, 1, 2));
+                orderDao.insert(new OrderTable(date, 26.70, 1, 2));
+                orderDao.insert(new OrderTable(date, 2222, 1, 2));
+                orderDao.insert(new OrderTable(date, 103.40, 1, 1));
+                orderDao.insert(new OrderTable(date, 30, 1, 1));
             }
         });
+
 
 //                restaurantDishCrossRefDao.getAllRDCross().observe(this, categories -> {
 //            if (categories == null || categories.isEmpty()) {
@@ -237,12 +249,10 @@ public class MainActivity extends AppCompatActivity  {
                 boolean isRestaurantOnList = isRestaurantOnList(restaurantTables, selectedRestaurantName);
 
                 if (isRestaurantOnList) {
-                    // Przeniesienie do ListFoodActivity
                     Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
                     intent.putExtra("nazwaRestauracji", selectedRestaurantName);
                     startActivity(intent);
                 } else {
-                    // Komunikat informujący, że restauracja nie jest na liście
                     Toast.makeText(MainActivity.this, R.string.invalid_restaurant, Toast.LENGTH_SHORT).show();
                 }
             }
@@ -278,7 +288,6 @@ public class MainActivity extends AppCompatActivity  {
 
     }
 
-// Metoda sprawdzająca, czy restauracja jest na liście
         private boolean isRestaurantOnList (List < RestaurantTable > restaurantTables, String
         restaurantName){
             for (RestaurantTable restaurantTable : restaurantTables) {
@@ -296,21 +305,7 @@ public class MainActivity extends AppCompatActivity  {
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int itemId = item.getItemId();
 
-        if (itemId == R.id.orders) {
-            Log.d("MainActivity", "Clicked on Profile");
-            startActivity(new Intent(this, StartActivity.class));
-            return true;
-        } else if (itemId == R.id.search) {
-            startActivity(new Intent(this, CartActivity.class));
-            return true;
-        } else {
-            return super.onOptionsItemSelected(item);
-        }
-    }
 
 
     private void showCustomDialog(String message) {

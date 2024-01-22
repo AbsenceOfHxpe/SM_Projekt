@@ -1,6 +1,9 @@
 package com.example.sm_project.Activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.PersistableBundle;
@@ -38,6 +41,7 @@ public class LoadingActivity  extends AppCompatActivity {
 
     boolean isEmpty = false;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,8 @@ public class LoadingActivity  extends AppCompatActivity {
         restaurantDao = myDB.getRestaurantDao();
         dishDao = myDB.getDishDao();
         userDao.doNothing();
+
+
 
         userDao.getAllUsers().observe(this, users -> {
             if (users == null || users.isEmpty()) {

@@ -19,10 +19,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.sm_project.Adapter.CartAdapter;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.R;
+import com.example.sm_project.databinding.ActivityCartBinding;
+import com.example.sm_project.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.CartListener {
+
+    private ActivityCartBinding binding;
 
     private static final String USER_PREFERENCES_NAME = "user_preferences";
     private static final String USED_COUPON_KEY = "used_coupon";
@@ -37,7 +41,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     private TextView servicePrice;
     private TextView totalSum;
     private EditText couponTxt;
-    private AppCompatButton confirmBtn;
+    private AppCompatButton confirmBtn, couponBtn;
 
     private ImageView backBtn;
 
@@ -47,28 +51,24 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cart);
+        binding = ActivityCartBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         Intent exitAppIntent = new Intent("ExitApp");
         sendBroadcast(exitAppIntent);
 
-        // Initialize your RecyclerView and set its layout manager
         RecyclerView recyclerView = findViewById(R.id.cardView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // Initialize the cartItems list with some example data
         cartItems = new ArrayList<>();
 
-        // Check if there are extras in the Intent
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
-            // Retrieve data from the Intent
             String foodName = extras.getString("foodname");
             float price = extras.getFloat("price");
             int counter = extras.getInt("counter");
             int imagePath = extras.getInt("img");
 
-            // Create a Foods object with the retrieved data
             Foods food = new Foods(0.0, imagePath, 0, foodName, price);
             food.setNumberInCard(counter);
             cartItems.add(food);
@@ -85,11 +85,13 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         confirmBtn = findViewById(R.id.confirmBtn);
         backBtn = findViewById(R.id.backBtn);
         couponTxt = findViewById(R.id.couponTxt);
-        Button couponBtn = findViewById(R.id.couponBtn);
+        couponBtn = findViewById(R.id.couponBtn);
 
 
-        backBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(CartActivity.this, DetailActivity.class);
+        setVariable();
+
+        confirmBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(CartActivity.this, WaitingActivity.class);
             startActivity(intent);
         });
 
@@ -112,7 +114,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
 
     private void disableCouponUsage() {
         couponTxt.setEnabled(true);
-        confirmBtn.setEnabled(true);
+        couponBtn.setEnabled(true);
     }
 
     private boolean checkIfCouponUsed() {
@@ -157,7 +159,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
                 updateCartSummary(calculateTotal(), discount);
                 Toast.makeText(this, "Wykorzystano kupon rabatowy", Toast.LENGTH_SHORT).show();
 
-                // Zaktualizuj status wykorzystania kuponu
                 updateCouponUsageStatus();
 
             } else {
@@ -181,5 +182,9 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         food.setNumberInCard(currentQuantity);
         cartAdapter.notifyDataSetChanged();
         updateCartSummary(calculateTotal(), discount);
+    }
+
+    private void setVariable() {
+        binding.backBtn.setOnClickListener(v -> finish());
     }
 }

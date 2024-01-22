@@ -21,14 +21,14 @@ public class OrderTable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-    private String date;
+    private Date date;
 
     private double price;
 
     private int userId;
     private int restaurantId;
 
-    public OrderTable(String date, double price, int userId, int restaurantId) {
+    public OrderTable(Date date, double price, int userId, int restaurantId) {
         this.date = date;
         this.price = price;
         this.userId = userId;
@@ -43,11 +43,11 @@ public class OrderTable {
         this.id = id;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

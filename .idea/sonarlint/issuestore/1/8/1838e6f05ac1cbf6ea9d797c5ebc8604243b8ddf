@@ -1,6 +1,2 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8ÀàÆ¤Ò1
-r
-java:S1450"VRemove the "context" field and declare it as a local variable in the relevant methods.(êİç8òàÆ¤Ò1
-Y
-java:S1068"7Remove this unused "progressBarCategory" private field.(Óëë–ûÿÿÿÿ8üàÆ¤Ò1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8„µ¦ÆÒ1
