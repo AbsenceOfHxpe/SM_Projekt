@@ -1,9 +1,12 @@
 package com.example.sm_project.Activity;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -25,6 +28,7 @@ import com.example.sm_project.Helper.OrderTable;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityCartBinding;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -39,9 +43,12 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     private static final String USED_COUPON_KEY = "used_coupon";
 
     private ArrayList<Foods> cartItems;
-    private int userId; // Dodane pole przechowujące userId
+    private int userId;
+    private int restaurantId;
 
     private static final int DELIVERY_COST = 10;
+
+    private double cost = 0;
 
     private TextView totalCartPriceTextView;
     private TextView deliveryPrice;
@@ -59,13 +66,18 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         binding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
         myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         orderDao = myDB.getOrderDao();
 
         // Pobierz userId z SharedPreferences
         SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
+        SharedPreferences preferences2 = getSharedPreferences("restaurant_data", MODE_PRIVATE);
         userId = preferences.getInt("userId", -1);
+        restaurantId = preferences2.getInt("restaurantId", MODE_PRIVATE);
+        Log.i(TAG, "UserId: " + userId + ", " );
+        Log.i(TAG, "RestaurantId: " + restaurantId + ", " );
 
         initViews();
         initRecyclerView();
@@ -122,7 +134,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     private void saveTotalAmountToDatabase(double totalSum) {
         Date date = DataConverter.fromString("24.10.2033");
 
-        OrderTable orderTable = new OrderTable(date, totalSum, userId, 2);
+        OrderTable orderTable = new OrderTable(date, cost, userId, restaurantId);
         orderDao.insert(orderTable);
     }
 
@@ -151,6 +163,9 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         totalCartPriceTextView.setText(String.format("%.2f zł", total - discountAmount));
         servicePrice.setText(String.format("%.2f zł", serviceFee));
         totalSum.setText(String.format("%.2f zł", total - discountAmount + DELIVERY_COST + serviceFee));
+        cost = (total - discountAmount +DELIVERY_COST +serviceFee);
+        double roundedCost = Math.round(cost * 100.0) / 100.0;
+        cost = roundedCost;
     }
 
     private float calculateTotal() {

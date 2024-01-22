@@ -54,7 +54,7 @@
     <string name="order_received">Zamówienie otrzymane</string>
 
     <string name="cancel_button">Anuluj</string>
-    <string name="order_number">Zamówienie nr 1</string>
+    <string name="order_number">Zamówienie nr </string>
     <string name="invalid_restaurant">Restauracja nie jest na Twojej liście</string>
 
     <string name="welcome_discount">Zniżka powitalna</string>

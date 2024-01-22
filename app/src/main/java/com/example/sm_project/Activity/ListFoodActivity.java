@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -48,6 +49,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
 
         TextView restaurantNameTextView = findViewById(R.id.titleTxt);
 
+
         String restaurantName = getIntent().getStringExtra("nazwaRestauracji");
         int restaurantId = getIntent().getIntExtra("restaurantId", -1);
 
@@ -55,6 +57,13 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         Log.d("ListFoodActivity", "Received restaurantName: " + restaurantName);
 
         restaurantNameTextView.setText(restaurantName);
+
+        SharedPreferences preferences = getSharedPreferences("restaurant_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("restaurantId", restaurantId);
+        editor.apply();
+        Log.i("TAG","RestaurantId: "+ restaurantId + "");
+
 
         // Pobierz listę dań dla danej restauracji za pomocą DAO
         List<DishTable> dishesForRestaurant = restaurantDao.getDishesForRestaurant(restaurantId);

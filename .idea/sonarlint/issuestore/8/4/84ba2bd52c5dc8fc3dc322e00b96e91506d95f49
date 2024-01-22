@@ -1,2 +1,12 @@
 
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒµί8Τ¶Ò1
+l
+java:S1192£"IDefine a constant instead of duplicating this literal "%.2f zΕ‚" 3 times.(‡Α²Σωÿÿÿÿ8§ζσ—Σ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒµί8ªζσ—Σ1
+D
+java:S1659:"'Declare "couponBtn" on a separate line.(ό³σ8‘ησ—Σ1
+z
+java:S1450-"XRemove the "cartItems" field and declare it as a local variable in the relevant methods.(ψ δίψÿÿÿÿ8‘ησ—Σ1
+p
+java:S1450&"SRemove the "myDB" field and declare it as a local variable in the relevant methods.(Έ©ί8‘ησ—Σ1
+M
+java:S1172†"/Remove this unused method parameter "totalSum".(ρώ¦ί8°ησ—Σ1

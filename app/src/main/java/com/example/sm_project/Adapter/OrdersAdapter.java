@@ -53,7 +53,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
 
     public class viewholder extends RecyclerView.ViewHolder {
 
-        TextView date, price, title;
+        TextView date, price, title, titleTxt;
 
         public viewholder(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +61,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
             date = itemView.findViewById(R.id.dateTxt);
             price = itemView.findViewById(R.id.priceTxt);
             title = itemView.findViewById(R.id.restaurantTxt);
+            titleTxt = itemView.findViewById(R.id.titleTxt);
         }
     }
 

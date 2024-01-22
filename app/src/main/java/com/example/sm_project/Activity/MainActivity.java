@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity  {
         SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
         String savedUsername = preferences.getString("username", null);
 
-        if (intent.hasExtra("userLogin") && savedUsername == null) {
+        if (intent.hasExtra("userLogin")) {
             String userLogin = intent.getStringExtra("userLogin");
             saveUsername(userLogin);
 
