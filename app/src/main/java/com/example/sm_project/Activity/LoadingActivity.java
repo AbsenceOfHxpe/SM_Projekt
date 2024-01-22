@@ -69,8 +69,41 @@ public class LoadingActivity  extends AppCompatActivity {
 
             dishDao.getAllDishes().observe(this, dishes -> {
                 if (dishes == null || dishes.isEmpty()) {
-                    dishDao.insert(new DishTable("Hamburger",R.drawable.facebook,4,25.10));
-                    dishDao.insert(new DishTable("Sushi",R.drawable.facebook,2,11.10));
+                    dishDao.insert(new DishTable("Chesseburger",R.drawable.chesseburger_mc,4.00,6.20));
+                    dishDao.insert(new DishTable("Hamburger",R.drawable.hamburger_mc,3.60,5.50));
+                    dishDao.insert(new DishTable("Big Mac",R.drawable.bigmac_mc,4.30,7.80));
+                    dishDao.insert(new DishTable("McRoyal",R.drawable.mcroyal_mc,4.70,8.00));
+                    dishDao.insert(new DishTable("McChicken",R.drawable.mcchicken_mc,4.70,8.00));
+                    dishDao.insert(new DishTable("McWrap",R.drawable.mcwrap_mc,4.60,10.00));
+                    dishDao.insert(new DishTable("Frytki",R.drawable.fries_mc,4.50,4.00));
+
+                    dishDao.insert(new DishTable("Grander",R.drawable.grander_kfc,4.50,8.00));
+                    dishDao.insert(new DishTable("Zinger",R.drawable.zinger_kfc,4.90,7.50));
+                    dishDao.insert(new DishTable("Kubełek kurczaków",R.drawable.chickenbucket_kfc,4.30,25.50));
+                    dishDao.insert(new DishTable("Nóżka kurczaka",R.drawable.chickendrumstick_kfc,3.20,2.00));
+                    dishDao.insert(new DishTable("Skrzydełka",R.drawable.chickenwings_kfc,3.70,3.50));
+
+                    dishDao.insert(new DishTable("Chesseburger",R.drawable.chesseburger_mc,3.70,4.0));
+                    dishDao.insert(new DishTable("Whopper",R.drawable.whopper_bk,3.80,4.0));
+                    dishDao.insert(new DishTable("Whopper Junior",R.drawable.whooperjr_bk,3.80,4.0));
+                    dishDao.insert(new DishTable("Frytki",R.drawable.fries_bk,4.80,5.0));
+
+                    dishDao.insert(new DishTable("Rolka z krewetką",R.drawable.shrimp_roll,4.80,10.0));
+                    dishDao.insert(new DishTable("Sushi z łososiem",R.drawable.sushi_salmon,4.90,12.0));
+                    dishDao.insert(new DishTable("Sushi z mango",R.drawable.mango_set,4.20,15.20));
+                    dishDao.insert(new DishTable("California rolls",R.drawable.california_roll,5.0,12.5));
+
+                    dishDao.insert(new DishTable("Barbecue",R.drawable.barbecue,4.80,30.0));
+                    dishDao.insert(new DishTable("Pepperoni",R.drawable.pepperoni,5.0,25.0));
+                    dishDao.insert(new DishTable("Z kiełbasą",R.drawable.sausagepizza,4.80,27.0));
+                    dishDao.insert(new DishTable("Hawajska",R.drawable.hawaianpizza,4.80,28.0));
+                    dishDao.insert(new DishTable("Z szynką",R.drawable.hampizza,4.3,26.0));
+                    dishDao.insert(new DishTable("Margherita",R.drawable.margherita,4.00,20));
+
+
+
+
+
 
                 } else {
 
@@ -84,13 +117,22 @@ public class LoadingActivity  extends AppCompatActivity {
                     categoryDao.insert(new CategoryTable("Burger",R.drawable.btn_2));
                     categoryDao.insert(new CategoryTable("Kurczaki",R.drawable.btn_3));
                     categoryDao.insert(new CategoryTable("Sushi",R.drawable.btn_4));
-                    categoryDao.insert(new CategoryTable("Steki",R.drawable.btn_5));
+                    categoryDao.insert(new CategoryTable("Sałatki",R.drawable.btn_7));
 
                     restaurantDao.getAllRestaurants().observe(this, restaurants -> {
                         if (restaurants == null || restaurants.isEmpty()) {
-                            restaurantDao.insert(new RestaurantTable("McDonalds",R.drawable.google,1));
-                            restaurantDao.insert(new RestaurantTable("KFC",R.drawable.btn_2,2));
-                            restaurantDao.insert(new RestaurantTable("Burger King",R.drawable.btn_2,2));
+                            restaurantDao.insert(new RestaurantTable("McDonald's",R.drawable.mcdonalds_logo,2));
+                            restaurantDao.insert(new RestaurantTable("KFC",R.drawable.kfclogo,3));
+                            restaurantDao.insert(new RestaurantTable("Burger King",R.drawable.burger_king_logo,2));
+                            restaurantDao.insert(new RestaurantTable("Sushi Panda",R.drawable.sushi_logo,4));
+                            restaurantDao.insert(new RestaurantTable("Pizza Hut",R.drawable.pizzahut_logo,1));
+                            restaurantDao.insert(new RestaurantTable("Papa Johns Pizza",R.drawable.papajohns_logo,1));
+                            restaurantDao.insert(new RestaurantTable("Pizza My Heart",R.drawable.pizzamyheart_logo,1));
+                            //restaurantDao.insert(new RestaurantTable("Wendy's",R.drawable.wendys_logo,2));
+                            restaurantDao.insert(new RestaurantTable("Chick-fil-A",R.drawable.chickfila_logo,3));
+                            restaurantDao.insert(new RestaurantTable("Salad Story",R.drawable.salad_logo,5));
+                           // restaurantDao.insert(new RestaurantTable("Subway",R.drawable.subway_logo,2));
+
 
                         }
                     });

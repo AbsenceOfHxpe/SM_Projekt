@@ -63,6 +63,8 @@ public class MainActivity extends AppCompatActivity  {
     RestaurantDao RestaurantDao;
     private int selectedRestaurantId = -1;
 
+    private String API_KEY = "AIzaSyCEPM7C8Hx3XDlOFYSW2pjcCmtGCvjor4w";
+
     private ActivityMainBinding binding;
     private Spinner combinedInfoTextView;
 
@@ -104,16 +106,56 @@ public class MainActivity extends AppCompatActivity  {
             if (categories == null || categories.isEmpty()) {
                 restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,1));
                 restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,2));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(2,2));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,3));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,4));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,5));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,6));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(1,7));
+
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(2,8));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(2,9));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(2,10));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(2,11));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(2,12));
+
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(3,13));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(3,14));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(3,15));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(3,16));
+
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(4,17));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(4,18));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(4,19));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(4,20));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(4,21));
+
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,22));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,23));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,24));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,25));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,26));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,27));
+
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,22));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,23));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,24));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,25));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,26));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,27));
+
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,22));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,23));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,24));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,25));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,26));
+                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,27));
+
+
+
             } else {
 
             }
         });
-
-
-
-
-
         RecyclerView recyclerViewRest = findViewById(R.id.bestRestView);
         recyclerViewRest.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         List<RestaurantTable> restaurantTables = restaurantDao.getAllRestaurantsSync();
@@ -218,7 +260,7 @@ public class MainActivity extends AppCompatActivity  {
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
 
         if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), "AIzaSyCEPM7C8Hx3XDlOFYSW2pjcCmtGCvjor4w");
+            Places.initialize(getApplicationContext(), API_KEY);
         }
 
         autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG));

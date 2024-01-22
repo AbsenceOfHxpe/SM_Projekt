@@ -20,10 +20,10 @@ public class Foods implements Serializable {
 
     private int restaurantId;
 
-    public Foods(double Star, int ImagePath, int TimeValue, String Title, double Price) {
+    public Foods(double Star, int ImagePath, double TimeValue, String Title, double Price) {
         this.Star = Star;
         this.ImagePath=ImagePath;
-        this.TimeValue = TimeValue;
+       // this.TimeValue = TimeValue;
         this.Title = Title;
         this.Price = Price;
     }
