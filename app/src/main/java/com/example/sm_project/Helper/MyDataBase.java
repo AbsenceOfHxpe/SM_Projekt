@@ -1,14 +1,15 @@
     package com.example.sm_project.Helper;
 
     import android.content.Context;
-    import android.util.Log;
 
     import androidx.annotation.NonNull;
     import androidx.room.Database;
     import androidx.room.Room;
     import androidx.room.RoomDatabase;
+    import androidx.room.TypeConverters;
     import androidx.sqlite.db.SupportSQLiteDatabase;
 
+    import com.example.sm_project.Converter.DataConverter;
     import com.example.sm_project.Dao.CategoryDao;
     import com.example.sm_project.Dao.DishDao;
     import com.example.sm_project.Dao.DishOrderCrossRefDao;
@@ -20,7 +21,8 @@
     import java.util.concurrent.ExecutorService;
     import java.util.concurrent.Executors;
 
-    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 25)
+    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 20)
+    @TypeConverters(DataConverter.class)
     public abstract class MyDataBase extends RoomDatabase {
 
         private static MyDataBase databaseInstance;

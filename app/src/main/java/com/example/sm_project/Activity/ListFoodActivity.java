@@ -69,6 +69,9 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         FoodListAdapter foodListAdapter = new FoodListAdapter(foodsList, this);
         recyclerView.setAdapter(foodListAdapter);
 
+        setVariable();
+
+
         binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -91,6 +94,9 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
                 return false;
             }
         });
+    }
+    private void setVariable() {
+        binding.backBtn.setOnClickListener(v -> finish());
     }
 
     @Override

@@ -1,9 +1,9 @@
 
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(üÉµﬂ8ø°É‡—1
 F
-java:S1659")Declare "registerBtn" on a separate line.(€ÇÇ÷8Ã°É‡—1
-X	java:S125 "<This block of commented-out lines of code should be removed.(ôâ√´8—ñ∆‡—1
+java:S1659")Declare "registerBtn" on a separate line.(€ÇÇ÷8Ï—Ã “1
+X	java:S125 "<This block of commented-out lines of code should be removed.(ôâ√´8˝—Ã “1
 E
-java:S1068"(Remove this unused "myDB" private field.(∏©ﬂå8¥ºíõ“1
+java:S1068"(Remove this unused "myDB" private field.(∏©ﬂå8É“Ã “1
 M
-java:S1068"+Remove this unused "userDao" private field.(≠∂èÅ˙ˇˇˇˇ8˘êàõ“1
+java:S1068"+Remove this unused "userDao" private field.(≠∂èÅ˙ˇˇˇˇ8É“Ã “1

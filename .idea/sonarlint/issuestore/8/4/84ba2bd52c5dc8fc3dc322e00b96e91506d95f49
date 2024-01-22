@@ -1,10 +1,14 @@
 
 l
-java:S1192ˆ"IDefine a constant instead of duplicating this literal "%.2f zÅ‚" 3 times.(‡Á²Óùÿÿÿÿ8€Ô¶œÒ1
+java:S1192Š"IDefine a constant instead of duplicating this literal "%.2f zÅ‚" 3 times.(‡Á²Óùÿÿÿÿ8€Ô¶œÒ1
 E
-java:S1604a"(Make this anonymous inner class a lambda(´Œ™8„Ô¶œÒ1
+java:S1604c"(Make this anonymous inner class a lambda(´Œ™8„Ô¶œÒ1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ŠÔ¶œÒ1
+D
+java:S1659,"'Declare "couponBtn" on a separate line.(ü³ó8ñ„ÁáÒ1
 s
-java:S1450*"VRemove the "backBtn" field and declare it as a local variable in the relevant methods.(°Ò‡´8ÑÔ¶œÒ1
+java:S1450."VRemove the "backBtn" field and declare it as a local variable in the relevant methods.(°Ò‡´8ÑÔ¶œÒ1
 z
-java:S1450"XRemove the "cartItems" field and declare it as a local variable in the relevant methods.(ø äßøÿÿÿÿ8ÑÔ¶œÒ1
+java:S1450""XRemove the "cartItems" field and declare it as a local variable in the relevant methods.(ø äßøÿÿÿÿ8ÑÔ¶œÒ1
+v
+java:S1450,"YRemove the "confirmBtn" field and declare it as a local variable in the relevant methods.(ü³ó8ô„ÁáÒ1
