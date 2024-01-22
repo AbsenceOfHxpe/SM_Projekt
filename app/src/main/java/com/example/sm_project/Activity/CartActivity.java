@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,26 +14,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.room.Room;
 
 import com.example.sm_project.Adapter.CartAdapter;
+import com.example.sm_project.Converter.DataConverter;
+import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Domain.Foods;
+import com.example.sm_project.Helper.MyDataBase;
+import com.example.sm_project.Helper.OrderTable;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityCartBinding;
-import com.example.sm_project.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.CartListener {
 
     private ActivityCartBinding binding;
+    private MyDataBase myDB;
+    private OrderDao orderDao;
+    private CartAdapter cartAdapter;
 
     private static final String USER_PREFERENCES_NAME = "user_preferences";
     private static final String USED_COUPON_KEY = "used_coupon";
 
     private ArrayList<Foods> cartItems;
-    private CartAdapter cartAdapter;
+    private int userId; // Dodane pole przechowujące userId
 
-    private static int delivery = 10;
+    private static final int DELIVERY_COST = 10;
 
     private TextView totalCartPriceTextView;
     private TextView deliveryPrice;
@@ -42,8 +49,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     private TextView totalSum;
     private EditText couponTxt;
     private AppCompatButton confirmBtn, couponBtn;
-
-    private ImageView backBtn;
 
     private double discount = 0.0;
 
@@ -54,9 +59,34 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         binding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Intent exitAppIntent = new Intent("ExitApp");
-        sendBroadcast(exitAppIntent);
+        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
+                .allowMainThreadQueries().fallbackToDestructiveMigration().build();
+        orderDao = myDB.getOrderDao();
 
+        // Pobierz userId z SharedPreferences
+        SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
+        userId = preferences.getInt("userId", -1);
+
+        initViews();
+        initRecyclerView();
+
+        setListeners();
+
+        updateCartSummary(calculateTotal(), discount);
+    }
+
+    private void initViews() {
+        totalCartPriceTextView = findViewById(R.id.totalFeeTxt);
+        deliveryPrice = findViewById(R.id.deliveryTxt);
+        servicePrice = findViewById(R.id.serviceTxt);
+        totalSum = findViewById(R.id.totalSumTxt);
+        confirmBtn = findViewById(R.id.confirmBtn);
+        couponTxt = findViewById(R.id.couponTxt);
+        couponBtn = findViewById(R.id.couponBtn);
+        binding.backBtn.setOnClickListener(v -> finish());
+    }
+
+    private void initRecyclerView() {
         RecyclerView recyclerView = findViewById(R.id.cardView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -76,45 +106,29 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
 
         cartAdapter = new CartAdapter(cartItems, this);
         recyclerView.setAdapter(cartAdapter);
+    }
 
-        // Initialize TextViews
-        totalCartPriceTextView = findViewById(R.id.totalFeeTxt);
-        deliveryPrice = findViewById(R.id.deliveryTxt);
-        servicePrice = findViewById(R.id.serviceTxt);
-        totalSum = findViewById(R.id.totalSumTxt);
-        confirmBtn = findViewById(R.id.confirmBtn);
-        backBtn = findViewById(R.id.backBtn);
-        couponTxt = findViewById(R.id.couponTxt);
-        couponBtn = findViewById(R.id.couponBtn);
-
-
-        setVariable();
-
+    private void setListeners() {
         confirmBtn.setOnClickListener(v -> {
+            float totalAmount = calculateTotal();
+            saveTotalAmountToDatabase(totalAmount);
             Intent intent = new Intent(CartActivity.this, WaitingActivity.class);
             startActivity(intent);
         });
 
+        couponBtn.setOnClickListener(v -> applyCoupon());
+    }
 
-        couponBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                applyCoupon();
-            }
-        });
+    private void saveTotalAmountToDatabase(double totalSum) {
+        Date date = DataConverter.fromString("24.10.2033");
 
-        if (checkIfCouponUsed()) {
-            disableCouponUsage();
-        }
-
-
-
-        updateCartSummary(calculateTotal(), discount);
+        OrderTable orderTable = new OrderTable(date, totalSum, userId, 2);
+        orderDao.insert(orderTable);
     }
 
     private void disableCouponUsage() {
-        couponTxt.setEnabled(true);
-        couponBtn.setEnabled(true);
+        couponTxt.setEnabled(false);
+        couponBtn.setEnabled(false);
     }
 
     private boolean checkIfCouponUsed() {
@@ -133,11 +147,10 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         double serviceFee = 0.1 * total;
         double discountAmount = discount * total;
 
-        // Ustawienie wartości w TextView
-        deliveryPrice.setText(String.valueOf(delivery) + " zł");
+        deliveryPrice.setText(String.valueOf(DELIVERY_COST) + " zł");
         totalCartPriceTextView.setText(String.format("%.2f zł", total - discountAmount));
         servicePrice.setText(String.format("%.2f zł", serviceFee));
-        totalSum.setText(String.format("%.2f zł", total - discountAmount + delivery + serviceFee));
+        totalSum.setText(String.format("%.2f zł", total - discountAmount + DELIVERY_COST + serviceFee));
     }
 
     private float calculateTotal() {
@@ -151,16 +164,13 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     private void applyCoupon() {
         String enteredCoupon = couponTxt.getText().toString();
 
-        if (checkIfCouponUsed()) {
-            disableCouponUsage();
-
+        if (!checkIfCouponUsed()) {
             if (enteredCoupon.equals("12345")) {
                 discount = 0.15;
                 updateCartSummary(calculateTotal(), discount);
                 Toast.makeText(this, "Wykorzystano kupon rabatowy", Toast.LENGTH_SHORT).show();
-
                 updateCouponUsageStatus();
-
+                disableCouponUsage();
             } else {
                 Toast.makeText(this, "Nieprawidłowy kupon rabatowy", Toast.LENGTH_SHORT).show();
             }
@@ -182,9 +192,5 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         food.setNumberInCard(currentQuantity);
         cartAdapter.notifyDataSetChanged();
         updateCartSummary(calculateTotal(), discount);
-    }
-
-    private void setVariable() {
-        binding.backBtn.setOnClickListener(v -> finish());
     }
 }

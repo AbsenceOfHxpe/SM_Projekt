@@ -80,7 +80,7 @@ public class LoadingActivity  extends AppCompatActivity {
 
             categoryDao.getAllCategories().observe(this, categories -> {
                 if (categories == null || categories.isEmpty()) {
-                    categoryDao.insert(new CategoryTable("Pizza",R.drawable.btn_1));
+                    categoryDao.insert(new CategoryTable("Pizza", R.drawable.btn_1));
                     categoryDao.insert(new CategoryTable("Burger",R.drawable.btn_2));
                     categoryDao.insert(new CategoryTable("Kurczaki",R.drawable.btn_3));
                     categoryDao.insert(new CategoryTable("Sushi",R.drawable.btn_4));
@@ -90,14 +90,12 @@ public class LoadingActivity  extends AppCompatActivity {
                         if (restaurants == null || restaurants.isEmpty()) {
                             restaurantDao.insert(new RestaurantTable("McDonalds",R.drawable.google,1));
                             restaurantDao.insert(new RestaurantTable("KFC",R.drawable.btn_2,2));
+                            restaurantDao.insert(new RestaurantTable("Burger King",R.drawable.btn_2,2));
 
                         }
                     });
                 }
             });
-
-
-
 
 
 
@@ -109,8 +107,6 @@ public class LoadingActivity  extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
-
-
     }
 
     private void animateImage() {

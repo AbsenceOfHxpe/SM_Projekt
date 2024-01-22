@@ -21,7 +21,7 @@
     import java.util.concurrent.ExecutorService;
     import java.util.concurrent.Executors;
 
-    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 20)
+    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 26)
     @TypeConverters(DataConverter.class)
     public abstract class MyDataBase extends RoomDatabase {
 

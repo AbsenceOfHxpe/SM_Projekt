@@ -30,4 +30,6 @@ public interface UserDao {
     @Query("SELECT 1 FROM UserTable LIMIT 1")
     int doNothing();
 
+    @Query("SELECT id FROM usertable WHERE username =:username")
+    int getUserIdByLogin(String username);
 }

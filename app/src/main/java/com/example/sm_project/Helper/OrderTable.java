@@ -3,6 +3,9 @@ package com.example.sm_project.Helper;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.sm_project.Converter.DataConverter;
 
 import java.util.Date;
 
@@ -21,6 +24,7 @@ public class OrderTable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
+    @TypeConverters(DataConverter.class)
     private Date date;
 
     private double price;
@@ -34,6 +38,9 @@ public class OrderTable {
         this.userId = userId;
         this.restaurantId = restaurantId;
     }
+    public OrderTable() {
+    }
+
 
     public int getId() {
         return id;

@@ -14,6 +14,7 @@ import java.util.List;
 @Dao
 public interface OrderDao {
 
+
     @Query("SELECT * FROM ordertable")
     LiveData<List<OrderTable>> getAllOrders();
 
@@ -22,6 +23,8 @@ public interface OrderDao {
 
     @Insert
     long insert(OrderTable orderTable);
+
+
 
     @Query("SELECT 1 FROM OrderTable LIMIT 1")
     int doNothing();

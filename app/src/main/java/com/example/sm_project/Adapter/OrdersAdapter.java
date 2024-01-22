@@ -63,4 +63,9 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
             title = itemView.findViewById(R.id.restaurantTxt);
         }
     }
+
+    public void updateData(List<OrderTable> newOrderTables) {
+        listItem.addAll(newOrderTables);
+        notifyDataSetChanged();
+    }
 }

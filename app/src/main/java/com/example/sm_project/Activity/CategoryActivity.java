@@ -1,7 +1,10 @@
 package com.example.sm_project.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
 import com.example.sm_project.Adapter.BestRestAdapter;
+import com.example.sm_project.Adapter.CategoryAdapter;
 import com.example.sm_project.Dao.CategoryDao;
 import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Helper.MyDataBase;
@@ -43,10 +47,29 @@ public class CategoryActivity extends AppCompatActivity {
         RecyclerView recyclerViewRest = findViewById(R.id.RestView);
         recyclerViewRest.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-        // Użyj zaktualizowanego zapytania, aby pobrać restauracje dla danej kategorii
         List<RestaurantTable> restaurantTables = categoryDao.getRestaurantsByCategorySync(categoryId);
         BestRestAdapter RestAdapter = new BestRestAdapter(restaurantTables);
         recyclerViewRest.setAdapter(RestAdapter);
+
+
+        RestAdapter.setOnRestaurantClickListener(new BestRestAdapter.OnRestaurantClickListener() {
+            @Override
+            public void onRestaurantClick(RestaurantTable restaurant) {
+                Intent intent = new Intent(CategoryActivity.this, ListFoodActivity.class);
+                intent.putExtra("restaurantId", restaurant.getId());
+                intent.putExtra("nazwaRestauracji", restaurant.getName());
+                startActivity(intent);
+            }
+        });
+
+        RestAdapter.setOnDataLoadedListener(new BestRestAdapter.OnDataLoadedListener() {
+            @Override
+            public void onDataLoaded() {
+                ProgressBar progressBarCategory = findViewById(R.id.progressBar);
+                progressBarCategory.setVisibility(View.GONE);
+            }
+        });
+
     }
 }
 

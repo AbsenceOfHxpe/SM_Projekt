@@ -27,7 +27,7 @@ public class DataConverter {
             return null;
         }
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
             return dateFormat.parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();

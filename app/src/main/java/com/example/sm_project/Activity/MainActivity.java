@@ -24,6 +24,7 @@ import androidx.room.Room;
 
 import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Adapter.CategoryAdapter;
+import com.example.sm_project.Converter.DataConverter;
 import com.example.sm_project.Dao.CategoryDao;
 import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Dao.RestaurantDao;
@@ -44,6 +45,7 @@ import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -59,6 +61,8 @@ public class MainActivity extends AppCompatActivity  {
 
     MyDataBase myDB;
     RestaurantDao RestaurantDao;
+    private int selectedRestaurantId = -1;
+
     private ActivityMainBinding binding;
     private Spinner combinedInfoTextView;
 
@@ -87,11 +91,12 @@ public class MainActivity extends AppCompatActivity  {
         restaurantDao = myDB.getRestaurantDao();
         orderDao = myDB.getOrderDao();
         restaurantDishCrossRefDao = myDB.getRDCrossDao();
+        Date date = DataConverter.fromString("24.10.2033");
 
 
         orderDao.getAllOrders().observe(this, orderTables -> {
             if(orderTables == null || orderTables.isEmpty()){
-                orderDao.insert(new OrderTable("24.10.2024", 26.70, 1, 2));
+                orderDao.insert(new OrderTable(date, 26.70, 1, 2));
             }
         });
 
@@ -149,7 +154,6 @@ public class MainActivity extends AppCompatActivity  {
         @Override
         public void onDataLoaded() {
             ProgressBar progressBarCategory = findViewById(R.id.progressBarCategory);
-            // Gdy dane zostały załadowane, ukryj ProgressBar
             progressBarCategory.setVisibility(View.GONE);
         }
     });
@@ -228,7 +232,19 @@ public class MainActivity extends AppCompatActivity  {
                 new LatLng(bialystokLatLng.latitude - 0.1, bialystokLatLng.longitude - 0.1),
                 new LatLng(bialystokLatLng.latitude + 0.1, bialystokLatLng.longitude + 0.1)));
 
+
+
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+
+
+            private int getRestaurantIdByName(List<RestaurantTable> restaurantTables, String restaurantName) {
+                for (RestaurantTable restaurantTable : restaurantTables) {
+                    if (restaurantTable.getName().equalsIgnoreCase(restaurantName)) {
+                        return restaurantTable.getId();
+                    }
+                }
+                return -1;
+            }
             @Override
             public void onPlaceSelected(@NonNull Place place) {
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
@@ -238,8 +254,10 @@ public class MainActivity extends AppCompatActivity  {
                 boolean isRestaurantOnList = isRestaurantOnList(restaurantTables, selectedRestaurantName);
 
                 if (isRestaurantOnList) {
-                    // Przeniesienie do ListFoodActivity
+                    selectedRestaurantId = getRestaurantIdByName(restaurantTables, selectedRestaurantName);
+
                     Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
+                    intent.putExtra("restaurantId", selectedRestaurantId);
                     intent.putExtra("nazwaRestauracji", selectedRestaurantName);
                     startActivity(intent);
                 } else {

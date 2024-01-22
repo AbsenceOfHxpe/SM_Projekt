@@ -28,7 +28,6 @@ public interface CategoryDao {
     @Query("SELECT * FROM restauranttable WHERE categoryId = :categoryId")
     List<RestaurantTable> getRestaurantsByCategorySync(int categoryId);
 
-
     @Query("SELECT id FROM categorytable WHERE name = :categoryName")
     int getCategoryIdByName(String categoryName);
 
