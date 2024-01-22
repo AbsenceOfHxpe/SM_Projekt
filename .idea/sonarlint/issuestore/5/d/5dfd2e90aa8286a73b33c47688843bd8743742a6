@@ -1,14 +1,14 @@
 
 ‡
-java:S1319"eThe type of "items" should be an interface such as "List" rather than the implementation "ArrayList".(çàÑìùÿÿÿÿ8ÙæµÈÒ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8ÚæµÈÒ1
+java:S1319"eThe type of "items" should be an interface such as "List" rather than the implementation "ArrayList".(çàÑìùÿÿÿÿ8ºÂ¢‰Ò1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8¡ù‰Ò1
 g
-java:S16596"EDeclare "priceTxt" and all following declarations on a separate line.(¦Õ´èıÿÿÿÿ8úæµÈÒ1
+java:S16596"EDeclare "priceTxt" and all following declarations on a separate line.(¦Õ´èıÿÿÿÿ8ÏÂ¢‰Ò1
 W
-java:S1874I":Remove this use of "getAdapterPosition"; it is deprecated.(ïÅÿ8üæµÈÒ1
+java:S1874I":Remove this use of "getAdapterPosition"; it is deprecated.(ïÅÿ8ĞÂ¢‰Ò1
 \
-java:S1874J":Remove this use of "getAdapterPosition"; it is deprecated.(ƒİ†ıøÿÿÿÿ8üæµÈÒ1
+java:S1874J":Remove this use of "getAdapterPosition"; it is deprecated.(ƒİ†ıøÿÿÿÿ8ĞÂ¢‰Ò1
 H
-java:S1905K"&Remove this unnecessary cast to "int".(ç©¢Ïüÿÿÿÿ8üæµÈÒ1
+java:S1905K"&Remove this unnecessary cast to "int".(ç©¢Ïüÿÿÿÿ8ĞÂ¢‰Ò1
 \
-java:S1874K":Remove this use of "getAdapterPosition"; it is deprecated.(ç©¢Ïüÿÿÿÿ8üæµÈÒ1
+java:S1874K":Remove this use of "getAdapterPosition"; it is deprecated.(ç©¢Ïüÿÿÿÿ8ĞÂ¢‰Ò1

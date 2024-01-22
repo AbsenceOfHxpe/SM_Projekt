@@ -47,7 +47,7 @@ public class OrdersActivity extends AppCompatActivity {
 
 
         RecyclerView recyclerViewRest = findViewById(R.id.cardViewOrders);
-        recyclerViewRest.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewRest.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         List<OrderTable> orderTables = orderDao.getAllOrdersSync();
         OrdersAdapter ordersAdapter = new OrdersAdapter(orderTables, restaurantDao);
         recyclerViewRest.setAdapter(ordersAdapter);

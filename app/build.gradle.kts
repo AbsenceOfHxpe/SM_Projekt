@@ -45,6 +45,7 @@ dependencies {
     implementation("androidx.room:room-runtime:2.6.1")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.navigation:navigation-fragment:2.7.6")
+    implementation ("org.threeten:threetenbp:1.4.0")
     annotationProcessor("androidx.room:room-compiler:2.6.1")
 
     implementation("com.google.android.gms:play-services-maps:18.2.0")

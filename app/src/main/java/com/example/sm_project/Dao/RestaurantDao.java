@@ -32,6 +32,9 @@ public interface RestaurantDao {
     @Query("SELECT name FROM restauranttable WHERE id = :restaurantId")
     String getRestaurantNameById(int restaurantId);
 
+    @Query("SELECT id FROM restauranttable WHERE name = :restaurantName")
+    int getRestaurantIdByName(String restaurantName);
+
     @Query("SELECT dishtable.* FROM dishtable " +
             "INNER JOIN restaurant_dish_cross_ref ON dishtable.id = restaurant_dish_cross_ref.dishId " +
             "WHERE restaurant_dish_cross_ref.restaurantId = :restaurantId")

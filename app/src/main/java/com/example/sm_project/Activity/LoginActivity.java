@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,27 +42,6 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.loginBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String userName = binding.loginText.getText().toString();
-                String password = binding.passwordText.getText().toString();
-
-                if (userDao.login(userName, password)) {
-                    int userId = userDao.getUserIdByLogin(userName);
-
-                    SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putInt("userId", userId);
-                    editor.apply();
-
-                } else {
-                    Toast.makeText(LoginActivity.this, R.string.invalid_login, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-
 
         binding.googleIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,6 +76,16 @@ public class LoginActivity extends AppCompatActivity {
                 String password = binding.passwordText.getText().toString();
 
                 if(userDao.login(userName,password)){
+
+                    int userId = userDao.getUserIdByLogin(userName);
+
+                    SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("userId", userId);
+                    editor.apply();
+                    Log.i("TAG","Pokaz userID" + userId +"");
+
+
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("userLogin", userName); // Pass the login information
                     startActivity(intent);
