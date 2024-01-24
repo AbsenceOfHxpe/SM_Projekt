@@ -1,15 +1,13 @@
 package com.example.sm_project.Converter;
 
 import androidx.room.TypeConverter;
-import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class DataConverter {
-    private static final String DATE_FORMAT = "dd.MM.yyyy";
-    private static final TimeZone UTC_TIMEZONE = TimeZone.getTimeZone("UTC");
+    private static final String DATE_TIME_FORMAT = "dd.MM.yyyy HH:mm:ss";
 
     @TypeConverter
     public static Date fromTimestamp(Long value) {
@@ -27,9 +25,9 @@ public class DataConverter {
             return null;
         }
         try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+            SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_FORMAT, Locale.getDefault());
             return dateFormat.parse(dateString);
-        } catch (ParseException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
@@ -40,8 +38,12 @@ public class DataConverter {
         if (date == null) {
             return null;
         }
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
-        dateFormat.setTimeZone(UTC_TIMEZONE);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_TIME_FORMAT, Locale.getDefault());
         return dateFormat.format(date);
+    }
+
+
+    public static Date getCurrentDate() {
+        return new Date();
     }
 }

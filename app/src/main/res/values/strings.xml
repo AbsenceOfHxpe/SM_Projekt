@@ -3,6 +3,7 @@
     <string name="welcome_text">Witaj</string>
     <string name="search_hint">Wyszukaj restauracje...</string>
     <string name="category">Wybierz kategorie</string>
+    <string name="category_name">Kategoria</string>
     <string name="acc_question">Nie masz jeszcze konta?</string>
     <string name="choose_restaurant">Twoje restauracje</string>
     <string name="expand_click">Rozwiń</string>

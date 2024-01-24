@@ -5,6 +5,7 @@
     <string name="welcome_text">Hello</string>
     <string name="search_hint">Search restaurant...</string>
     <string name="category">Choose category</string>
+    <string name="category_name">Category</string>
     <string name="choose_restaurant">Choose Restaurant</string>
     <string name="acc_question">Don\'t you have account?</string>
     <string name="expand_click">Expand</string>

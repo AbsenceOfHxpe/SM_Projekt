@@ -1,9 +1,9 @@
 
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÎÛúÿÿÿÿ8×ì¦ŒÒ1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÎÛúÿÿÿÿ8×ì¦ŒÒ1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÎÛúÿÿÿÿ8×ì¦ŒÒ1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÎÛúÿÿÿÿ8×ì¦ŒÒ1
-r	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÖÎÛúÿÿÿÿ8×ì¦ŒÒ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ®¼8×ì¦ŒÒ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ®¼8×ì¦ŒÒ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ®¼8×ì¦ŒÒ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ®¼8×ì¦ŒÒ1
+m	java:S117"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µ®¼8­±—Ó1
 {	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(˜¼øıÿÿÿÿ8Øì¦ŒÒ1
 q	java:S116"URename this field "CategoryId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ï8İì¦ŒÒ1
 w	java:S116"VRename this field "Description" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º¼Â­ùÿÿÿÿ8İì¦ŒÒ1
@@ -18,3 +18,6 @@ p	java:S116"ORename this field "Star" to match the regular expression '^[a-z]
 m	java:S116"QRename this field "TimeId" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Şïéó8İì¦ŒÒ1
 p	java:S116"TRename this field "TimeValue" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(×Ù’€8İì¦ŒÒ1
 l	java:S116"PRename this field "Title" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ã¨„æ8İì¦ŒÒ1
+M
+java:S1172"0Remove this unused method parameter "TimeValue".(µ®¼8·”ÿ—Ó1
+X	java:S125"<This block of commented-out lines of code should be removed.(½8·”ÿ—Ó1

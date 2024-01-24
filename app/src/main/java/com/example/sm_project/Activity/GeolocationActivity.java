@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class GeolocationActivity extends AppCompatActivity {
     private FusedLocationProviderClient fusedLocationProviderClient;
     private TextView country, city, address;
     private Button locationBtn;
+    private ImageView backBtn;
     private static final int REQUEST_CODE = 100;
     private static final String USER_ADDRESS_KEY = "user_address";
     private static final String USER_CITY_KEY = "user_city";
@@ -54,6 +56,11 @@ public class GeolocationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_geolocation);
         Fragment fragment = new Map_Fragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_layout, fragment).commit();
+        backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(GeolocationActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
 
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -61,12 +68,11 @@ public class GeolocationActivity extends AppCompatActivity {
         city = findViewById(R.id.userCityTxt);
         country = findViewById(R.id.userCountryTxt);
 
+
         locationBtn = findViewById(R.id.getLocationBtn);
         locationBtn.setOnClickListener(v -> getLastLocation());
 
-        // Przywróć dane, jeśli zostały zapisane
         restoreSavedLocation();
-        // Przywróć lokalizację markera
         restoreMarkerLocation();
     }
 

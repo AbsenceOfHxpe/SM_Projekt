@@ -93,12 +93,11 @@ public class MainActivity extends AppCompatActivity  {
         restaurantDao = myDB.getRestaurantDao();
         orderDao = myDB.getOrderDao();
         restaurantDishCrossRefDao = myDB.getRDCrossDao();
-        Date date = DataConverter.fromString("24.10.2033");
-
+        Date currentDate = DataConverter.getCurrentDate();
 
         orderDao.getAllOrders().observe(this, orderTables -> {
             if(orderTables == null || orderTables.isEmpty()){
-                orderDao.insert(new OrderTable(date, 26.70, 1, 2));
+                orderDao.insert(new OrderTable(currentDate, 26.70, 1, 2));
             }
         });
 

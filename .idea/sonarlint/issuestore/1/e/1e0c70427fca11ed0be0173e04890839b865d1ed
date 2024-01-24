@@ -1,7 +1,7 @@
 
-i	java:S1016"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(°öºù8×Œï™Ó1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8ÜŒï™Ó1
-_
-java:S16598"BDeclare "price" and all following declarations on a separate line.(öİß8ßï™Ó1
+i	java:S1016"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(°öºù8­‡‚ËÒ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(àˆÂ8®‡‚ËÒ1
+d
+java:S16598"BDeclare "price" and all following declarations on a separate line.(Êö´ıÿÿÿÿ8Å‡‚ËÒ1
 G
-java:S1068"+Remove this unused "context" private field.(êİç8ãï™Ó1
+java:S1068"+Remove this unused "context" private field.(êİç8Å‡‚ËÒ1

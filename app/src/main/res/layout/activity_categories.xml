@@ -25,9 +25,10 @@
 
                 <ImageView
                     android:id="@+id/backBtn"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="62dp"
+                    android:layout_height="62dp"
                     android:padding="12dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/arrow" />
@@ -36,7 +37,7 @@
                     android:id="@+id/titleTxt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="title"
+                    android:text="@string/category"
                     android:textColor="@color/blue_grey"
                     android:textSize="24sp"
                     android:textStyle="bold"
@@ -66,13 +67,13 @@
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
-                android:layout_width="427dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:background="@drawable/grey_background"
-                app:labelVisibilityMode="labeled"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
+                app:labelVisibilityMode="labeled"
                 app:menu="@menu/botttom_nav_menu" />
 
 

@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -33,6 +34,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
 
     private RestaurantDao restaurantDao;
     private ProgressBar progressBar;
+    private ImageView backBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         binding = ActivityOrdersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         setContentView(R.layout.activity_list_food);
+        backBtn = findViewById(R.id.backBtn);
 
         // Inicjalizacja restaurantDao (pamiętaj, że musisz mieć odpowiednią instancję bazy danych)
         myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
@@ -83,7 +86,11 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         FoodListAdapter foodListAdapter = new FoodListAdapter(foodsList, this);
         recyclerView.setAdapter(foodListAdapter);
 
-        setVariable();
+        backBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(ListFoodActivity.this, MainActivity.class);
+            startActivity(intent);
+        });
+
 
 
         binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -109,9 +116,7 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
             }
         });
     }
-    private void setVariable() {
-        binding.backBtn.setOnClickListener(v -> finish());
-    }
+
 
     @Override
     public void onFoodClick(String foodName, float price, int img) {

@@ -21,6 +21,9 @@ public interface OrderDao {
     @Query("SELECT * FROM ordertable")
     List<OrderTable> getAllOrdersSync();
 
+    @Query("SELECT * FROM OrderTable ORDER BY date DESC")
+    List<OrderTable> getAllOrdersSyncDesc();
+
     @Insert
     long insert(OrderTable orderTable);
 

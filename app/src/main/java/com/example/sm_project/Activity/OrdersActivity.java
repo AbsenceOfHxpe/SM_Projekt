@@ -1,8 +1,10 @@
 package com.example.sm_project.Activity;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,6 +34,7 @@ public class OrdersActivity extends AppCompatActivity {
     MyDataBase myDB;
     private OrderDao orderDao;
     private RestaurantDao restaurantDao;
+    private ImageView backBtn;
 
 
     @Override
@@ -48,9 +51,10 @@ public class OrdersActivity extends AppCompatActivity {
 
         RecyclerView recyclerViewRest = findViewById(R.id.cardViewOrders);
         recyclerViewRest.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        List<OrderTable> orderTables = orderDao.getAllOrdersSync();
+        List<OrderTable> orderTables = orderDao.getAllOrdersSyncDesc();
         OrdersAdapter ordersAdapter = new OrdersAdapter(orderTables, restaurantDao);
         recyclerViewRest.setAdapter(ordersAdapter);
+
 
 
         binding.backBtn.setOnClickListener(v -> {

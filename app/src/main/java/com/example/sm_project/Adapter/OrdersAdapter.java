@@ -26,6 +26,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
         this.restaurantDao = restaurantDao;
     }
 
+
     @NonNull
     @Override
     public OrdersAdapter.viewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

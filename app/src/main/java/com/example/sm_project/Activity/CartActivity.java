@@ -132,9 +132,10 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
     }
 
     private void saveTotalAmountToDatabase(double totalSum) {
-        Date date = DataConverter.fromString("24.10.2033");
+        Date currentDate = DataConverter.getCurrentDate();
 
-        OrderTable orderTable = new OrderTable(date, cost, userId, restaurantId);
+
+        OrderTable orderTable = new OrderTable(currentDate, cost, userId, restaurantId);
         orderDao.insert(orderTable);
     }
 

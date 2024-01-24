@@ -21,7 +21,7 @@
     import java.util.concurrent.ExecutorService;
     import java.util.concurrent.Executors;
 
-    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 34)
+    @Database(entities = {UserTable.class,RestaurantTable.class,  DishTable.class,OrderTable.class, DishOrderCrossRef.class, RestaurantDishCrossRef.class, CategoryTable.class}, version = 38)
     @TypeConverters(DataConverter.class)
     public abstract class MyDataBase extends RoomDatabase {
 
@@ -67,10 +67,6 @@
             public void onCreate(@NonNull SupportSQLiteDatabase db) {
                 super.onCreate(db);
                 databaseWriteExecutor.execute(() -> {
-
-
-
-
 
                 });
             }
