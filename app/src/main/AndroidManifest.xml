@@ -69,7 +69,13 @@
             android:name=".Activity.CategoryActivity"
             android:exported="false" />
 
+        <activity
+            android:name=".Activity.SettingsActivity"
+            android:exported="false" />
 
+        <activity
+            android:name=".Activity.CategorySettingsActivity"
+            android:exported="false" />
 
         <activity
             android:name=".Activity.LoadingActivity"

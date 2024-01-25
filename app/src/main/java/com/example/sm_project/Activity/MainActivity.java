@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -75,6 +76,8 @@ public class MainActivity extends AppCompatActivity  {
     private RestaurantDao restaurantDao;
     private BestRestAdapter restaurantAdapter;
 
+    private ImageView settingsBtn;
+
     private RestaurantDishCrossRefDao restaurantDishCrossRefDao;
     private OrderDao orderDao;
 
@@ -86,6 +89,7 @@ public class MainActivity extends AppCompatActivity  {
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        settingsBtn = findViewById(R.id.settingsBtn);
 
         myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
@@ -94,6 +98,8 @@ public class MainActivity extends AppCompatActivity  {
         orderDao = myDB.getOrderDao();
         restaurantDishCrossRefDao = myDB.getRDCrossDao();
         Date currentDate = DataConverter.getCurrentDate();
+
+        goToSettings();
 
         orderDao.getAllOrders().observe(this, orderTables -> {
             if(orderTables == null || orderTables.isEmpty()){
@@ -182,8 +188,6 @@ public class MainActivity extends AppCompatActivity  {
         });
 
 
-
-
         RecyclerView recyclerViewCat = findViewById(R.id.categoryView); // RecyclerView
         recyclerViewCat.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         List<CategoryTable> categoryTables = categoryDao.getAllCategoriesSync();
@@ -209,6 +213,8 @@ public class MainActivity extends AppCompatActivity  {
                 startActivity(intent);
             }
         });
+
+
 
 
 
@@ -412,7 +418,13 @@ public class MainActivity extends AppCompatActivity  {
         editor.apply();
     }
 
+    private void goToSettings() {
+        settingsBtn.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
 
+    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

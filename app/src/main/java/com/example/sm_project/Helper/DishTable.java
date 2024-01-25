@@ -15,7 +15,7 @@ public class DishTable {
 
     private double price;
 
-    public DishTable( String name, int imagePath, double rating, double price) {
+    public DishTable(String name, int imagePath, double rating, double price) {
         this.name = name;
         this.imagePath = imagePath;
         this.rating = rating;

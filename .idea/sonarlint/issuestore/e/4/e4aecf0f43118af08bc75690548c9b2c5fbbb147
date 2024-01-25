@@ -1,22 +1,24 @@
 
-h	java:S112®"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8˜’Ø’Ò1
+h	java:S112´"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8˜’Ø’Ò1
 p
-java:S1192¨"RUse already-defined constant 'LATITUDE_KEY' instead of duplicating its value here.(œÓÖð8™’Ø’Ò1
+java:S1192®"RUse already-defined constant 'LATITUDE_KEY' instead of duplicating its value here.(œÓÖð8™’Ø’Ò1
 v
-java:S1192©"SUse already-defined constant 'LONGITUDE_KEY' instead of duplicating its value here.(ÿËå”øÿÿÿÿ8™’Ø’Ò1
+java:S1192¯"SUse already-defined constant 'LONGITUDE_KEY' instead of duplicating its value here.(ÿËå”øÿÿÿÿ8™’Ø’Ò1
 F
-java:S1604¡"(Make this anonymous inner class a lambda(ý’Ÿ÷8™’Ø’Ò1
+java:S1604§"(Make this anonymous inner class a lambda(ý’Ÿ÷8™’Ø’Ò1
 K
-java:S1604‚"(Make this anonymous inner class a lambda(ôšÞÞüÿÿÿÿ8š’Ø’Ò1
+java:S1604ˆ"(Make this anonymous inner class a lambda(ôšÞÞüÿÿÿÿ8š’Ø’Ò1
 n
-java:S1301¿"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8š’Ø’Ò1
+java:S1301Å"KReplace this "switch" statement by "if" statements to increase readability.(×ö³–úÿÿÿÿ8š’Ø’Ò1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8›’Ø’Ò1
 c
-java:S1659$"ADeclare "city" and all following declarations on a separate line.(ðÚ§¬üÿÿÿÿ8î’Ø’Ò1
+java:S1659%"ADeclare "city" and all following declarations on a separate line.(ðÚ§¬üÿÿÿÿ8î’Ø’Ò1
+s
+java:S1450'"VRemove the "backBtn" field and declare it as a local variable in the relevant methods.(°Ò‡´8„³ÛíÓ1
 w
-java:S1450%"ZRemove the "locationBtn" field and declare it as a local variable in the relevant methods.(»Û®ó8ï’Ø’Ò1
+java:S1450&"ZRemove the "locationBtn" field and declare it as a local variable in the relevant methods.(»Û®ó8ï’Ø’Ò1
 U
-java:S1874‹"7Remove this use of "getFromLocation"; it is deprecated.(”…ŽÒ8ß“Ø’Ò1
+java:S1874‘"7Remove this use of "getFromLocation"; it is deprecated.(”…ŽÒ8ß“Ø’Ò1
 m
-java:S1874½"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ8æ“Ø’Ò1
-D	java:S131¿""Add a default case to this switch.(×ö³–úÿÿÿÿ8ç“Ø’Ò1
+java:S1874Ã"JDon't override a deprecated method or explicitly mark it as "@Deprecated".(Ó»×¶þÿÿÿÿ8æ“Ø’Ò1
+D	java:S131Å""Add a default case to this switch.(×ö³–úÿÿÿÿ8ç“Ø’Ò1

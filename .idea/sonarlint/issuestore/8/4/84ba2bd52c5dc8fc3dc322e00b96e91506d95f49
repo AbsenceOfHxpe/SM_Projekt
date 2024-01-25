@@ -1,12 +1,12 @@
 
 l
-java:S1192X"JDefine a constant instead of duplicating this literal "cart_data" 3 times.(ĞÆ®ûÿÿÿÿ8ì²êëÓ1
-l
-java:S1192Ë"IDefine a constant instead of duplicating this literal "%.2f zÅ‚" 3 times.(‡Á²Óùÿÿÿÿ8×ÎÕëÓ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ÙÎÕëÓ1
+java:S1192—"IDefine a constant instead of duplicating this literal "%.2f zÅ‚" 3 times.(‡Á²Óùÿÿÿÿ8ıÚÅîÓ1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ÿÚÅîÓ1
 D
-java:S16599"'Declare "couponBtn" on a separate line.(ü³ó8‡ÏÕëÓ1
+java:S1659="'Declare "couponBtn" on a separate line.(ü³ó8¤ÛÅîÓ1
+z
+java:S14500"XRemove the "cartItems" field and declare it as a local variable in the relevant methods.(ø äßøÿÿÿÿ8¤ÛÅîÓ1
 p
-java:S1450%"SRemove the "myDB" field and declare it as a local variable in the relevant methods.(¸©ßŒ8‡ÏÕëÓ1
-M
-java:S1172®"/Remove this unused method parameter "totalSum".(ñş¦ß8™ÏÕëÓ1
+java:S1450)"SRemove the "myDB" field and declare it as a local variable in the relevant methods.(¸©ßŒ8¤ÛÅîÓ1
+L
+java:S1172{"/Remove this unused method parameter "totalSum".(ñş¦ß8²ÛÅîÓ1

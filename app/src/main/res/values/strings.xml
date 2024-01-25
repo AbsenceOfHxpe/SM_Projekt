@@ -8,6 +8,7 @@
     <string name="choose_restaurant">Twoje restauracje</string>
     <string name="expand_click">Rozwiń</string>
 
+
     <string name="cart_info">Twój koszyk jest pusty</string>
     <string name="summary_info">Podsumowanie</string>
     <string name="code_hint">Wpisz kod</string>
@@ -70,4 +71,19 @@
 
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <string name="settings">Ustawienia</string>
+    <string name="settings_category">Zarządzaj kategoriami</string>
+    <string name="settings_restaurant">Zarządzaj restauracjami</string>
+    <string name="settings_dish">Zarządzaj daniami</string>
+    <string name="settings_order">Zarządzaj zamówieniami</string>
+
+    <string name="add">Dodaj</string>
+    <string name="edit">Edytuj</string>
+    <string name="delete">Usuń</string>
+
+
+
+
 </resources>

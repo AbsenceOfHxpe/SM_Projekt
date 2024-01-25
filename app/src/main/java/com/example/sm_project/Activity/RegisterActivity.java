@@ -77,6 +77,8 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+
+
     private TextWatcher createSimpleTextWatcher(SimpleTextChangeListener listener) {
         return new TextWatcher() {
             @Override

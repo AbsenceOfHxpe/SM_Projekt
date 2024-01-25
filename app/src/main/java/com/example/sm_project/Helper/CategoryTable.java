@@ -10,6 +10,8 @@ public class CategoryTable {
 
     String name;
     int imgPath;
+    public CategoryTable() {
+    }
 
     public CategoryTable(String name, int imgPath) {
         this.name = name;
@@ -39,4 +41,7 @@ public class CategoryTable {
     public void setImgPath(int imgPath) {
         this.imgPath = imgPath;
     }
+
+
+
 }

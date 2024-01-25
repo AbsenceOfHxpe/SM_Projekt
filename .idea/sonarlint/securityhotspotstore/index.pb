@@ -30,7 +30,7 @@ Capp/src/main/java/com/example/sm_project/Activity/CartActivity.java,8/4/84ba2b
 u
 Eapp/src/main/java/com/example/sm_project/Activity/DetailActivity.java,b/0/b072583afeef4d516562b9826eca98cdcbceecdb
 z
-Japp/src/main/java/com/example/sm_project/Activity/GeolocationActivity.java,e\4\e4aecf0f43118af08bc75690548c9b2c5fbbb147
+Japp/src/main/java/com/example/sm_project/Activity/GeolocationActivity.java,e/4/e4aecf0f43118af08bc75690548c9b2c5fbbb147
 s
 Capp/src/main/java/com/example/sm_project/Activity/MainActivity.java,4/2/424084f872ca007eee99605972f662bdfd41805d
 P
