@@ -4,9 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,6 +14,12 @@ import com.bumptech.glide.Glide;
 import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityDetailBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DetailActivity extends AppCompatActivity {
     ActivityDetailBinding binding;
@@ -23,7 +29,7 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityDetailBinding.inflate((getLayoutInflater()));
+        binding = ActivityDetailBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         TextView titleTextView = findViewById(R.id.titleTxt);
@@ -49,9 +55,12 @@ public class DetailActivity extends AppCompatActivity {
                 Intent intent = new Intent(DetailActivity.this, CartActivity.class);
                 intent.putExtra("foodname", foodName);
                 intent.putExtra("price", price);
-                intent.putExtra("total", price*counter);
+                intent.putExtra("total", price * counter);
                 intent.putExtra("counter", counter);
                 intent.putExtra("img", imagePath);
+
+                // Zapisz dane w SharedPreferences
+                updateOrAddToCart(foodName, price, price * counter, counter, imagePath);
 
                 startActivity(intent);
             }
@@ -85,5 +94,43 @@ public class DetailActivity extends AppCompatActivity {
 
     private void setVariable() {
         binding.backBtn.setOnClickListener(v -> finish());
+    }
+
+    private void updateOrAddToCart(String foodName, float price, float total, int counter, int imagePath) {
+        SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        // Odczytaj obecną listę produktów
+        String jsonCart = preferences.getString("cart_list", "");
+        Type type = new TypeToken<List<Foods>>() {}.getType();
+        List<Foods> cartList = new Gson().fromJson(jsonCart, type);
+
+        if (cartList == null) {
+            cartList = new ArrayList<>();
+        }
+
+        // Sprawdź, czy produkt już istnieje na liście
+        boolean productExists = false;
+        for (Foods existingFood : cartList) {
+            if (existingFood.getTitle().equals(foodName)) {
+                // Produkt istnieje, zwiększ ilość
+                existingFood.setNumberInCard(existingFood.getNumberInCard() + counter);
+                productExists = true;
+                break;
+            }
+        }
+
+        // Jeśli produkt nie istnieje, dodaj go do listy
+        if (!productExists) {
+            Foods newFood = new Foods(0.0, imagePath, 0, foodName, price);
+            newFood.setNumberInCard(counter);
+            cartList.add(newFood);
+        }
+
+        // Zapisz zaktualizowaną listę produktów
+        String updatedCart = new Gson().toJson(cartList);
+        editor.putString("cart_list", updatedCart);
+
+        editor.apply();
     }
 }

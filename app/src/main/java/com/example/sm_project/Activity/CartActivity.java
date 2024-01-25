@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,10 +26,14 @@ import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.Helper.OrderTable;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityCartBinding;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.CartListener {
 
@@ -66,7 +69,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         binding = ActivityCartBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-
         myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         orderDao = myDB.getOrderDao();
@@ -76,12 +78,11 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         SharedPreferences preferences2 = getSharedPreferences("restaurant_data", MODE_PRIVATE);
         userId = preferences.getInt("userId", -1);
         restaurantId = preferences2.getInt("restaurantId", MODE_PRIVATE);
-        Log.i(TAG, "UserId: " + userId + ", " );
-        Log.i(TAG, "RestaurantId: " + restaurantId + ", " );
+        Log.i(TAG, "UserId: " + userId + ", ");
+        Log.i(TAG, "RestaurantId: " + restaurantId + ", ");
 
         initViews();
         initRecyclerView();
-
         setListeners();
 
         updateCartSummary(calculateTotal(), discount);
@@ -102,20 +103,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         RecyclerView recyclerView = findViewById(R.id.cardView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        cartItems = new ArrayList<>();
-
-        Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            String foodName = extras.getString("foodname");
-            float price = extras.getFloat("price");
-            int counter = extras.getInt("counter");
-            int imagePath = extras.getInt("img");
-
-            Foods food = new Foods(0.0, imagePath, 0, foodName, price);
-            food.setNumberInCard(counter);
-            cartItems.add(food);
-        }
-
+        cartItems = loadCartData(); // Załaduj dane z SharedPreferences
         cartAdapter = new CartAdapter(cartItems, this);
         recyclerView.setAdapter(cartAdapter);
     }
@@ -124,6 +112,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         confirmBtn.setOnClickListener(v -> {
             float totalAmount = calculateTotal();
             saveTotalAmountToDatabase(totalAmount);
+            clearCartData();
             Intent intent = new Intent(CartActivity.this, WaitingActivity.class);
             startActivity(intent);
         });
@@ -133,8 +122,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
 
     private void saveTotalAmountToDatabase(double totalSum) {
         Date currentDate = DataConverter.getCurrentDate();
-
-
         OrderTable orderTable = new OrderTable(currentDate, cost, userId, restaurantId);
         orderDao.insert(orderTable);
     }
@@ -164,7 +151,7 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         totalCartPriceTextView.setText(String.format("%.2f zł", total - discountAmount));
         servicePrice.setText(String.format("%.2f zł", serviceFee));
         totalSum.setText(String.format("%.2f zł", total - discountAmount + DELIVERY_COST + serviceFee));
-        cost = (total - discountAmount +DELIVERY_COST +serviceFee);
+        cost = (total - discountAmount + DELIVERY_COST + serviceFee);
         double roundedCost = Math.round(cost * 100.0) / 100.0;
         cost = roundedCost;
     }
@@ -208,5 +195,22 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         food.setNumberInCard(currentQuantity);
         cartAdapter.notifyDataSetChanged();
         updateCartSummary(calculateTotal(), discount);
+    }
+
+    private ArrayList<Foods> loadCartData() {
+        SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
+        String jsonCart = preferences.getString("cart_list", "");
+
+        Type type = new TypeToken<List<Foods>>() {}.getType();
+        return new Gson().fromJson(jsonCart, type);
+    }
+
+    private void clearCartData() {
+        SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        // Usuń zapisane dane z SharedPreferences
+        editor.remove("cart_list");
+        editor.apply();
     }
 }

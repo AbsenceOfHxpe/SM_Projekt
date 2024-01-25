@@ -166,7 +166,6 @@ public class MainActivity extends AppCompatActivity  {
         restaurantAdapter.setOnRestaurantClickListener(new BestRestAdapter.OnRestaurantClickListener() {
             @Override
             public void onRestaurantClick(RestaurantTable restaurant) {
-                // Po kliknięciu restauracji, przenieś się do ListFoodActivity
                 Intent intent = new Intent(MainActivity.this, ListFoodActivity.class);
                 intent.putExtra("restaurantId", restaurant.getId());
                 intent.putExtra("nazwaRestauracji", restaurant.getName());

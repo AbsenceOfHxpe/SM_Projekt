@@ -1,11 +1,13 @@
 package com.example.sm_project.Activity;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -52,7 +54,6 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
 
         TextView restaurantNameTextView = findViewById(R.id.titleTxt);
 
-
         String restaurantName = getIntent().getStringExtra("nazwaRestauracji");
         int restaurantId = getIntent().getIntExtra("restaurantId", -1);
 
@@ -67,6 +68,13 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         editor.apply();
         Log.i("TAG","RestaurantId: "+ restaurantId + "");
 
+        backBtn.setOnClickListener(v -> {
+            if (hasDataInCart()) {
+                showLeaveDialog();
+            } else {
+                finish();
+            }
+        });
 
         // Pobierz listę dań dla danej restauracji za pomocą DAO
         List<DishTable> dishesForRestaurant = restaurantDao.getDishesForRestaurant(restaurantId);
@@ -79,44 +87,35 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         Log.d("ListFoodActivity", "Dishes for restaurant: " + dishesForRestaurant.toString());
         progressBar.setVisibility(View.GONE);
 
-
         RecyclerView recyclerView = findViewById(R.id.FoodListView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         FoodListAdapter foodListAdapter = new FoodListAdapter(foodsList, this);
         recyclerView.setAdapter(foodListAdapter);
 
-        backBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(ListFoodActivity.this, MainActivity.class);
-            startActivity(intent);
-        });
-
-
-
         binding.bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
                 int itemId = item.getItemId();
 
                 if(itemId == R.id.home){
                     Intent ordersIntent = new Intent(ListFoodActivity.this, MainActivity.class);
                     startActivity(ordersIntent);
-
                 } else if(itemId == R.id.orders){
                     Intent ordersIntent = new Intent(ListFoodActivity.this, OrdersActivity.class);
                     startActivity(ordersIntent);
-
-                }else if(itemId == R.id.search){
-                    Intent ordersIntent = new Intent(ListFoodActivity.this, ListFoodActivity.class);
-                    startActivity(ordersIntent);
-
+                } else if(itemId == R.id.search){
+                    if (hasDataInCart()) {
+                        showLeaveDialog();
+                    } else {
+                        Intent ordersIntent = new Intent(ListFoodActivity.this, ListFoodActivity.class);
+                        startActivity(ordersIntent);
+                    }
                 }
                 return false;
             }
         });
     }
-
 
     @Override
     public void onFoodClick(String foodName, float price, int img) {
@@ -125,5 +124,35 @@ public class ListFoodActivity extends AppCompatActivity implements FoodListAdapt
         intent.putExtra("price", price);
         intent.putExtra("img", img);
         startActivity(intent);
+    }
+
+    private boolean hasDataInCart() {
+        SharedPreferences cartPreferences = getSharedPreferences("cart_data", MODE_PRIVATE);
+        return cartPreferences.contains("cart_list");
+    }
+
+    private void showLeaveDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Masz produkty w koszyku. Czy na pewno chcesz opuścić restaurację?");
+        builder.setPositiveButton("Tak", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                clearOrderSharedPreferences();
+                finish();
+            }
+        });
+        builder.setNegativeButton("Nie", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.show();
+    }
+
+    private void clearOrderSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.remove("cart_list");
+        editor.apply();
     }
 }
