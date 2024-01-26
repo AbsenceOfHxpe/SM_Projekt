@@ -40,5 +40,9 @@ public class SettingsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        restSet.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, RestSettingsActivity.class);
+            startActivity(intent);
+        });
     }
 }

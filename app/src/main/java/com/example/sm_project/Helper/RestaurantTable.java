@@ -23,6 +23,8 @@ public class RestaurantTable {
         this.categoryId=categoryId;
     }
 
+    public RestaurantTable(){};
+
     public int getId() {
         return id;
     }

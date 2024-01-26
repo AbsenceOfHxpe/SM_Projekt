@@ -1,13 +1,11 @@
 package com.example.sm_project.Activity;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,12 +33,17 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 public class CartActivity extends AppCompatActivity implements CartAdapter.CartListener {
 
     private ActivityCartBinding binding;
     private MyDataBase myDB;
     private OrderDao orderDao;
     private CartAdapter cartAdapter;
+
+    private static final String CART_ITEMS_KEY = "cart_items";
+    private static final String DISCOUNT_KEY = "discount";
 
     private static final String USER_PREFERENCES_NAME = "user_preferences";
     private static final String USED_COUPON_KEY = "used_coupon";
@@ -73,19 +76,39 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         orderDao = myDB.getOrderDao();
 
-        // Pobierz userId z SharedPreferences
         SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
         SharedPreferences preferences2 = getSharedPreferences("restaurant_data", MODE_PRIVATE);
         userId = preferences.getInt("userId", -1);
-        restaurantId = preferences2.getInt("restaurantId", MODE_PRIVATE);
-        Log.i(TAG, "UserId: " + userId + ", ");
-        Log.i(TAG, "RestaurantId: " + restaurantId + ", ");
+        restaurantId = preferences2.getInt("restaurantId", -1);
 
         initViews();
         initRecyclerView();
         setListeners();
 
+
+        if (savedInstanceState != null) {
+            // Przywróć dane po obrocie ekranu
+            cartItems = (ArrayList<Foods>) savedInstanceState.getSerializable(CART_ITEMS_KEY);
+            discount = savedInstanceState.getDouble(DISCOUNT_KEY);
+            updateCartSummary(calculateTotal(), discount);
+        } else {
+            // Załaduj dane z SharedPreferences
+            if (cartItems == null) {
+                cartItems = loadCartData();
+            }
+            discount = 0.0;
+        }
+
+
         updateCartSummary(calculateTotal(), discount);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        outState.putSerializable(CART_ITEMS_KEY, cartItems);
+        outState.putDouble(DISCOUNT_KEY, discount);
     }
 
     private void initViews() {
@@ -195,14 +218,42 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         food.setNumberInCard(currentQuantity);
         cartAdapter.notifyDataSetChanged();
         updateCartSummary(calculateTotal(), discount);
+
+        updateCartItemQuantity(food);
+    }
+
+    private void updateCartItemQuantity(Foods updatedFood) {
+        ArrayList<Foods> updatedCartItems = loadCartData();
+
+        for (int i = 0; i < updatedCartItems.size(); i++) {
+            Foods food = updatedCartItems.get(i);
+            if (food.getId() == updatedFood.getId()) {
+                food.setNumberInCard(updatedFood.getNumberInCard());
+                break;
+            }
+        }
+
+        saveCartData(updatedCartItems);
     }
 
     private ArrayList<Foods> loadCartData() {
         SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
         String jsonCart = preferences.getString("cart_list", "");
 
-        Type type = new TypeToken<List<Foods>>() {}.getType();
+        Type type = new TypeToken<List<Foods>>() {
+        }.getType();
         return new Gson().fromJson(jsonCart, type);
+    }
+
+    private void saveCartData(ArrayList<Foods> cartItems) {
+        SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+
+        Gson gson = new Gson();
+        String jsonCart = gson.toJson(cartItems);
+
+        editor.putString("cart_list", jsonCart);
+        editor.apply();
     }
 
     private void clearCartData() {

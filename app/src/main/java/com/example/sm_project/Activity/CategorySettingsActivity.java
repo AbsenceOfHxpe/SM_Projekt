@@ -32,7 +32,7 @@ public class CategorySettingsActivity extends AppCompatActivity {
     MyDataBase myDB;
     private CategoryDao categoryDao;
 
-    private CategoryTable categoryToEdit; // Dodane pole do przechowywania obecnie edytowanej kategorii
+    private CategoryTable categoryToEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
