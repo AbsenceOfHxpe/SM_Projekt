@@ -4,8 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,8 +30,6 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
 public class CartActivity extends AppCompatActivity implements CartAdapter.CartListener {
 
@@ -85,7 +81,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         initRecyclerView();
         setListeners();
 
-
         if (savedInstanceState != null) {
             // Przywróć dane po obrocie ekranu
             cartItems = (ArrayList<Foods>) savedInstanceState.getSerializable(CART_ITEMS_KEY);
@@ -99,7 +94,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
             discount = 0.0;
         }
 
-
         updateCartSummary(calculateTotal(), discount);
     }
 
@@ -109,6 +103,16 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
 
         outState.putSerializable(CART_ITEMS_KEY, cartItems);
         outState.putDouble(DISCOUNT_KEY, discount);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        // Przywróć dane po obrocie ekranu
+        cartItems = (ArrayList<Foods>) savedInstanceState.getSerializable(CART_ITEMS_KEY);
+        discount = savedInstanceState.getDouble(DISCOUNT_KEY);
+        updateCartSummary(calculateTotal(), discount);
     }
 
     private void initViews() {
@@ -126,8 +130,8 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         RecyclerView recyclerView = findViewById(R.id.cardView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        cartItems = loadCartData(); // Załaduj dane z SharedPreferences
-        cartAdapter = new CartAdapter(cartItems, this);
+        cartItems = loadCartData();
+        cartAdapter = new CartAdapter(new ArrayList<>(cartItems), this);
         recyclerView.setAdapter(cartAdapter);
     }
 
@@ -205,35 +209,18 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         }
     }
 
-    @Override
-    public void onItemQuantityChanged(Foods food, boolean increase) {
-        int currentQuantity = food.getNumberInCard();
-        if (increase) {
-            currentQuantity++;
-        } else {
-            if (currentQuantity > 0) {
-                currentQuantity--;
-            }
-        }
-        food.setNumberInCard(currentQuantity);
-        cartAdapter.notifyDataSetChanged();
-        updateCartSummary(calculateTotal(), discount);
 
-        updateCartItemQuantity(food);
-    }
 
     private void updateCartItemQuantity(Foods updatedFood) {
-        ArrayList<Foods> updatedCartItems = loadCartData();
-
-        for (int i = 0; i < updatedCartItems.size(); i++) {
-            Foods food = updatedCartItems.get(i);
+        for (int i = 0; i < cartItems.size(); i++) {
+            Foods food = cartItems.get(i);
             if (food.getId() == updatedFood.getId()) {
                 food.setNumberInCard(updatedFood.getNumberInCard());
                 break;
             }
         }
 
-        saveCartData(updatedCartItems);
+        saveCartData(cartItems);
     }
 
     private ArrayList<Foods> loadCartData() {
@@ -264,4 +251,14 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         editor.remove("cart_list");
         editor.apply();
     }
+
+    @Override
+    public void onItemQuantityChanged(Foods food, int newQuantity) {
+        food.setNumberInCard(newQuantity);
+        updateCartItemQuantity(food);
+        cartAdapter.setCartItems(new ArrayList<>(cartItems));
+        cartAdapter.notifyDataSetChanged();
+        updateCartSummary(calculateTotal(), discount);
+    }
+
 }

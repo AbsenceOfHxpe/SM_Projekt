@@ -85,4 +85,42 @@
     <string name="add">Add</string>
     <string name="edit">Edit</string>
     <string name="delete">Delete</string>
+
+    <string name="add_category">Add category</string>
+    <string name="add_restaurant">Add restaurant</string>
+    <string name="ok_button">OK</string>
+
+    <string name="no_categories_to_edit">No available categories to edit</string>
+    <string name="choose_cat">Choose a category to edit</string>
+    <string name="no_categories_to_delete">No available categories to delete</string>
+    <string name="choose_cat_to_delete">Choose a category to delete</string>
+    <string name="enter_category_name">Enter category name</string>
+
+    <string name="category_already_exists">Category with the name %1$s already exists</string>
+    <string name="category_added">Added category: %1$s</string>
+    <string name="error_adding_category">Error adding category</string>
+
+    <string name="category_updated">Updated category: %1$s</string>
+
+    <string name="cannot_delete_category">Cannot delete category. There are associated restaurants.</string>
+    <string name="category_deleted">Deleted category: %1$s</string>
+    <string name="no_category_with_name">No category found with the name: %1$s</string>
+
+
+    <string name="added_restaurant_to_category">Added restaurant %1$s to category %2$s</string>
+    <string name="no_restaurants_to_edit">No available restaurants to edit</string>
+    <string name="choose_restaurant_to_edit">Choose a restaurant to edit</string>
+    <string name="choose_restaurant_to_delete">Choose a restaurant to delete</string>
+    <string name="choose_category">Choose a category</string>
+    <string name="enter_restaurant_name">Enter the restaurant name</string>
+    <string name="restaurant_exists">A restaurant with the name %1$s already exists</string>
+    <string name="error_adding_restaurant">Error while adding the restaurant</string>
+    <string name="updated_restaurant">Updated restaurant: %1$s</string>
+    <string name="deleted_restaurant">Deleted restaurant: %1$s</string>
+    <string name="cannot_delete_restaurant">Cannot delete restaurant. Related categories exist.</string>
+    <string name="add_categories_first">Add categories first</string>
+    <string name="no_restaurants_to_delete">No restaurants to delete</string>
+
+
+
 </resources>

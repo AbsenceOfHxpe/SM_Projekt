@@ -24,7 +24,7 @@ Q.idea/sonarlint/securityhotspotstore/8/8/88a9255124c95bdc913197c120a8d560edc59c
 j
 :app/src/main/java/com/example/sm_project/Domain/Foods.java,a/a/aab082e9acd92777d4d90ec19c2c740675342785
 m
-=app/src/main/java/com/example/sm_project/Domain/Category.java,1\d\1d2b42de086f524574e34235be11ccab0f2d77c0
+=app/src/main/java/com/example/sm_project/Domain/Category.java,1/d/1d2b42de086f524574e34235be11ccab0f2d77c0
 s
 Capp/src/main/java/com/example/sm_project/Activity/CartActivity.java,8/4/84ba2bd52c5dc8fc3dc322e00b96e91506d95f49
 u
@@ -36,7 +36,7 @@ Capp/src/main/java/com/example/sm_project/Activity/MainActivity.java,4/2/424084
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
 p
-@app/src/main/java/com/example/sm_project/Domain/Restaurants.java,0\5\054d61f4a0e63e3defccea5cdcc69ea5c717c723
+@app/src/main/java/com/example/sm_project/Domain/Restaurants.java,0/5/054d61f4a0e63e3defccea5cdcc69ea5c717c723
 q
 Aapp/src/main/java/com/example/sm_project/Adapter/CartAdapter.java,5/6/56cb1778ddea184bf7f3ce803d93d4fa5a6b2b22
 u
@@ -46,7 +46,7 @@ Eapp/src/main/java/com/example/sm_project/Adapter/BestRestAdapter.java,1\8\1838
 w
 Gapp/src/main/java/com/example/sm_project/Activity/ListFoodActivity.java,f/f/ffae42124e34a391157b9a8b0ae9e2b7ef5e9e78
 u
-Eapp/src/main/java/com/example/sm_project/Adapter/CategoryAdapter.java,5\9\59e1d1123b95f59fe9bebac1bb94fd96253892f8
+Eapp/src/main/java/com/example/sm_project/Adapter/CategoryAdapter.java,5/9/59e1d1123b95f59fe9bebac1bb94fd96253892f8
 o
 ?app/src/main/java/com/example/sm_project/Helper/MyDataBase.java,d/2/d205e303f8d0e9df06acaece68823d758c43b5b9
 n
@@ -104,7 +104,7 @@ Q.idea/sonarlint/securityhotspotstore/f/f/ffae42124e34a391157b9a8b0ae9e2b7ef5e9e
 o
 ?app/src/main/java/com/example/sm_project/Helper/OrderTable.java,b/2/b20ca355d64e71d5d3cd2af052e3d88c13fb48ba
 t
-Dapp/src/main/java/com/example/sm_project/Helper/RestaurantTable.java,2\f\2f7e63e258d8c1ffe3592015f228d48881712432
+Dapp/src/main/java/com/example/sm_project/Helper/RestaurantTable.java,2/f/2f7e63e258d8c1ffe3592015f228d48881712432
 n
 >app/src/main/java/com/example/sm_project/Helper/DishTable.java,1/c/1cf1b2a6ffa08a8b20f5734d3447e19870f65b2c
 {
@@ -136,7 +136,7 @@ F
 u
 Eapp/src/main/java/com/example/sm_project/Activity/OrdersActivity.java,b/f/bf739f6f20aff45ac0b64823a3b1289fbd81726b
 k
-;app/src/main/java/com/example/sm_project/Domain/Orders.java,d\d\ddb7e551b32994db460ae69d0a12093606c9ef19
+;app/src/main/java/com/example/sm_project/Domain/Orders.java,d/d/ddb7e551b32994db460ae69d0a12093606c9ef19
 v
 Fapp/src/main/java/com/example/sm_project/Activity/LoadingActivity.java,9/8/989c67be52ebca1feef105e652212b7739ef581a
 t
@@ -161,3 +161,19 @@ v
 Fapp/src/main/java/com/example/sm_project/Dao/DishOrderCrossRefDao.java,0/2/024843f6bc71dfd75c8cbf0c555f76d41fb2f705
 u
 Eapp/src/main/java/com/example/sm_project/Converter/DataConverter.java,0/3/0351d76e04c4fb1993830857728673c56b1ce7f6
+e
+5app/src/main/java/com/example/sm_project/Actions.java,4/d/4d65135471be4be5975081b91133c39f41ebdc31
+|
+Lapp/src/main/java/com/example/sm_project/Domain/CategoryWithRestaurants.java,b/5/b5380163271350810422cbbeeaddccff9e762a6b
+w
+Gapp/src/main/java/com/example/sm_project/Domain/EditRestaurantData.java,0/f/0f8d883eb30fd2deda7c41d76e8f2e753bc10a9f
+ˆ
+Xapp/src/main/java/com/example/sm_project/Activity/Settings/CategorySettingsActivity.java,5/7/57e4c76837ff3d5f1cf3f2dd0688651da3d9e90f
+…
+Uapp/src/main/java/com/example/sm_project/Activity/Settings/OrderSettingsActivity.java,9/8/98ed12652fd480e4e11b178b7fee31e26b13590f
+„
+Tapp/src/main/java/com/example/sm_project/Activity/Settings/DishSettingsActivity.java,f/8/f8bc7a8b17f76402a21bff1ad5e0375e41ca5dab
+€
+Papp/src/main/java/com/example/sm_project/Activity/Settings/SettingsActivity.java,0/7/074806ae99e7a778879fa8f53e41e254cd98705a
+„
+Tapp/src/main/java/com/example/sm_project/Activity/Settings/RestSettingsActivity.java,b/7/b7b9d1080f0d9462d2a75565a33458eb96f8f443

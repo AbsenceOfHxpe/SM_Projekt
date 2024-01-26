@@ -52,6 +52,10 @@ public interface CategoryDao {
     @Query("SELECT * FROM categorytable")
     LiveData<List<CategoryWithRestaurants>> getAllCategoriesWithRestaurants();
 
+    @Delete
+    void deleteRestaurant(RestaurantTable restaurant);
+
+
 
 }
 

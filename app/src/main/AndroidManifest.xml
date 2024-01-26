@@ -70,15 +70,23 @@
             android:exported="false" />
 
         <activity
-            android:name=".Activity.SettingsActivity"
+            android:name=".Activity.Settings.SettingsActivity"
             android:exported="false" />
 
         <activity
-            android:name=".Activity.CategorySettingsActivity"
+            android:name=".Activity.Settings.CategorySettingsActivity"
             android:exported="false" />
 
         <activity
-            android:name=".Activity.RestSettingsActivity"
+            android:name=".Activity.Settings.RestSettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Activity.Settings.DishSettingsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".Activity.Settings.OrderSettingsActivity"
             android:exported="false" />
 
         <activity

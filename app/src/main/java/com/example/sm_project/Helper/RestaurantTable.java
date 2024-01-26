@@ -57,4 +57,6 @@ public class RestaurantTable {
     public void setCategoryId(int categoryId) {
         this.categoryId = categoryId;
     }
+
+
 }

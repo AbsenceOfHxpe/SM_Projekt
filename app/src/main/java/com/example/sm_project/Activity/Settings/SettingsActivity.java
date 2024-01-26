@@ -1,4 +1,4 @@
-package com.example.sm_project.Activity;
+package com.example.sm_project.Activity.Settings;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,8 +8,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.example.sm_project.Activity.MainActivity;
 import com.example.sm_project.R;
-import com.example.sm_project.databinding.ActivityRegisterBinding;
 import com.example.sm_project.databinding.ActivitySettingsBinding;
 
 public class SettingsActivity extends AppCompatActivity {
@@ -42,6 +42,16 @@ public class SettingsActivity extends AppCompatActivity {
 
         restSet.setOnClickListener(v -> {
             Intent intent = new Intent(SettingsActivity.this, RestSettingsActivity.class);
+            startActivity(intent);
+        });
+
+        dishSet.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, DishSettingsActivity.class);
+            startActivity(intent);
+        });
+
+        orderSet.setOnClickListener(v -> {
+            Intent intent = new Intent(SettingsActivity.this, OrderSettingsActivity.class);
             startActivity(intent);
         });
     }

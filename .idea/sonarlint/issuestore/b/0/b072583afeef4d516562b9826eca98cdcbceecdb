@@ -1,8 +1,12 @@
 
-h
-java:S1192)"FDefine a constant instead of duplicating this literal "price" 3 times.(Úñã€ùÿÿÿÿ8ÌóØîÓ1
+k
+java:S1192/"IDefine a constant instead of duplicating this literal "foodname" 4 times.(ğˆŞüÿÿÿÿ8ÂŸ¯Ô1
+b
+java:S11920"FDefine a constant instead of duplicating this literal "price" 4 times.(–¤¶{8ÃŸ¯Ô1
+j
+java:S11927"HDefine a constant instead of duplicating this literal "counter" 3 times.(®Õµıûÿÿÿÿ8ÃŸ¯Ô1
 D
-java:S16043"(Make this anonymous inner class a lambda(¾ñçi8ÌóØîÓ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ÍóØîÓ1
+java:S1604A"(Make this anonymous inner class a lambda(¾ñçi8ÄŸ¯Ô1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ÛÖ¯Ô1
 I
-java:S1172c",Remove this unused method parameter "total".(£½¸û8æóØîÓ1
+java:S1172y",Remove this unused method parameter "total".(£½¸û8ôŸ¯Ô1

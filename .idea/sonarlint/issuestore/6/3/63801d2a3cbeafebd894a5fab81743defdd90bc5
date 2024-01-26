@@ -1,16 +1,8 @@
 
-g
-java:S1192&"JDefine a constant instead of duplicating this literal "userLogin" 4 times.(†¸²ó8·ŞšêÓ1
 E
-java:S1604."(Make this anonymous inner class a lambda(Ò¦û™8¸ŞšêÓ1
-E
-java:S1604<"(Make this anonymous inner class a lambda(Ò¦û™8¸ŞšêÓ1
+java:S1604,"(Make this anonymous inner class a lambda(Ò¦û™8ŒÂì«Ô1
 J
-java:S1604H"(Make this anonymous inner class a lambda(“ŒõÓüÿÿÿÿ8¸ŞšêÓ1
-v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8ëˆ ’Ñ1
-Z
-java:S1854'"=Remove this useless assignment to local variable "userLogin".(Ò¤²Õ8ÑŞšêÓ1
-K
-java:S1481'".Remove this unused "userLogin" local variable.(Ò¤²Õ8ÖŞšêÓ1
+java:S1604:"(Make this anonymous inner class a lambda(“ŒõÓüÿÿÿÿ8Âì«Ô1
+v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8Âì«Ô1
 O
-java:S1481f"-Remove this unused "password" local variable.(ï¼²ûÿÿÿÿ8ù¯ş‹Ó1
+java:S1481\"-Remove this unused "password" local variable.(ï¼²ûÿÿÿÿ8»Âì«Ô1

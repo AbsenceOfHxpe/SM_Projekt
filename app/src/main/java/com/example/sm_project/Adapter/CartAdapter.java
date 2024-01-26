@@ -16,14 +16,21 @@ import com.example.sm_project.Domain.Foods;
 import com.example.sm_project.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
+
     private ArrayList<Foods> cartItems;
     private CartListener cartListener;
 
     public CartAdapter(ArrayList<Foods> cartItems, CartListener cartListener) {
         this.cartItems = cartItems;
         this.cartListener = cartListener;
+    }
+
+    public void setCartItems(ArrayList<Foods> cartItems) {
+        this.cartItems = cartItems;
+        notifyDataSetChanged();
     }
 
     @NonNull
@@ -51,11 +58,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
                 .into(holder.pic);
 
         holder.plusItem.setOnClickListener(v -> {
-            cartListener.onItemQuantityChanged(food, true);
+            cartListener.onItemQuantityChanged(food, food.getNumberInCard() + 1);
         });
 
         holder.minusItem.setOnClickListener(v -> {
-            cartListener.onItemQuantityChanged(food, false);
+            cartListener.onItemQuantityChanged(food, Math.max(0, food.getNumberInCard() - 1));
         });
     }
 
@@ -81,10 +88,11 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ViewHolder> {
     }
 
     public interface CartListener {
-        void onItemQuantityChanged(Foods food, boolean increase);
+        void onItemQuantityChanged(Foods food, int newQuantity);
     }
 
     public ArrayList<Foods> getCartItems() {
         return cartItems;
     }
 }
+

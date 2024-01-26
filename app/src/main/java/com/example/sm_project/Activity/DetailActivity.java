@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -26,6 +27,10 @@ public class DetailActivity extends AppCompatActivity {
     private TextView totalTextView;
     private int counter = 1;
 
+    private String foodName;
+    private float price;
+    private int imagePath;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,9 +42,18 @@ public class DetailActivity extends AppCompatActivity {
         ImageView imgView = findViewById(R.id.img);
         AppCompatButton addBtn = findViewById(R.id.addBtn);
 
-        String foodName = getIntent().getStringExtra("foodname");
-        float price = getIntent().getFloatExtra("price", 0.1f);
-        int imagePath = getIntent().getIntExtra("img", 2);
+        if (savedInstanceState == null) {
+            // Jeśli to pierwsze utworzenie aktywności, ustaw dane z Intent
+            foodName = getIntent().getStringExtra("foodname");
+            price = getIntent().getFloatExtra("price", 0.1f);
+            imagePath = getIntent().getIntExtra("img", 2);
+        } else {
+            // Jeśli to odtworzenie aktywności po zmianie orientacji, pobierz dane z zapisanego stanu
+            foodName = savedInstanceState.getString("foodname");
+            price = savedInstanceState.getFloat("price");
+            imagePath = savedInstanceState.getInt("img");
+            counter = savedInstanceState.getInt("counter", 1);
+        }
 
         titleTextView.setText(foodName);
         priceTextView.setText(String.valueOf(price) + " zł");
@@ -51,7 +65,6 @@ public class DetailActivity extends AppCompatActivity {
         addBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Przygotuj dane do przekazania
                 Intent intent = new Intent(DetailActivity.this, CartActivity.class);
                 intent.putExtra("foodname", foodName);
                 intent.putExtra("price", price);
@@ -59,7 +72,6 @@ public class DetailActivity extends AppCompatActivity {
                 intent.putExtra("counter", counter);
                 intent.putExtra("img", imagePath);
 
-                // Zapisz dane w SharedPreferences
                 updateOrAddToCart(foodName, price, price * counter, counter, imagePath);
 
                 startActivity(intent);
@@ -85,10 +97,20 @@ public class DetailActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        // Zachowaj dane przed zniszczeniem aktywności
+        outState.putString("foodname", foodName);
+        outState.putFloat("price", price);
+        outState.putInt("img", imagePath);
+        outState.putInt("counter", counter);
+    }
+
     private void updateCounter() {
         TextView textView = findViewById(R.id.textView13);
         textView.setText(String.valueOf(counter));
-        float total = counter * getIntent().getFloatExtra("price", 0.0f);
+        float total = counter * price;
         totalTextView.setText(String.valueOf(total) + " zł");
     }
 
@@ -100,7 +122,6 @@ public class DetailActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        // Odczytaj obecną listę produktów
         String jsonCart = preferences.getString("cart_list", "");
         Type type = new TypeToken<List<Foods>>() {}.getType();
         List<Foods> cartList = new Gson().fromJson(jsonCart, type);
@@ -109,28 +130,23 @@ public class DetailActivity extends AppCompatActivity {
             cartList = new ArrayList<>();
         }
 
-        // Sprawdź, czy produkt już istnieje na liście
         boolean productExists = false;
         for (Foods existingFood : cartList) {
             if (existingFood.getTitle().equals(foodName)) {
-                // Produkt istnieje, zwiększ ilość
                 existingFood.setNumberInCard(existingFood.getNumberInCard() + counter);
                 productExists = true;
                 break;
             }
         }
 
-        // Jeśli produkt nie istnieje, dodaj go do listy
         if (!productExists) {
             Foods newFood = new Foods(0.0, imagePath, 0, foodName, price);
             newFood.setNumberInCard(counter);
             cartList.add(newFood);
         }
 
-        // Zapisz zaktualizowaną listę produktów
         String updatedCart = new Gson().toJson(cartList);
         editor.putString("cart_list", updatedCart);
-
         editor.apply();
     }
 }

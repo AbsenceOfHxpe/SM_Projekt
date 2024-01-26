@@ -34,7 +34,7 @@ public class StartActivity extends AppCompatActivity {
 
 
 
-        pic = findViewById(R.id.pic);
+        pic = findViewById(R.id.imageView11);
         loginBtn = findViewById(R.id.loginBtn);
         registerBtn = findViewById(R.id.registerBtn);
         animateImage();

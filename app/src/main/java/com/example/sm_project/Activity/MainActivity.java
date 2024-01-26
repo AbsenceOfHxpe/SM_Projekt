@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.Room;
 
+import com.example.sm_project.Activity.Settings.SettingsActivity;
 import com.example.sm_project.Adapter.BestRestAdapter;
 import com.example.sm_project.Adapter.CategoryAdapter;
 import com.example.sm_project.Converter.DataConverter;
@@ -30,7 +31,6 @@ import com.example.sm_project.Dao.CategoryDao;
 import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Dao.RestaurantDishCrossRefDao;
-import com.example.sm_project.Domain.Restaurants;
 import com.example.sm_project.Helper.CategoryTable;
 import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.Helper.OrderTable;
@@ -420,11 +420,18 @@ public class MainActivity extends AppCompatActivity  {
 
     private void goToSettings() {
         settingsBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-            startActivity(intent);
-        });
+            SharedPreferences preferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+            String loggedInUsername = preferences.getString("username", null);
 
+            if (loggedInUsername != null && loggedInUsername.equals("admin")) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+            } else {
+                Toast.makeText(MainActivity.this, "Brak uprawnień do ustawień.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
+
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
