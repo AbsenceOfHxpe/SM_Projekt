@@ -55,7 +55,7 @@
     <string name="order_prepare">Twoje zamówienie jest właśnie przyrządzane.</string>
     <string name="order_received">Zamówienie otrzymane</string>
 
-    <string name="cancel_button">Anuluj</string>
+    <string name="cancel">Anuluj</string>
     <string name="order_number">Zamówienie nr </string>
     <string name="invalid_restaurant">Restauracja nie jest na Twojej liście</string>
 
@@ -114,6 +114,23 @@
     <string name="cannot_delete_restaurant">Nie można usunąć restauracji. Istnieją powiązane kategorie.</string>
     <string name="add_categories_first">Dodaj najpierw kategorie</string>
     <string name="no_restaurants_to_delete">Brak restauracji do usunięcia</string>
+
+
+
+    <string name="select_to_delete">Wybierz zamówienie do usunięcia</string>
+    <string name="no_orders_delete">Brak zamówień do usunięcia</string>
+    <string name="deleted_success">Zamówienie usunięto pomyślnie</string>
+    <string name="order_id">ID Zamówienia: </string>
+    <string name="date">Data: </string>
+    <string name="restaurant_name">Restauracja: </string>
+    <string name="select_to_edit">Wybierz zamówienie do edycji</string>
+    <string name="no_orders_edit">Brak dostępnych zamówień do edycji</string>
+    <string name="order_updated">Zamówienie zostało pomyślnie zaktualizowane</string>
+    <string name="date_info">yyyy-MM-dd</string>
+
+
+
+
 
 
 

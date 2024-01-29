@@ -93,7 +93,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
 
         if (!orders.isEmpty()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select order to delete");
+            builder.setTitle(R.string.select_to_delete);
 
             List<String> orderDetails = getOrdersDetails(orders);
 
@@ -103,11 +103,11 @@ public class OrderSettingsActivity extends AppCompatActivity {
                         handleAction(Actions.DELETE);
                     });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
 
             builder.create().show();
         } else {
-            Toast.makeText(this, "No orders available for deleting", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_orders_delete, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -115,16 +115,16 @@ public class OrderSettingsActivity extends AppCompatActivity {
     private void handleDeleteAction(AlertDialog.Builder builder) {
         OrderTable orderToDelete = orderDao.getAllOrdersSync().get(selectedOrderPosition);
         orderDao.delete(orderToDelete);
-        Toast.makeText(this, "Order deleted successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.deleted_success, Toast.LENGTH_SHORT).show();
     }
 
     private List<String> getOrdersDetails(List<OrderTable> orderTables) {
         List<String> orderDetails = new ArrayList<>();
         for (OrderTable order : orderTables) {
-            String details = "Order ID: " + order.getId() +
-                    "\nDate: " + order.getDate() +
-                    "\nAmount: " + order.getPrice() +
-                    "\nRestaurant: " + getRestaurantName(order.getRestaurantId()) +
+            String details = R.string.order_id + order.getId() +
+                    "\n" +R.string.date + order.getDate() +
+                    "\n"+ R.string.amount_info + order.getPrice() +
+                    "\n"+ R.string.restaurant_name + getRestaurantName(order.getRestaurantId()) +
                     "\n------------------------------------";
             orderDetails.add(details);
         }
@@ -140,7 +140,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
 
         if (!orders.isEmpty()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select order to edit");
+            builder.setTitle(R.string.select_to_edit);
 
             List<String> orderNames = getOrdersDetails(orders);
 
@@ -150,11 +150,11 @@ public class OrderSettingsActivity extends AppCompatActivity {
                         handleAction(Actions.EDIT);
                     });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
 
             builder.create().show();
         } else {
-            Toast.makeText(this, "No orders available for editing", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_orders_edit, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -182,7 +182,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
         List<OrderTable> orders = orderDao.getAllOrdersSync();
 
         if (!orders.isEmpty()) {
-            builder.setTitle("Select order to edit");
+            builder.setTitle(R.string.select_to_edit);
 
             List<String> orderDetails = getOrdersDetails(orders);
 
@@ -192,11 +192,11 @@ public class OrderSettingsActivity extends AppCompatActivity {
                         showEditOrderDialog(orders.get(selectedOrderPosition));
                     });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.setNegativeButton(R.string.cancel, (dialog, which) -> dialog.dismiss());
 
             builder.create().show();
         } else {
-            Toast.makeText(this, "No orders available for editing", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_orders_edit, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -235,12 +235,12 @@ public class OrderSettingsActivity extends AppCompatActivity {
         orderDao.update(order);
 
         dialog.dismiss();
-        Toast.makeText(this, "Order updated successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.order_updated, Toast.LENGTH_SHORT).show();
     }
 
     private Date formatDate(String dateString) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat(String.valueOf(R.string.date_info), Locale.getDefault());
             return sdf.parse(dateString);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -248,7 +248,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
         }
     }
     private String formatDate(Date date) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat(String.valueOf(R.string.date_info), Locale.getDefault());
         return sdf.format(date);
     }
 
