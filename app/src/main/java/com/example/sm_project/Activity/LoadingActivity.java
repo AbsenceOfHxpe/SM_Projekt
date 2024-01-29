@@ -100,10 +100,11 @@ public class LoadingActivity  extends AppCompatActivity {
                     dishDao.insert(new DishTable("Z szynką",R.drawable.hampizza,4.3,26.0));
                     dishDao.insert(new DishTable("Margherita",R.drawable.margherita,4.00,20));
 
-
-
-
-
+                    dishDao.insert(new DishTable("Z mozarellą", R.drawable.salatka_z_mozarella, 3.00, 25));
+                    dishDao.insert(new DishTable("Z łososiem", R.drawable.salatka_z_lososiem, 4.00, 30));
+                    dishDao.insert(new DishTable("Z falafelem", R.drawable.salatka_z_falafelem, 4.50, 26));
+                    dishDao.insert(new DishTable("Z kurczakiem", R.drawable.salatka_z_kurczakiem, 4.70, 23));
+                    dishDao.insert(new DishTable("Grecka", R.drawable.salatka_grecka, 3.90, 22));
 
                 } else {
 

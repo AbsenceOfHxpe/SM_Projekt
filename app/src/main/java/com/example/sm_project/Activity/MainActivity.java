@@ -95,17 +95,10 @@ public class MainActivity extends AppCompatActivity  {
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         categoryDao = myDB.getCategoryDao();
         restaurantDao = myDB.getRestaurantDao();
-        orderDao = myDB.getOrderDao();
         restaurantDishCrossRefDao = myDB.getRDCrossDao();
-        Date currentDate = DataConverter.getCurrentDate();
 
         goToSettings();
 
-        orderDao.getAllOrders().observe(this, orderTables -> {
-            if(orderTables == null || orderTables.isEmpty()){
-                orderDao.insert(new OrderTable(currentDate, 26.70, 1, 2));
-            }
-        });
 
                 restaurantDishCrossRefDao.getAllRDCross().observe(this, categories -> {
             if (categories == null || categories.isEmpty()) {
@@ -141,19 +134,13 @@ public class MainActivity extends AppCompatActivity  {
                 restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,26));
                 restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(5,27));
 
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,22));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,23));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,24));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,25));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,26));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(6,27));
+               restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(9,28));
+               restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(9,29));
+               restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(9,30));
+               restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(9,31));
+               restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(9,32));
 
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,22));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,23));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,24));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,25));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,26));
-                restaurantDishCrossRefDao.insert(new RestaurantDishCrossRef(7,27));
+
 
 
 

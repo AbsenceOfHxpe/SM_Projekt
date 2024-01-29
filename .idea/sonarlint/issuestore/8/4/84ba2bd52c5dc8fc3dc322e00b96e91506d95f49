@@ -1,18 +1,24 @@
 
 m
-java:S1192ã"JDefine a constant instead of duplicating this literal "cart_data" 3 times.(ĞÆ®ûÿÿÿÿ8Â´ş¯Ô1
+java:S1192û"JDefine a constant instead of duplicating this literal "cart_data" 3 times.(ĞÆ®ûÿÿÿÿ8Â´ş¯Ô1
 h
-java:S1192ä"JDefine a constant instead of duplicating this literal "cart_list" 3 times.(®¡ñ8Â´ş¯Ô1
+java:S1192ü"JDefine a constant instead of duplicating this literal "cart_list" 3 times.(®¡ñ8Â´ş¯Ô1
 l
-java:S1192²"IDefine a constant instead of duplicating this literal "%.2f zÅ‚" 3 times.(‡Á²Óùÿÿÿÿ8Ã´ş¯Ô1
+java:S1192Ê"IDefine a constant instead of duplicating this literal "%.2f zÅ‚" 3 times.(‡Á²Óùÿÿÿÿ8Ã´ş¯Ô1
 v	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(Ÿƒµß8Ä´ş¯Ô1
 D
-java:S1659<"'Declare "couponBtn" on a separate line.(ü³ó8”µş¯Ô1
+java:S1659>"'Declare "couponBtn" on a separate line.(ü³ó8”µş¯Ô1
 p
 java:S1450%"SRemove the "myDB" field and declare it as a local variable in the relevant methods.(¸©ßŒ8•µş¯Ô1
 Y
-java:S1874V"7Remove this use of "getSerializable"; it is deprecated.(ı¾»Ğÿÿÿÿÿ8œµş¯Ô1
+java:S1874X"7Remove this use of "getSerializable"; it is deprecated.(ı¾»Ğÿÿÿÿÿ8œµş¯Ô1
 Y
-java:S1874q"7Remove this use of "getSerializable"; it is deprecated.(ı¾»Ğÿÿÿÿÿ8µş¯Ô1
+java:S1874s"7Remove this use of "getSerializable"; it is deprecated.(ı¾»Ğÿÿÿÿÿ8µş¯Ô1
 M
-java:S1172–"/Remove this unused method parameter "totalSum".(ñş¦ß8¥µş¯Ô1
+java:S1172˜"/Remove this unused method parameter "totalSum".(ñş¦ß8¥µş¯Ô1
+X
+java:S1117¯":Rename "userId" which hides the field declared at line 50.(…ºöÛ8Ì³ª³Ô1
+X
+java:S1117º":Rename "userId" which hides the field declared at line 50.(…ºöÛ8Í³ª³Ô1
+U
+java:S1068/"3Remove this unused "USED_COUPON_KEY" private field.(äüÊ†øÿÿÿÿ8ª¦ˆ³Ô1

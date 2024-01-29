@@ -1,7 +1,9 @@
 package com.example.sm_project.Activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.style.UnderlineSpan;
@@ -48,10 +50,34 @@ public class LoginActivity extends AppCompatActivity {
                 if (intent != null) {
                     startActivity(intent);
                 } else {
-                    Toast.makeText(LoginActivity.this, "Gmail is not installed", Toast.LENGTH_SHORT).show();
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://mail.google.com/")));
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(LoginActivity.this, "Gmail is not installed", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
+
+
+        binding.facebookIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = getPackageManager().getLaunchIntentForPackage("com.facebook.katana");
+                if (intent != null) {
+                    startActivity(intent);
+                } else {
+                    try {
+                        startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/")));
+                    } catch (ActivityNotFoundException e) {
+                        Toast.makeText(LoginActivity.this, "Facebook is not installed", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+
+
+
 
         setVariable();
 

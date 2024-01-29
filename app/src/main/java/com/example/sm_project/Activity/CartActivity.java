@@ -40,6 +40,8 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
 
     private static final String CART_ITEMS_KEY = "cart_items";
     private static final String DISCOUNT_KEY = "discount";
+    private static final String USER_COUPON_KEY_PREFIX = "used_coupon_";
+
 
     private static final String USER_PREFERENCES_NAME = "user_preferences";
     private static final String USED_COUPON_KEY = "used_coupon";
@@ -158,17 +160,36 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         couponBtn.setEnabled(false);
     }
 
+    private String getUserCouponKey(int userId) {
+        return USER_COUPON_KEY_PREFIX + userId;
+    }
+    private int getUserIdFromSharedPreferences() {
+        SharedPreferences preferences = getSharedPreferences("user_data", MODE_PRIVATE);
+        return preferences.getInt("userId", -1);
+    }
+
     private boolean checkIfCouponUsed() {
-        SharedPreferences userPreferences = getSharedPreferences(USER_PREFERENCES_NAME, MODE_PRIVATE);
-        return userPreferences.getBoolean(USED_COUPON_KEY, false);
+        int userId = getUserIdFromSharedPreferences();
+        if (userId != -1) {
+            SharedPreferences userPreferences = getSharedPreferences(USER_PREFERENCES_NAME, MODE_PRIVATE);
+            String userCouponKey = getUserCouponKey(userId);
+            return userPreferences.getBoolean(userCouponKey, false);
+        } else {
+            return false;
+        }
     }
 
     private void updateCouponUsageStatus() {
-        SharedPreferences userPreferences = getSharedPreferences(USER_PREFERENCES_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = userPreferences.edit();
-        editor.putBoolean(USED_COUPON_KEY, true);
-        editor.apply();
+        int userId = getUserIdFromSharedPreferences();
+        if (userId != -1) {
+            SharedPreferences userPreferences = getSharedPreferences(USER_PREFERENCES_NAME, MODE_PRIVATE);
+            String userCouponKey = getUserCouponKey(userId);
+            SharedPreferences.Editor editor = userPreferences.edit();
+            editor.putBoolean(userCouponKey, true);
+            editor.apply();
+        }
     }
+
 
     private void updateCartSummary(float total, double discount) {
         double serviceFee = 0.1 * total;
@@ -247,7 +268,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartL
         SharedPreferences preferences = getSharedPreferences("cart_data", MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
 
-        // Usuń zapisane dane z SharedPreferences
         editor.remove("cart_list");
         editor.apply();
     }

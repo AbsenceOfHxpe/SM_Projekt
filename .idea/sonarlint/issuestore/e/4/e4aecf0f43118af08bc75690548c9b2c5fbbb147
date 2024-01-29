@@ -1,9 +1,9 @@
 
 h	java:S112´"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8˜’Ø’Ò1
-p
-java:S1192®"RUse already-defined constant 'LATITUDE_KEY' instead of duplicating its value here.(œÓÖğ8™’Ø’Ò1
 v
 java:S1192¯"SUse already-defined constant 'LONGITUDE_KEY' instead of duplicating its value here.(ÿËå”øÿÿÿÿ8™’Ø’Ò1
+p
+java:S1192®"RUse already-defined constant 'LATITUDE_KEY' instead of duplicating its value here.(œÓÖğ8™’Ø’Ò1
 F
 java:S1604§"(Make this anonymous inner class a lambda(ı’Ÿ÷8™’Ø’Ò1
 K

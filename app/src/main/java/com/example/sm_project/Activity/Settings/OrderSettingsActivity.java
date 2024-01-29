@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,10 +21,8 @@ import com.example.sm_project.Dao.OrderDao;
 import com.example.sm_project.Dao.RestaurantDao;
 import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.Helper.OrderTable;
-import com.example.sm_project.Helper.RestaurantTable;
 import com.example.sm_project.R;
 import com.example.sm_project.databinding.ActivityOrderManagmentBinding;
-import com.example.sm_project.databinding.DialogAddCategoryBinding;
 import com.example.sm_project.databinding.DialogOrderBinding;
 
 import java.text.ParseException;
@@ -36,12 +33,7 @@ import java.util.List;
 import java.util.Locale;
 
 public class OrderSettingsActivity extends AppCompatActivity {
-    private ActivityOrderManagmentBinding binding;
 
-    private ImageView backBtn;
-    private AppCompatButton addBtn, deleteBtn, editBtn;
-    private TextView titleTxt;
-    private MyDataBase myDB;
     private OrderDao orderDao;
     private RestaurantDao restaurantDao;
     private int selectedOrderPosition; // Added field to store the selected order position
@@ -49,12 +41,12 @@ public class OrderSettingsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityOrderManagmentBinding.inflate(getLayoutInflater());
+        com.example.sm_project.databinding.ActivityOrderManagmentBinding binding = ActivityOrderManagmentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         initializeViews();
 
-        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
+        MyDataBase myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         orderDao = myDB.getOrderDao();
@@ -62,13 +54,13 @@ public class OrderSettingsActivity extends AppCompatActivity {
     }
 
     private void initializeViews() {
-        titleTxt = findViewById(R.id.titleTxt);
+        TextView titleTxt = findViewById(R.id.titleTxt);
         titleTxt.setText(getString(R.string.settings_order));
 
-        backBtn = findViewById(R.id.backBtn);
-        addBtn = findViewById(R.id.addBtn);
-        editBtn = findViewById(R.id.editBtn);
-        deleteBtn = findViewById(R.id.deleteBtn);
+        ImageView backBtn = findViewById(R.id.backBtn);
+        AppCompatButton addBtn = findViewById(R.id.addBtn);
+        AppCompatButton editBtn = findViewById(R.id.editBtn);
+        AppCompatButton deleteBtn = findViewById(R.id.deleteBtn);
 
         backBtn.setOnClickListener(v -> startActivity(new Intent(OrderSettingsActivity.this, SettingsActivity.class)));
         deleteBtn.setOnClickListener(v -> showDeleteOrdersListDialog());
@@ -93,7 +85,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
 
         if (!orders.isEmpty()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select order to delete");
+            builder.setTitle(R.string.select_to_delete);
 
             List<String> orderDetails = getOrdersDetails(orders);
 
@@ -103,11 +95,11 @@ public class OrderSettingsActivity extends AppCompatActivity {
                         handleAction(Actions.DELETE);
                     });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.setNegativeButton(R.string.cancel_button, (dialog, which) -> dialog.dismiss());
 
             builder.create().show();
         } else {
-            Toast.makeText(this, "No orders available for deleting", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_orders_delete, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -115,21 +107,24 @@ public class OrderSettingsActivity extends AppCompatActivity {
     private void handleDeleteAction(AlertDialog.Builder builder) {
         OrderTable orderToDelete = orderDao.getAllOrdersSync().get(selectedOrderPosition);
         orderDao.delete(orderToDelete);
-        Toast.makeText(this, "Order deleted successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.deleted_success, Toast.LENGTH_SHORT).show();
     }
 
     private List<String> getOrdersDetails(List<OrderTable> orderTables) {
         List<String> orderDetails = new ArrayList<>();
         for (OrderTable order : orderTables) {
-            String details = "Order ID: " + order.getId() +
-                    "\nDate: " + order.getDate() +
-                    "\nAmount: " + order.getPrice() +
-                    "\nRestaurant: " + getRestaurantName(order.getRestaurantId()) +
-                    "\n------------------------------------";
+            String details = getString(
+                    R.string.order_details_format,
+                    String.valueOf(order.getId()),
+                    formatDate(order.getDate()),
+                    String.valueOf(order.getPrice()),
+                    getRestaurantName(order.getRestaurantId())
+            );
             orderDetails.add(details);
         }
         return orderDetails;
     }
+
 
     private String getRestaurantName(int restaurantId) {
         return restaurantDao.getRestaurantNameById(restaurantId);
@@ -140,7 +135,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
 
         if (!orders.isEmpty()) {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("Select order to edit");
+            builder.setTitle(R.string.select_to_edit);
 
             List<String> orderNames = getOrdersDetails(orders);
 
@@ -150,11 +145,11 @@ public class OrderSettingsActivity extends AppCompatActivity {
                         handleAction(Actions.EDIT);
                     });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.setNegativeButton(R.string.cancel_button, (dialog, which) -> dialog.dismiss());
 
             builder.create().show();
         } else {
-            Toast.makeText(this, "No orders available for editing", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_orders_edit, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -169,9 +164,9 @@ public class OrderSettingsActivity extends AppCompatActivity {
         builder.setView(dialogView);
         AlertDialog dialog = builder.create();
 
-       // configureDialog(action, btnAction, dialogBinding);
+        // configureDialog(action, btnAction, dialogBinding);
 
-       // btnAction.setOnClickListener(view -> handleAction(action, dialogBinding, dialog));
+        // btnAction.setOnClickListener(view -> handleAction(action, dialogBinding, dialog));
 
         btnCancel.setOnClickListener(view -> dialog.dismiss());
 
@@ -182,7 +177,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
         List<OrderTable> orders = orderDao.getAllOrdersSync();
 
         if (!orders.isEmpty()) {
-            builder.setTitle("Select order to edit");
+            builder.setTitle(R.string.select_to_edit);
 
             List<String> orderDetails = getOrdersDetails(orders);
 
@@ -192,11 +187,11 @@ public class OrderSettingsActivity extends AppCompatActivity {
                         showEditOrderDialog(orders.get(selectedOrderPosition));
                     });
 
-            builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
+            builder.setNegativeButton(R.string.cancel_button, (dialog, which) -> dialog.dismiss());
 
             builder.create().show();
         } else {
-            Toast.makeText(this, "No orders available for editing", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.no_orders_edit, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -235,7 +230,7 @@ public class OrderSettingsActivity extends AppCompatActivity {
         orderDao.update(order);
 
         dialog.dismiss();
-        Toast.makeText(this, "Order updated successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.order_updated, Toast.LENGTH_SHORT).show();
     }
 
     private Date formatDate(String dateString) {
@@ -247,10 +242,12 @@ public class OrderSettingsActivity extends AppCompatActivity {
             return null;
         }
     }
+
     private String formatDate(Date date) {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return sdf.format(date);
     }
+
 
 
 }

@@ -1,6 +1,5 @@
 package com.example.sm_project.Activity.Settings;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -26,23 +25,23 @@ import java.util.List;
 
 public class CategorySettingsActivity extends AppCompatActivity {
 
-    private ActivityCatManagmentBinding binding;
     private ImageView backBtn;
-    private AppCompatButton addBtn, deleteBtn, editBtn;
+    private AppCompatButton addBtn;
+    private AppCompatButton deleteBtn;
+    private AppCompatButton editBtn;
 
-    private MyDataBase myDB;
     private CategoryDao categoryDao;
     private CategoryTable categoryToEdit;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCatManagmentBinding.inflate(getLayoutInflater());
+        com.example.sm_project.databinding.ActivityCatManagmentBinding binding = ActivityCatManagmentBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         initializeViews();
 
-        myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
+        MyDataBase myDB = Room.databaseBuilder(this, MyDataBase.class, "Database_db")
                 .allowMainThreadQueries().fallbackToDestructiveMigration().build();
         categoryDao = myDB.getCategoryDao();
 

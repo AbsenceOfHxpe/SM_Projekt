@@ -43,12 +43,10 @@ public class DetailActivity extends AppCompatActivity {
         AppCompatButton addBtn = findViewById(R.id.addBtn);
 
         if (savedInstanceState == null) {
-            // Jeśli to pierwsze utworzenie aktywności, ustaw dane z Intent
             foodName = getIntent().getStringExtra("foodname");
-            price = getIntent().getFloatExtra("price", 0.1f);
+            price = getIntent().getFloatExtra("price", 0.2f);
             imagePath = getIntent().getIntExtra("img", 2);
         } else {
-            // Jeśli to odtworzenie aktywności po zmianie orientacji, pobierz dane z zapisanego stanu
             foodName = savedInstanceState.getString("foodname");
             price = savedInstanceState.getFloat("price");
             imagePath = savedInstanceState.getInt("img");
@@ -56,7 +54,8 @@ public class DetailActivity extends AppCompatActivity {
         }
 
         titleTextView.setText(foodName);
-        priceTextView.setText(String.valueOf(price) + " zł");
+        priceTextView.setText(String.format("%.2f zł", price));
+
 
         Glide.with(this)
                 .load(imagePath)

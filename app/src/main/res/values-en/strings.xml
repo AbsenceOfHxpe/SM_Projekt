@@ -122,5 +122,21 @@
     <string name="no_restaurants_to_delete">No restaurants to delete</string>
 
 
+    <string name="select_to_delete">Select order to delete</string>
+    <string name="no_orders_delete">No orders available for deleting</string>
+    <string name="deleted_success">Order deleted successfully</string>
+    <string name="order_id">Order ID: </string>
+    <string name="date">Date: </string>
+    <string name="restaurant_name">Restaurant: </string>
+    <string name="select_to_edit">Select order to edit</string>
+    <string name="no_orders_edit">No orders available for editing</string>
+    <string name="order_updated">Order updated successfully</string>
+    <string name="date_info">yyyy-MM-dd</string>
+
+    <string name="order_details_format">Order ID: %1$s\nDate: %2$s\nAmount: %3$s\nRestaurant: %4$s\n------------------------------------</string>
+
+
+
+
 
 </resources>

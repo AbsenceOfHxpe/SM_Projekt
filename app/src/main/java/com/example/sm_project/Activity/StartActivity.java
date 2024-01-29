@@ -13,7 +13,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.sm_project.Dao.UserDao;
-import com.example.sm_project.Extra.FloatingViewService;
 import com.example.sm_project.Helper.MyDataBase;
 import com.example.sm_project.R;
 
